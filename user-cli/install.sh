@@ -2,8 +2,6 @@
 
 cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
 
-exit
-
 cd home
 for f in *;do
     ln -Tsf "$PWD/$f" "$HOME/.$f"
