@@ -68,5 +68,7 @@ export PATH="$HOME/.cargo/RustDT/bin:$PATH"
 export RUST_SRC_PATH="/opt/rustc-1.9.0/src"
 
 # Netkit
-source $HOME/.opt/netkit/environment.sh
+if [ -f $HOME/.opt/netkit/environment.sh ];then
+    source $HOME/.opt/netkit/environment.sh
+fi
 
