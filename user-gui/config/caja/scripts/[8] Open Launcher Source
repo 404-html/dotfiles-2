@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ "$CAJA_SCRIPT_SELECTED_FILE_PATHS" ];then
+    file=${CAJA_SCRIPT_SELECTED_FILE_PATHS%%$'\n'*}
+else
+    exit -1
+fi
+
+path=$(grep -Po "(?<=^Path=).*" "$file")
+if [ "$path" ];then
+    nemo "$path"
+else
+    notify-send "Script failed to find source path."
+fi
+

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+secret-tool lookup krb-pass default | kinit $(secret-tool lookup krb-usr default) > /dev/null

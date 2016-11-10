@@ -1,0 +1,100 @@
+#!/bin/zsh
+# Only for interactive shells.
+[[ -o interactive ]] || exit 0
+
+if hash tmux 2>/dev/null; then
+    # Auto-start TMUX in SSH.
+    if [ "$SSH_CONNECTION" ] && [ -z "$TMUX" ];then
+        tmux has-session -t ssh &>/dev/null && exec tmux attach -t ssh || exec tmux new -s ssh
+    fi
+fi
+
+FRAMEWORK=prezto
+if [ $FRAMEWORK = prezto ];then
+
+    # Source Prezto.
+    # https://github.com/sorin-ionescu/prezto
+    if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+        source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+    fi
+
+elif [ $FRAMEWORK = oh-my-zsh ];then
+
+    # Source oh-my-zsh
+    # https://github.com/robbyrussell/oh-my-zsh
+    if [ -r $HOME/.oh-my-zshrc ];then
+        source $HOME/.oh-my-zshrc
+    fi
+fi
+
+
+# Add help command
+autoload -U run-help
+autoload run-help-git
+autoload run-help-svn
+autoload run-help-svk
+alias help=run-help
+
+# zsh options
+setopt EXTENDED_GLOB RM_STAR_WAIT
+# Disable Substituition verification
+unsetopt HIST_VERIFY NO_CLOBBER AUTO_CD
+
+# rupa z init.
+# https://github.com/rupa/z
+#source ~/.rupaz/z.sh
+
+# fasd init
+# https://github.com/clvv/fasd
+if hash fasd 2>/dev/null; then
+    eval "$(fasd --init auto)"
+fi
+
+if [ -e $HOME/.config/up/up.sh ]; then
+    source ~/.config/up/up.sh
+fi
+
+# ctrl-u does the same it did in bash.
+bindkey \^U backward-kill-line
+
+# When rxvt and when not
+if [[ "$TERM" == rxvt* ]];then
+    # urxvt scroll buffer being stupid workaround.
+    # https://superuser.com/questions/442589/xmonad-urxvt-issue-text-disappears-after-resizing
+    if [ -z "$urxvt_debuged" ] ;then
+        for (( i=1; i<=$LINES; i++ )); do
+            echo
+        done
+        export urxvt_debuged=1
+        clear
+    fi
+else
+    [ -r "$HOME/.bash_theme" ] && source $HOME/.bash_theme
+fi
+
+# Apply dircolor theme. Should be done before the aliases.
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+
+if [ -r ~/.bash_aliases ];then
+    source ~/.bash_aliases
+fi
+
+# Workaround #
+# Make zsh autocomplete respect dircolors.
+# https://github.com/robbyrussell/oh-my-zsh/issues/1563
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+function bashmotd()
+{
+    [ -r ~/.bash_motd ] && cat ~/.bash_motd
+    hash fortune 2>/dev/null && echo '  '$(fortune -s)
+}
+
+if ! [[ -o login ]] && ! [ -e ~/.hushlogin ];then
+    bashmotd
+fi
+
+true
+

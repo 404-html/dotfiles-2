@@ -1,0 +1,11 @@
+#!/bin/bash
+# set XKB layout
+#setxkbmap -layout pt
+# turn on mousekeys
+xkbset m
+# stop mousekeys expiring after a timeout
+xkbset exp =m
+# map keysym to other keysym
+#xmodmap -e "keysym Menu = Pointer_Button3"
+# this also works
+xmodmap -e "keycode 135 = Pointer_Button3"

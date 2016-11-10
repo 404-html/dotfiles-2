@@ -1,0 +1,104 @@
+-- vim: ts=4 sw=4 noet ai cindent syntax=lua
+
+conky.config = {
+
+	-- ### GENERAL ###
+    font = 'Fira Code:size=11',
+    use_xft = true,
+    update_interval = 10.0,
+	no_buffers = true,
+    double_buffer = true,
+	out_to_console = false,
+	out_to_stderr = false,
+	extra_newline = false,
+    uppercase = false,
+    -- override_utf8_locale = false,
+    -- cpu_avg_samples = 2,
+	-- net_avg_samples = 2,
+    -- total_run_times = 0,
+	-- text_buffer_size = 1024,
+	-- max_specials = 1024,
+
+	-- ### X Related ###
+    own_window = true,
+    own_window_type = "override",
+	own_window_class = 'Conky',
+    own_window_argb_visual = true,
+    own_window_argb_value = 155,
+    own_window_colour = "000000",
+    own_window_transparent = false,
+    own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+
+	-- ### Appearance ###
+	stippled_borders = 0,
+	background = false,
+    draw_shades = false,
+    draw_outline = false,
+    draw_borders = false,
+	border_width = 1,
+    draw_graph_borders = true,
+	border_inner_margin = 20,
+    gap_x = 425,
+    gap_y = 35,
+    default_color = "white",
+    default_shade_color = "white",
+    default_outline_color = "white",
+    alignment = "top_right",
+    -- default_bar_height = 4,
+	minimum_height = 1025,
+	-- minimum_width = 5,
+    -- maximum_width 220,
+
+}
+
+-- Done by cron:
+-- ${voffset -11}${execi 300 curl -4 wttr.in | sed -n '3,6p' | perl -pe 's/\e\[?.*?[\@-~]//g' > /tmp/$USER_conkyrc_p2}
+
+conky.text = [[
+${alignc}System
+${voffset -8}$hr${voffset 10}
+${color grey}Date:$color $alignr${time %a %b %e, %k:%M:%S}
+${color grey}Hostname:$color $alignr$nodename
+${color grey}Kernel:$color $alignr$kernel
+${color grey}Uptime:$color $alignr$uptime
+${color grey}Outdated packages:$color ${alignr} ${exec cat /tmp/$USER_conky/apt_ulist }
+
+${alignc}Weather
+${voffset -8}$hr${voffset 10}
+${color grey}${exec sed -n '1p' /tmp/$USER_conky/weather | cut -c 1-15}$color      ${exec sed -n '1p' /tmp/$USER_conky/weather | cut -c 16-}
+${color grey}${exec sed -n '2p' /tmp/$USER_conky/weather | cut -c 1-15}$color      ${exec sed -n '2p' /tmp/$USER_conky/weather | cut -c 16-}
+${color grey}${exec sed -n '3p' /tmp/$USER_conky/weather | cut -c 1-15}$color      ${exec sed -n '3p' /tmp/$USER_conky/weather | cut -c 16-}
+${color grey}${exec sed -n '4p' /tmp/$USER_conky/weather | cut -c 1-15}$color      ${exec sed -n '4p' /tmp/$USER_conky/weather | cut -c 16-}
+${color grey}${exec sed -n '5p' /tmp/$USER_conky/weather | cut -c 1-15}$color      ${exec sed -n '5p' /tmp/$USER_conky/weather | cut -c 16-}
+
+${alignc}Storage
+${voffset -8}$hr${voffset 10}
+${color grey}/var $color ${alignr}${fs_used /var}/${fs_size /var} [ ${fs_used_perc /var}% ]
+${fs_bar 6 /var}
+${color grey}/boot/efi $color ${alignr}${fs_used /boot/efi}/${fs_size /boot/efi} [ ${fs_used_perc /boot/efi}% ]
+${fs_bar 6 /boot/efi}
+${color grey}/ $color ${alignr}${fs_used /}/${fs_size /} [ ${fs_used_perc /}% ]
+${fs_bar 6 /}
+${color grey}/home $color ${alignr}${fs_used /home}/${fs_size /home} [ ${fs_used_perc /home}% ]
+${fs_bar 6 /home}
+
+${alignc}IO
+${voffset -8}$hr${voffset 10}
+${color grey}SSD:$color ${diskio /dev/sda}${alignr}${color grey}HDD:$color ${diskio /dev/sdb}
+${diskiograph /dev/sda 25,170 -tl }${alignr}${diskiograph /dev/sdb 25,170 -tl } 
+
+top
+${color grey}${top_io name 1}${color}${alignr} ${top_io io_perc 1} %
+${color grey}${top_io name 2}${color}${alignr} ${top_io io_perc 2} %
+${color grey}${top_io name 3}${color}${alignr} ${top_io io_perc 3} %
+${color grey}${top_io name 4}${color}${alignr} ${top_io io_perc 4} %
+
+${alignc}Network
+${voffset -8}$hr${voffset 10}
+${color grey}wan:$color ${alignr}${exec cat /tmp/$USER_conky/wanip}
+${color grey}eth1:$color ${alignr}${addr eth1}
+${color grey}↓ $color${downspeed eth1} ${alignr}${color grey}↑$color ${upspeed eth1}
+${downspeedgraph eth1 25,170} ${alignr}${upspeedgraph eth1 25,170}
+[ ${totaldown eth1} ]$alignr[ ${totalup eth1} ]
+]]
+

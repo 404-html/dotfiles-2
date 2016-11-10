@@ -1,0 +1,35 @@
+#!/bin/bash
+[ $# -ne 2 ] && exit 1
+
+shopt -s extglob
+url=$1
+num=$2
+
+getimg(){
+	wget -q -nc -nd -e robots=off -H -p --force-html -P . -U Firefox --accept "*jpg*" "$1"
+	#echo -e "[$?]Error ocurred in page $2\n$1"
+}
+
+
+uhead=${url%/*}/
+utail=.html
+
+echo "Getting $num pages:"
+
+for i in $(seq 1 $num)
+do
+	getimg "$uhead""$i""$utail" $i &
+done
+
+wait
+
+for f in *jpg\?*
+do
+mimetype -b --mimetype "$f" | grep '^image' >/dev/null && \
+mv -n "$f" "${f%.jpg*}.jpg" >/dev/null
+done
+
+echo Done
+
+
+

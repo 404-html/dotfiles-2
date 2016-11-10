@@ -1,0 +1,9 @@
+#!/bin/bash
+
+for f
+do
+	ret=$(gpg --no --use-agent --no-tty -o "$(sname "${f%.*}")" -d "$f" 2>&1)
+	[ $? -eq 0 ] || notify-send -i error "[decrypt]"$'\n'"$ret"
+done
+
+notify-send -i gtk-info "[decrypt]"$'\n'"Done"

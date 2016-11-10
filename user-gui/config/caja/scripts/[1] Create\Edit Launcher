@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -n "$CAJA_SCRIPT_SELECTED_FILE_PATHS" ];then
+    file=${CAJA_SCRIPT_SELECTED_FILE_PATHS%%$'\n'*}
+else
+    file=(--create-new .)
+fi
+
+exo-desktop-item-edit "${file[@]}"

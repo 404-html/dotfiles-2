@@ -1,0 +1,8 @@
+#!/bin/bash
+
+port=$1
+
+pv=$(which pv)
+[ -n "$pv" ] && pv+=' | '
+
+nc -l -p "$port" | eval "$pv" tar xf -

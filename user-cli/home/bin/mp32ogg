@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ffmpeg -i "$1" -c:a libvorbis -q:a 10 "$2"

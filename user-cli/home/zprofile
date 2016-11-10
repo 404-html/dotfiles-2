@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+# Only for login shells.
+[[ -o login ]] || return
+
+# Same behaviour as bash.
+emulate sh
+. /etc/profile
+. ~/.profile
+emulate zsh
+

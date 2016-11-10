@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [ $# -lt 2 ]
+then
+	exit -1
+fi
+
+
+
+msg='-i gtk-info&Equal.'
+ref=$1
+shift
+for f
+do
+	cmp "$ref" "$f"
+	if [ $? -ne 0 ]
+	then
+		msg='-i error&Not equal.'
+		break
+	fi
+done
+
+notify-send ${msg%&*} "${msg#*&}"
+

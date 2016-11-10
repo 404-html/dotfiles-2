@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd ~/Downloads
+youtube-dl "$(xclip -selection clipboard -o)"
+

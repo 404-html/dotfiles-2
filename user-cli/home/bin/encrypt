@@ -1,0 +1,23 @@
+#!/bin/bash
+
+enc(){
+
+	if [ -d "$f" ]
+	then
+		ret=$(tar -zc "$f" | gpg --no -er "$rep" -o "$(sname "$f.tar.gz.gpg")" 2>&1)
+	else
+		ret=$(gpg --no -er "$rep" -o "$(sname "$f.gpg")" "$f"  2>&1)
+	fi
+	[ $? -eq 0 ] || notify-send -i error "[encrypt]"$'\n'"$ret"
+}
+
+export rep=$1
+shift
+
+for f
+do
+	enc &
+done
+
+wait
+notify-send -i gtk-info "[encrypt]"$'\n'"Done"

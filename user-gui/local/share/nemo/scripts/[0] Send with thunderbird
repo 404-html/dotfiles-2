@@ -1,0 +1,4 @@
+#!/bin/bash
+
+filename=${NEMO_SCRIPT_SELECTED_URIS%%$'\n'*}
+[ -n "$filename" ] && thunderbird -compose "attachment=$filename"

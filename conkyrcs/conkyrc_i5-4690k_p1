@@ -1,0 +1,100 @@
+-- vim: ts=4 sw=4 noet ai cindent syntax=lua
+
+conky.config = {
+
+	-- ### GENERAL ###
+    font = 'Fira Code:size=11',
+    use_xft = true,
+    update_interval = 10.0,
+	no_buffers = true,
+    double_buffer = true,
+	out_to_console = false,
+	out_to_stderr = false,
+	extra_newline = false,
+    uppercase = false,
+    -- override_utf8_locale = false,
+    -- cpu_avg_samples = 2,
+	-- net_avg_samples = 2,
+    -- total_run_times = 0,
+
+	-- ### X Related ###
+    own_window = true,
+    own_window_type = "override",
+	own_window_class = 'Conky',
+    own_window_argb_visual = true,
+    own_window_argb_value = 155,
+    own_window_colour = "000000",
+    own_window_transparent = false,
+    own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+
+	-- ### Appearance ###
+	stippled_borders = 0,
+	background = false,
+    draw_shades = false,
+    draw_outline = false,
+    draw_borders = false,
+	border_width = 1,
+    draw_graph_borders = true,
+	border_inner_margin = 20,
+    gap_x = 22,
+    gap_y = 35,
+    default_color = "white",
+    default_shade_color = "white",
+    default_outline_color = "white",
+    alignment = "top_right",
+    -- default_bar_height = 4,
+	minimum_height = 1025,
+	minimum_width = 359,
+    maximum_width = 359,
+
+}
+
+conky.text = [[
+${alignc}Temperatures
+${voffset -8}$hr${voffset 10}
+${color grey}MB:$color $alignr${hwmon 0 temp 1}C
+${color grey}SSD:$color $alignr${exec sudo /usr/sbin/hddtemp -n /dev/disk/by-id/ata-KINGSTON_SV300S37A120G_50026B7756011E7B }C
+${color grey}HDD:$color $alignr${exec sudo /usr/sbin/hddtemp -n /dev/disk/by-id/ata-ST2000DM001-1ER164_W4Z1B72H }C
+${color grey}CPU:$color $alignr${hwmon 1 temp 1}C
+${color grey}GPU:$color $alignr${exec nvidia-settings -q '[gpu:0]/gpucoretemp' -t}C
+
+${alignc}GPU
+${voffset -8}$hr${voffset 10}
+${color grey}Fan:$color $alignr${exec nvidia-settings -q "[fan:0]/GPUCurrentFanSpeedRPM" | awk -F ":" 'NR==2{print $4}' |sed 's/[^0-9]*//g'} rpm -- ${exec nvidia-settings -q 'GPUCurrentFanSpeed' | awk -F'[^0-9]*' '/fan:0/ {print $4}'}%
+${color grey}Freq:$color ${alignr}${exec nvidia-settings -q 'GPUCurrentClockFreqs' | awk -F'[^0-9]*' '/gpu:0/ {print $4}' RS=,} MHZ
+${color grey}Usage:$color $alignr${exec nvidia-settings -q 'GPUUtilization' | awk -F'[^0-9]*' '/graphics/ {print $4}' RS=,}%
+${color grey}Power:$color ${alignr}${exec nvidia-smi --query-gpu=power.draw --format=nounits,noheader,csv} W/${exec nvidia-smi --query-gpu=power.max_limit --format=nounits,noheader,csv} W
+${color grey}VRAM:$color ${alignr}${color0}${execi 5 nvidia-settings -q [gpu:0]/UsedDedicatedGPUMemory -t} MiB/${exec nvidia-settings -q [gpu:0]/TotalDedicatedGPUMemory -t} MiB
+${execbar echo " 100 * $(nvidia-settings -q '[gpu:0]/UsedDedicatedGPUMemory' -t ) / $( nvidia-settings -q '[gpu:0]/TotalDedicatedGPUMemory' -t)" | bc}
+
+${alignc}CPU
+${voffset -8}$hr${voffset 10}
+${color grey}Fan:$color $alignr${exec cat /sys/class/hwmon/hwmon2/fan2_input} rpm
+${color grey}Freq:$color ${alignr}${freq_g} GHz
+${color grey}Processes:$color ${alignr}$processes [ $running_processes running ]
+${color grey}Load:$color ${alignr}$loadavg
+${color grey}Core 1:$color ${cpu cpu1}% $alignr${cpubar cpu1 6,250}
+${color grey}Core 2:$color ${cpu cpu2}% $alignr${cpubar cpu2 6,250}
+${color grey}Core 3:$color ${cpu cpu3}% $alignr${cpubar cpu3 6,250}
+${color grey}Core 4:$color ${cpu cpu4}% $alignr${cpubar cpu4 6,250}
+
+top
+${color grey}${top name 1} ${alignr}${color}${top cpu 1} %
+${color grey}${top name 2} ${alignr}${color}${top cpu 2} %
+${color grey}${top name 3} ${alignr}${color}${top cpu 3} %
+${color grey}${top name 4} ${alignr}${color}${top cpu 4} %
+
+${alignc}RAM
+${voffset -8}$hr${voffset 10}
+${color grey}ram$color $alignr $mem/$memmax$color [ $memperc% ]
+${membar 6}
+${color grey}swap$color $alignr $swap/$swapmax$color [ $swapperc% ]
+${swapbar 6}
+
+top
+${color grey}${top_mem name 1} ${alignr}${color}${top_mem mem_res 1}
+${color grey}${top_mem name 2} ${alignr}${color}${top_mem mem_res 2}
+${color grey}${top_mem name 3} ${alignr}${color}${top_mem mem_res 3}
+${color grey}${top_mem name 4} ${alignr}${color}${top_mem mem_res 4}
+]]
+

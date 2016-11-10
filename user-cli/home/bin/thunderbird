@@ -1,0 +1,7 @@
+#!/bin/bash
+
+profile=0wtdfudd.default
+# Thunderbird always start in start folder for privacy's sake
+sed -ri 's/("folderURI":"[^"]+)\/[^"]*"/\1"/' ~/.thunderbird/"$profile"/session.json
+exec /usr/bin/thunderbird "$@"
+

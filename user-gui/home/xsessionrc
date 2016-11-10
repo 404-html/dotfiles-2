@@ -1,0 +1,133 @@
+#!/bin/sh
+
+
+############################################################
+#                   PREPARE                                #
+############################################################
+
+hostname=$(hostname)
+
+# Run program unless it's already running.
+run_once() {
+    if [ -z "$(pgrep -x -u "$USER" "$1")" ]; then
+
+              $@
+    fi
+}
+
+############################################################
+#                   WORKAROUNDS                            #
+############################################################
+
+# I want my profile scripts in my X session.
+. /etc/profile
+. ~/.profile
+
+#lightdm does this for me
+xrdb ~/.Xresources
+
+# Stop couldn't connect to accessibility bus warning from gnome apps.
+# https://bugzilla.redhat.com/show_bug.cgi?id=889690
+#export NO_AT_BRIDGE=1
+
+# Workaround Steam not leaving taskbar when minimizing to tray.
+# https://steamcommunity.com/app/221410/discussions/0/666826069051311167/?l=czech#c864977564581778413
+export STEAM_FRAME_FORCE_CLOSE=1
+
+# Experimental, unstable, nvidia speed tweak.
+# ftp://download.nvidia.com/XFree86/Linux-x86/370.28/README/openglenvvariables.html
+#export __GL_THREADED_OPTIMIZATIONS=1
+
+# Workaround for java not working in awesome WM.
+#wmname LG3D
+
+# This makes qt application look great!
+# edit: kde5 uses a new systray protocol. Apps using kde5 systray icons will fail 
+# since awesomewm does not support it.
+# https://bugs.kde.org/show_bug.cgi?id=353062
+#export XDG_CURRENT_DESKTOP=kde
+
+# edit: found a solution =D 
+# https://bbs.archlinux.org/viewtopic.php?id=206876
+#- configure GTK2    (use lxappearance for example)
+#- configure GTK3    (use dconf-editor)
+#- configure QT4       (use qtconfig-qt4)
+#- configure QT5       (use qt5ct)
+#- configure KDE5    (use systemsettings5)
+if ! [ "$XDG_CURRENT_DESKTOP" = "KDE" ]; then
+    if hash qt5ct 2>/dev/null; then
+        #export QT_QPA_PLATFORMTHEME="kde"      #  Same as "qt5ct" but now apps know about kde configuration. Can create the systray fail.
+        export QT_QPA_PLATFORMTHEME="qt5ct"
+        export QT_XFT="true"
+        #export QT_SELECT="5"
+    fi
+fi
+
+# Themes
+#GTK2_RC_FILES=gtkrc
+#GTK_THEME=gtk.css
+#QT_STYLE_OVERRIDE=theme_name
+
+# Nvidia 26x.xx crashes stuff
+#https://www.reddit.com/r/linux_gaming/comments/45sjmx/for_anyone_having_game_crashes_with_the_new/
+#export __GLVND_DISALLOW_PATCHING=1
+
+############################################################
+#                   REMAPS                                 #
+############################################################
+
+# Change keyboard layout.
+#setxkbmap us
+setxkbmap -layout us -variant altgr-intl #-option nodeadkeys
+#setxkbmap us,il -option "lv3:ralt_alt,grp:alt_shift_toggle"
+
+# keepassx bug
+# https://www.keepassx.org/dev/issues/116
+#setxkbmap pt
+
+if [ -s ~/.Xmodmap ]; then
+    xmodmap ~/.Xmodmap
+fi
+
+if hash xcape 2>/dev/null; then
+    xcape -e 'Control_R=Escape'
+fi
+
+# No longer required for kde >= 4.8
+#if [ "$XDG_CURRENT_DESKTOP" = "KDE" ] && hash ksuperkey 2>/dev/null; then
+#    ksuperkey
+#fi
+
+#remove mouse acceleration; 
+#xinput set-prop 11 'Device Accel Profile' 0
+
+# Remap menu key to actual right click mouse button.
+# This requires scroll lock mouse keys, so you loose your numpad.
+if [ "$hostname" = "a300" ];then
+    ~/.bin/rclick
+fi
+
+# Mute the anoying speaker beep
+xset -b
+
+# https://rafalcieslak.wordpress.com/2015/08/11/prevent-full-screen-games-from-minimizing-when-switching-workspaces/
+export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
+
+############################################################
+#                   AUTOSTART                              #
+############################################################
+
+# Start gnome keyring service
+#eval $(/usr/bin/gnome-keyring-daemon --start --components=secrets)
+
+# Disable touchpad (both scrolling, buttons, and movement)
+# while typing.
+#if [ "$hostname" = "t560" ];then
+    #syndaemon -i 0.4 -k  &
+#fi
+
+#numlockx on 
+numlockx
+run_once urxvtd &
+
+

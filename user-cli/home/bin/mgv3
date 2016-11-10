@@ -1,0 +1,27 @@
+#!/bin/bash
+
+[ $# -ne 2 ] && exit 1
+
+url=$1
+num=$2
+
+if [ $num -lt 100 ]
+then
+	url+=0
+	if [ $num -lt 10 ]
+	then
+		url+=0
+	fi
+fi
+
+
+for i in $(seq -w 1 $num)
+do
+mkdir -p "$i"
+cd  "$i"
+mgv2 "$url$i/1.html" 50
+cd - >/dev/null
+done
+
+wait
+echo "[mgv3] Done"

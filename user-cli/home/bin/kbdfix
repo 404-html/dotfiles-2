@@ -1,0 +1,8 @@
+#!/usr/bin/expect
+
+eval spawn -noecho $argv
+
+interact {
+ \177        {send "\010"}
+  "\033\[3~"  {send "\177"}
+  }

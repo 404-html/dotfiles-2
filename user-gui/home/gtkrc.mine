@@ -1,0 +1,46 @@
+##################
+#      GTK       #
+##################
+
+gtk-theme-name="Numix"
+#include "/usr/share/themes/Numix/gtk-2.0/gtkrc"
+#gtk-theme-name = "Clearlooks"
+
+##################
+#     FONTS      #
+##################
+
+style "schrift"
+{
+    font_name = "Ubuntu 10"
+}
+widget_class "*" style "schrift"
+gtk-font-name = "Ubuntu 10"
+gtk-xft-antialias=1
+gtk-xft-autohint=0
+gtk-xft-dpi=141
+gtk-xft-hinting=1
+gtk-xft-hintstyle="hintfull"
+gtk-xft-lcdfilter="lcddefault"
+gtk-xft-rgba="rgb"
+
+##################
+#     ICONS      #
+##################
+
+gtk-icon-theme-name = "Faenza-Ambiance"
+gtk-cursor-theme-name="Breeze"
+#gtk-cursor-theme-size=18
+
+##################
+#    TOOLBARS    #
+##################
+
+gtk-toolbar-style   = GTK_TOOLBAR_ICONS
+
+##################
+#    SOUNDS      #
+##################
+
+gtk-enable-event-sounds=0
+gtk-enable-input-feedback-sounds=0

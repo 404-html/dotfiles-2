@@ -1,0 +1,5 @@
+#!/bin/bash
+
+IFS=$'\n' paths=($CAJA_SCRIPT_SELECTED_FILE_PATHS)
+
+xcmp "${paths[@]}"

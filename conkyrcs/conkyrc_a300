@@ -1,0 +1,83 @@
+#############################################
+# Taken out from Distro Australis Mate 1.6  #
+# Modified by Umair http://www.NoobsLab.com #
+#############################################
+
+brackground yes
+use_xft yes
+xftfont shrapnel:size=9
+xftalpha 1
+update_interval 1.0
+total_run_times 0
+update_interval 10.0
+
+own_window yes
+own_window_type override
+own_window_transparent no
+own_window_colour 000000
+own_window_argb_visual yes
+own_window_argb_value 90
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager,bellow
+
+double_buffer yes
+minimum_size 150 200
+
+draw_shades no
+draw_outline yes
+draw_borders no
+draw_graph_borders yes
+default_color c6c4c7
+default_shade_color 000000
+default_outline_color 000000
+alignment middle_right
+gap_x 50
+gap_y -5
+no_buffers yes
+uppercase no
+cpu_avg_samples 2
+override_utf8_locale no
+##############################################
+#  Output
+##############################################
+TEXT
+${voffset -12}${font capture it:size=70}${color ffffff}${time %H:%M}
+${font capture it:size=10}${voffset -90}${color ffffff}${time %A}
+${voffset 0}${color ffffff}${time %B %d}
+
+${sysname} ${alignr}${kernel}-${machine}
+Uptime:$alignr$uptime
+CPU:${alignr}${acpitemp} C
+SSD:$alignr${exec sudo /usr/sbin/hddtemp -n /dev/disk/by-id/ata-KINGSTON_SV300S37A240G_50026B7258067EF6 } C
+Load: ${alignr}$loadavg
+CPU1 ${alignr}${cpu cpu1}%
+${cpubar cpu1}
+CPU2 ${alignr}${cpu cpu2}%
+${cpubar cpu2}
+Ram ${alignr}$mem / $memmax ($memperc%)
+${membar 4}
+
+${font UbuntuBold:bold:size=11}${color4}Top Processes ${color2}${hr 2}${font}
+${color1}${top name 1} ${alignr}${top cpu 1} ${top mem 1}
+${color1}${top name 2} ${alignr}${top cpu 2} ${top mem 2}
+${color1}${top name 3} ${alignr}${top cpu 3} ${top mem 3}
+${color1}${top name 4} ${alignr}${top cpu 4} ${top mem 4}
+${color1}${top name 5} ${alignr}${top cpu 5} ${top mem 5}
+${voffset 0}${color ffffff}
+${voffset 2}${hr 1}
+${voffset 5}Hostname: $alignr$nodename
+wlan0: $alignr${addr wlan0}
+eth0: $alignr${addr eth0}
+
+Down: ${downspeed wlan0} k/s ${alignr}Up: ${upspeed wlan0} k/s
+${downspeedgraph wlan0 30,120} ${alignr}${upspeedgraph wlan0 30,120}
+Total: ${totaldown wlan0} ${alignr}Total: ${totalup wlan0}
+
+Root: ${alignr}${fs_used /} / ${fs_size /} - ${fs_free /}
+${fs_bar 4 /}
+Home: ${alignr}${fs_used /home} / ${fs_size /home} - ${fs_free /home}
+${fs_bar 4 /home}
+swap ${alignr}$swap / $swapmax ($swapperc%)
+${swapbar 4}
+
+SSD I/O: ${diskio /dev/sda}
+${diskiograph /dev/sda 30 -tl}

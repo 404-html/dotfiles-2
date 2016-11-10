@@ -1,0 +1,104 @@
+-- vim: ts=4 sw=4 noet ai cindent syntax=lua
+
+conky.config = {
+	-- ### GENERAL ###
+    font = 'Fira Code:size=11',
+    use_xft = true,
+    update_interval = 10.0,
+	no_buffers = true,
+    double_buffer = true,
+	out_to_console = false,
+	out_to_stderr = false,
+	extra_newline = false,
+    uppercase = false,
+    -- override_utf8_locale = false,
+    -- cpu_avg_samples = 2,
+	-- net_avg_samples = 2,
+    -- total_run_times = 0,
+
+	-- ### X Related ###
+    own_window = true,
+    own_window_type = "normal",
+    own_window_argb_visual = true,
+	own_window_argb_value = 155,
+	-- own_window_transparent = true,
+    own_window_colour = "000000",
+    own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+
+	-- ### Appearance ###
+	stippled_borders = 0,
+	background = false,
+    draw_shades = false,
+    draw_outline = false,
+    draw_borders = false,
+	border_width = 1,
+    draw_graph_borders = true,
+	border_inner_margin = 20,
+    gap_x = 22,
+    gap_y = 35,
+    default_color = "white",
+    default_shade_color = "white",
+    default_outline_color = "white",
+    alignment = "top_right",
+    -- default_bar_height = 4,
+	-- minimum_height = 1025,
+	-- minimum_width = 359,
+    -- maximum_width = 359,
+}
+
+
+conky.text = [[
+${color white}SYSTEM ${hr 1}${color}
+Hostname: $alignr$nodename
+Kernel: $alignr$kernel
+Uptime: $alignr$uptime
+BAT0: $alignr${exec battery_rate.sh 0} W
+BAT1: $alignr${exec battery_rate.sh 1} W
+wlan0: $alignr${hwmon 4 temp 1} C
+SDD: $alignr${exec sudo /usr/sbin/hddtemp -n /dev/disk/by-id/ata-KINGSTON_SV300S37A240G_50026B7258067EF6} C
+PCH: ${alignr}${if_existing /sys/class/hwmon/hwmon2/temp1_input}${hwmon 2 temp 1}${else}${hwmon 1 temp 1}${endif} C
+CPU: $alignr${hwmon 0 temp 1} C
+FAN: $alignr${exec cat /sys/devices/platform/thinkpad_hwmon/fan1_input } RPM
+CPU: ${alignr}${freq} MHz
+Processes: ${alignr}$processes ($running_processes running)
+Load: ${alignr}$loadavg
+
+CPU1 ${alignr}${cpu cpu1}%
+${cpubar cpu1}
+CPU2 ${alignr}${cpu cpu2}%
+${cpubar cpu2}
+CPU3 ${alignr}${cpu cpu3}%
+${cpubar cpu3}
+CPU4 ${alignr}${cpu cpu4}%
+${cpubar cpu4}
+
+Ram ${alignr}$mem / $memmax ($memperc%)
+${membar 4}
+swap ${alignr}$swap / $swapmax ($swapperc%)
+${swapbar 4}
+
+Highest CPU $alignr CPU% MEM%
+${top name 1}$alignr${top cpu 1}${top mem 1}
+${top name 2}$alignr${top cpu 2}${top mem 2}
+${top name 3}$alignr${top cpu 3}${top mem 3}
+
+Highest MEM $alignr CPU% MEM%
+${top_mem name 1}$alignr${top_mem cpu 1}${top_mem mem 1}
+${top_mem name 2}$alignr${top_mem cpu 2}${top_mem mem 2}
+${top_mem name 3}$alignr${top_mem cpu 3}${top_mem mem 3}
+
+${color white}Storage ${hr 1}${color}
+Root: ${alignr}${fs_used /} / ${fs_size /}
+${fs_bar 4 /}
+Home: ${alignr}${fs_used /home} / ${fs_size /home}
+${fs_bar 4 /home}
+
+SSD: ${diskio /dev/sda}${alignr}
+${offset 5}${diskiograph /dev/sda 25,300 -tl }
+
+${color white}NETWORK ${hr 1}${color}
+Down ${downspeed wlp4s0} k/s ${alignr}Up ${upspeed wlp4s0} k/s
+${downspeedgraph wlp4s0 25,150} ${alignr}${upspeedgraph wlp4s0 25,150}
+Total ${totaldown wlp4s0} ${alignr}Total ${totalup wlp4s0}
+]]
+

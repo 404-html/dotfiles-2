@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if [ "$#" -ge 1 ]; then
+    if grep -wq "$1" ~/.telnet_badhost; then
+        exec kbdfix /usr/bin/telnet "$@"
+    else
+        exec /usr/bin/telnet "$@"
+    fi
+else
+     exec /usr/bin/telnet
+fi
+

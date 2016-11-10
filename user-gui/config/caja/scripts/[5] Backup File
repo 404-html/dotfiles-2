@@ -1,0 +1,9 @@
+#!/bin/bash
+
+IFS=$'\n' paths=($CAJA_SCRIPT_SELECTED_FILE_PATHS)
+[ ${#paths[@]} -ne 1 ] && exit
+filename=$(basename $paths)
+[[ "$filename" == *.* ]] \
+&& newname="${filename%.*}_$(date +%y-%m-%d-%R).${filename##*.}.bak" \
+|| newname="${filename%.*}_$(date +%y-%m-%d-%R).bak"
+cp -n "$filename" "$newname"

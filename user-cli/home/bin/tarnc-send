@@ -1,0 +1,11 @@
+#!/bin/bash
+
+host=$1
+shift
+port=$1
+shift
+
+pv=$(which pv)
+[ -n "$pv" ] && pv+=' | '
+
+tar cf - "$@" | eval "$pv" nc -q 0 "$host" "$port"

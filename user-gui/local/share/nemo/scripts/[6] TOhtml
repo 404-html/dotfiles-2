@@ -1,0 +1,7 @@
+#!/bin/bash
+
+IFS=$'\n' paths=($NEMO_SCRIPT_SELECTED_FILE_PATHS)
+
+for path in "${paths[@]}" ; do
+    vim "$path" -gc TOhtml -c wqa 
+done

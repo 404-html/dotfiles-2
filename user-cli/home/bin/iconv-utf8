@@ -1,0 +1,21 @@
+#!/bin/bash
+
+conv(){
+	# check if txt file
+	type=$(file -b --mime-type "$file")
+	[  ${type::5} = 'text/' ] && \
+
+	# out with the CR
+	sed -i "$file" -e 's/\r$//' && \
+
+	# conv to utf-8
+	enc=$(file -b --mime-encoding "$file") && \
+	out=$(iconv -f $enc -t utf-8 "$file") && \
+	echo "$out" > "$file" || \
+	notify-send -i error "[iconv-utf8 $file]"$'\n'"$type $enc"
+}
+
+for file
+do
+	conv &
+done

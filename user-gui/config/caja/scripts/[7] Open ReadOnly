@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ "$CAJA_SCRIPT_SELECTED_FILE_PATHS" ];then
+    file=${CAJA_SCRIPT_SELECTED_FILE_PATHS%%$'\n'*}
+else
+    exit -1
+fi
+
+temp=$(mktemp)
+cp "$file" "$temp"
+exo-open "$temp"
+

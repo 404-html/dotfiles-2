@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]
+then
+	exit -1
+fi
+
+
+
+file=$(basename "$1")
+
+if [ ! -e "$file" ]
+then
+	echo -n "$file"
+	exit 0
+fi
+
+head=$(echo "$file" | sed -nr 's/^(\.*).*/\1/p')
+file=$(echo "$file" | sed -r 's/^\.*//')
+head+=${file%%.*}"("
+tail=")" ; [[ "$file" =~ \. ]] && tail+="."${file#*.}
+
+while [ -e "$head${i=1}$tail" ]
+do
+	(( ++i ))
+done
+
+echo "$head$i$tail"

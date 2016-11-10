@@ -1,0 +1,489 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible                " must be first line
+filetype off
+
+let iCanHazVundle=1
+" If vundle is not installed, do it first
+if (!isdirectory(expand("$HOME/.vim/bundle/vundle")))
+    echo "Installing Vundle.."
+    echo ""
+    silent !mkdir -p ~/.vim/bundle
+    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    let iCanHazVundle=0
+endif
+
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#begin()
+
+Plugin 'gmarik/vundle'
+Plugin 'Solarized'
+Plugin 'ctrlp.vim'
+Plugin 'bling/vim-airline'
+Plugin 'bash-support.vim'
+Plugin 'honza/vim-snippets'
+Plugin 'surround.vim'
+Plugin 'delimitMate.vim'
+Plugin 'neocomplcache'
+Plugin 'scrooloose/nerdtree'
+Plugin 'chriskempson/base16-vim'
+Plugin 'morhetz/gruvbox'
+Plugin 'repeat.vim'
+Plugin 'Syntastic'
+"Bundle 'zah/nimrod.vim'
+"Plugin 'UltiSnips'
+"Plugin 'easyMotion'
+"Bundle 'klen/python-mode'
+
+if iCanHazVundle == 0
+    echo "Installing Bundles, please ignore key map error messages"
+    echo ""
+    :BundleInstall
+    :q
+endif
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+
+set t_Co=256
+syntax enable
+if has("gui_running")
+    set guioptions-=T
+    set guioptions+=e
+    set guitablabel=%M\ %t
+    set background=dark             " dark background prepared highlight.
+    colorscheme base16-default
+else
+    set background=dark             " dark background prepared highlight.
+    "let base16colorspace=256
+    "call togglebg#map("<F5>")
+    "let g:solarized_termcolors=256
+    "let g:solarized_italic = 0
+    "let g:solarized_termtrans = 0
+    let g:gruvbox_italic=0
+    let g:gruvbox_termcolors=256
+    colorscheme gruvbox
+endif
+
+set so=7
+set history=700                 " Sets how many lines of history VIM has to remember
+set cursorline  				" highlight current line
+set laststatus=2                " Show status bar
+set number                      " Show line numbers.
+"set relativenumber              " show line number relative to current position
+set completeopt=menuone,longest,preview
+set hls                         " Highlight search matches.
+set incsearch                   " find as you type search
+set noignorecase
+"set ignorecase                  " case insensitive search
+"set smartcase                   " case sensitive when uc present
+set wildmenu                    " show list instead of just completing
+set wildmode=list:longest,full  " command <Tab> completion, list matches, then longest common part, then all.
+set foldenable                  " auto fold code
+set mouse=a
+set showmatch                   " show matching brackets/parenthesis
+set magic                       " For regular expressions turn magic on
+set clipboard=unnamedplus       " Use X clipboard
+filetype plugin indent on
+filetype on
+set encoding=utf8
+set ffs=unix,mac,dos
+set autoread
+set ruler
+set showcmd
+set backup 						" backups are nice ...
+set undofile					" so is persistent undo ...
+set undolevels=1000 "maximum number of changes that can be undone
+set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+"set lazyredraw
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Autocmd
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+
+" Autoconverts fileformat to unix.
+autocmd BufRead,BufNewFile * if &modifiable | :set ff=unix | endif
+
+" Autoremove unwanted chars.
+" autocmd BufWritePre <buffer> :call Tydiup()
+
+augroup BWCCreateDir
+    autocmd!
+    autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
+augroup END
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Formating
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set ai "Auto indent
+set si "Smart indent
+"set nowrap                      " wrap long lines
+set shiftwidth=4                " use indents of 4 spaces
+set tabstop=4                   " an indentation every four columnsvmap <C-c> "+yi
+set expandtab                   " tabs are spaces, not tabs" copy and paste shortcuts.
+set softtabstop=4               " let backspace delete indentvmap <C-x> "+c
+"set iskeyword+=-
+"set iskeyword+=_
+"set list
+"set listchars=tab:>.,trail:.,extends:#,nbsp:. " Highlight problematic whitespace
+"set listchars=tab:▸\ ,eol:¬
+" No more autoinserting comments
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Key mapping
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let mapleader = ","
+let g:mapleader = ","
+
+" Replace current word
+nnoremap <Leader>r :%s/\<<C-r><C-w>\>//g<Left><Left>
+
+"clearing highlighted search
+nmap <silent> <leader>/ :nohlsearch<CR>
+
+" Stupid shift key fixes
+cmap W w
+cmap WQ wq
+cmap wQ wq
+cmap Q q
+
+
+" Exit insert-mode with jj
+imap jj <ESC>
+
+" copy and paste shortcuts.
+"vmap <C-c> "+yi
+"vmap <C-x> "+c
+"vmap <C-v> c<ESC>"+p
+"imap <C-v> <ESC>"+pa
+
+" disable freaking ex mode
+nnoremap Q <nop>
+
+" For when you forget to sudo.. Really Write the file.
+cmap w!! w !sudo tee % >/dev/null
+
+" get off my lawn
+nnoremap <left> :echoe "use h"<cr>
+nnoremap <right> :echoe "use l"<cr>
+nnoremap <up> :echoe "use k"<cr>
+nnoremap <down> :echoe "use j"<cr>
+
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+" Close the current buffer
+map <leader>bd :Bclose<cr>
+" Close all the buffers
+map <leader>ba :1,1000 bd!<cr>
+
+" Useful mappings for managing tabs
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove<cr>
+
+"Easyly split windows
+nnoremap <leader>v <C-w>v<C-w>l
+nnoremap <leader>s <C-w>s
+
+" Increment numbers
+vnoremap <C-a> :call Incr()<CR>
+
+" Better block identation
+
+vnoremap < <gv
+vnoremap > >gv
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! InitializeDirectories()
+    let separator = "."
+    let parent = $HOME
+    let prefix = '.cache/vim'
+    let topdir = parent . '/' . prefix . '/'
+    let dir_list = {
+                \ 'backup': 'backupdir',
+                \ 'views': 'viewdir',
+                \ 'swap': 'directory',
+                \ 'undo': 'undodir' }
+
+    if exists("*mkdir")
+        if !isdirectory(topdir)
+            call mkdir(topdir)
+        endif
+    endif
+
+
+    for [dirname, settingname] in items(dir_list)
+        let directory = parent . '/' . prefix . '/' . dirname . "/"
+        if exists("*mkdir")
+            if !isdirectory(directory)
+                call mkdir(directory)
+            endif
+        endif
+        if !isdirectory(directory)
+            echo "Warning: Unable to create backup directory: " . directory
+            echo "Try: mkdir -p " . directory
+        else
+            let directory = substitute(directory, " ", "\\\\ ", "")
+            exec "set " . settingname . "=" . directory
+        endif
+    endfor
+endfunction
+call InitializeDirectories()
+
+function Tydiup()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+
+    " Do the business:
+    " If vim opens ff=mac in ff=unix mode, this will remove all line ends.
+    %s/\r//eg
+
+    %s/\s\+$//e
+    %s/\_s*\%$/\r/e
+
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+
+" Increment numbers
+function! Incr()
+  let a = line('.') - line("'<")
+  let c = virtcol("'<")
+  if a > 0
+    execute 'normal! '.c.'|'.a."\<C-a>"
+  endif
+  normal `<
+endfunction
+
+" Autocreate parent dirs when saving file.
+function s:MkNonExDir(file, buf)
+    if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+        let dir=fnamemodify(a:file, ':h')
+        if !isdirectory(dir)
+            call mkdir(dir, 'p')
+        endif
+    endif
+endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""
+" airline   "
+"""""""""""""
+let g:airline_theme             = 'powerlineish'
+"let g:airline_enable_branch     = 1
+"let g:airline_enable_syntastic  = 1
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline_powerline_fonts = 1
+
+"""""""""""""
+" NerdTree  "
+"""""""""""""
+map <leader>e :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+
+let NERDTreeShowBookmarks=1
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+let NERDTreeChDirMode=0
+let NERDTreeQuitOnOpen=1
+let NERDTreeShowHidden=0
+let NERDTreeKeepTreeInNewTab=1
+
+"""""""""""""""""
+" ctrlp plugin  "
+"""""""""""""""""
+let g:ctrlp_map = '<c-p>'
+
+"""""""""""""
+" UltiSnips "
+"""""""""""""
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<NUL>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+
+"""""""""""""""""
+" DelimiteMate  "
+"""""""""""""""""
+
+au FileType * let b:delimitMate_autoclose = 1
+"au FileType * let b:delimitMate_matchpairs = "<:>"
+
+"""""""""""""""""
+" Neocomplcache "
+"""""""""""""""""
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+" Enable heavy features.
+" Use camel case completion.
+"let g:neocomplcache_enable_camel_case_completion = 1
+" Use underbar completion.
+"let g:neocomplcache_enable_underbar_completion = 1
+
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplcache_keyword_patterns')
+    let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplcache#undo_completion()
+inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplcache#smart_close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+endfunction
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
+
+" For cursor moving in insert mode(Not recommended)
+"inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
+"inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
+"inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
+"inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
+" Or set this.
+"let g:neocomplcache_enable_cursor_hold_i = 1
+" Or set this.
+"let g:neocomplcache_enable_insert_char_pre = 1
+
+" AutoComplPop like behavior.
+"let g:neocomplcache_enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplcache_enable_auto_select = 1
+"let g:neocomplcache_disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplcache_force_omni_patterns')
+  let g:neocomplcache_force_omni_patterns = {}
+endif
+let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplcache_force_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+"""""""""""""""""""""""""""""""""""""
+"   Python-mode
+""""""""""""""""""""""""""""""""""""""
+
+" Activate rope
+" Keys:
+" K             Show python docs
+" <Ctrl-Space>  Rope autocomplete
+" <Ctrl-c>g     Rope goto definition
+" <Ctrl-c>d     Rope show documentation
+" <Ctrl-c>f     Rope find occurrences
+" <Leader>b     Set, unset breakpoint (g:pymode_breakpoint enabled)
+" [[            Jump on previous class or function (normal, visual, operator modes)
+" ]]            Jump on next class or function (normal, visual, operator modes)
+" [M            Jump on previous class or method (normal, visual, operator modes)
+" ]M            Jump on next class or method (normal, visual, operator modes)
+"let g:pymode_rope = 1
+"let g:pymode_rope_lookup_project = 0
+"let g:pymode_rope = 0
+"
+"" Documentation
+"let g:pymode_doc = 1
+"let g:pymode_doc_key = 'K'
+"
+""Linting
+" let g:pymode_lint = 1
+" let g:pymode_lint_checker = "pyflakes,pep8"
+"" Auto check on save
+" let g:pymode_lint_write = 1
+"
+"" Support virtualenv
+"let g:pymode_virtualenv = 1
+"
+"" Enable breakpoints plugin
+"let g:pymode_breakpoint = 1
+"let g:pymode_breakpoint_bind = '<leader>b'
+"
+"" syntax highlighting
+"let g:pymode_syntax = 1
+"let g:pymode_syntax_all = 1
+"let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+"let g:pymode_syntax_space_errors = g:pymode_syntax_all
+"
+"" Don't autofold code
+"let g:pymode_folding = 0
+"
+
+" NIM
+fun! JumpToDef()
+  if exists("*GotoDefinition_" . &filetype)
+    call GotoDefinition_{&filetype}()
+  else
+    exe "norm! \<C-]>"
+  endif
+endf
+
+" Jump to tag
+nn <M-g> :call JumpToDef()<cr>
+ino <M-g> <esc>:call JumpToDef()<cr>i
+

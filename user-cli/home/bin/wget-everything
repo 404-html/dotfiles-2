@@ -1,0 +1,3 @@
+#!/bin/bash
+
+wget -m -p -E -k -K -np "$1"

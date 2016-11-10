@@ -1,0 +1,20 @@
+#!/bin/bash
+
+IFS=$'\n' paths=($CAJA_SCRIPT_SELECTED_FILE_PATHS)
+inputs=()
+maps=()
+
+for i in $(seq 0 $(( ${#paths[@]} - 1 )) );do
+
+    inputs+=("-i")
+    inputs+=("${paths[$i]}")
+
+    maps+=("-map")
+    maps+=("$i")
+done
+
+
+ffmpeg "${inputs[@]}" "${maps[@]}" -c copy "${paths[0]%%.*}-remuxed".mkv \
+    && trash-put "${inputs[@]}" \
+    || notify-send "[Join media] An error has occured."
+

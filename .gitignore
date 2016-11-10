@@ -1,0 +1,17 @@
+
+user-cli/vim/bundle
+user-cli/oh-my-zsh/cache
+user-cli/home/zprezto/modules/node/cache.zsh
+user-cli/config/nvim/autoload
+
+user-gui/config/gtk-3.0/bookmarks
+user-gui/config/mpv/watch_later
+user-gui/config/awesome/debian/
+
+user-gui/config/caja/*
+!user-gui/config/caja/scripts
+
+user-cli/home/anacron/etc/*
+user-cli/home/anacron/spool/*
+!user-cli/home/anacron/etc/.placeholder
+!user-cli/home/anacron/spool/.placeholder
