@@ -34,6 +34,6 @@ if [ -d $HOME/.profile.d ]; then
             source "$f"
         fi
     done
-    unset $f
+    unset f
 fi
 
