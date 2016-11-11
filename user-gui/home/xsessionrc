@@ -28,7 +28,7 @@ xrdb ~/.Xresources
 
 # Stop couldn't connect to accessibility bus warning from gnome apps.
 # https://bugzilla.redhat.com/show_bug.cgi?id=889690
-#export NO_AT_BRIDGE=1
+export NO_AT_BRIDGE=1
 
 # Workaround Steam not leaving taskbar when minimizing to tray.
 # https://steamcommunity.com/app/221410/discussions/0/666826069051311167/?l=czech#c864977564581778413
