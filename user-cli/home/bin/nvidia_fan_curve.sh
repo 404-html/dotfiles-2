@@ -35,7 +35,7 @@ prepare
 log '-------- Start --------' 
 while true; do
 
-    gputemp=$(nvidia-settings -q GPUCoreTemp | awk -F ":" 'NR==2{print $3}' | sed 's/[^0-9]*//g')
+    gputemp=$(2>/dev/null nvidia-settings -q GPUCoreTemp | awk -F ":" 'NR==2{print $3}' | sed 's/[^0-9]*//g')
     newfanspeed=0
 
     for i in $(seq 0 $((${#temps[@]} - 1))); do
@@ -48,7 +48,7 @@ while true; do
         fi
     done
 
-    nvidia-settings -a "[fan:0]/GPUCurrentFanSpeed=${newfanspeed}" >/dev/null || clean_up
+    nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=${newfanspeed}" >/dev/null || clean_up
     log "temp: ${gputemp}C\tfan: ${newfanspeed}%"
 
     sleep $step 
