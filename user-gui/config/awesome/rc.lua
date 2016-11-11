@@ -46,7 +46,7 @@ beautiful.init( awful.util.getdir("config") .. "/themes/default/theme.lua")
 -- Prevent notification icon from being huge.
 naughty.config.defaults.icon_size = 32
 -- This is used later as the default terminal and editor to run.
-www-browser = "firefox-nightly"
+wwwbrowser = "firefox-nightly"
 terminal = "x-terminal-emulator"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
@@ -121,7 +121,7 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                     { "Debian", debian.menu.Debian_menu.Debian },
                                     { "terminal", terminal },
                                     { "file manager", "nemo" },
-                                    { "web browser",  www-browser },
+                                    { "web browser",  wwwbrowser },
                                     { "-------",  nil},
                                     { "switch user", "bash -c '(sleep 1;xscreensaver-command -lock && dm-tool switch-to-greeter) &'"},
                                     { "lock screen",  "bash -c '(sleep 1;xscreensaver-command -lock) &'" },
@@ -317,7 +317,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "KP_Enter", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Shift"   }, "m", function () awful.util.spawn("thunderbird") end),
     awful.key({ "Control", "Shift"}, "Escape", function () awful.util.spawn("mate-system-monitor") end),
-    awful.key({ modkey,           }, "w", function () awful.util.spawn(www-browser) end),
+    awful.key({ modkey,           }, "w", function () awful.util.spawn(wwwbrowser) end),
     awful.key({ modkey,           }, "space", function () awful.util.spawn("rofi -show run -run-command \"bash -c '{cmd}'\"") end),
     awful.key({ modkey,           }, "e", function () awful.util.spawn("nemo") end),
     awful.key({ "Control", "Shift"}, "l", function () awful.util.spawn_with_shell("xscreensaver-command -lock") end),
