@@ -30,7 +30,7 @@ curl -c "$cookie" -F "authid=$authid" -F "authpw=$authpw" "$url" >/dev/null
 
 # Upload
 uploadfile=$1
-upname=${1##*/}
+upname=$(basename "$1")
 action=postupload
 res=$(mktemp)
 
