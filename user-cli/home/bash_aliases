@@ -37,7 +37,7 @@ alias lsblk='lsblk -o name,model,fstype,size,label,uuid,mountpoint'
 alias xclip='xclip -selection clipboard'
 alias httpserver='python3 -m http.server'
 alias ftpserver='python3 -m pyftpdlib'
-alias vncserver='x11vnc -forever -nopw'
+alias vncserver='x11vnc -forever -nopw -display $DISPLAY'
 alias xcaperc='xcape $(cat ~/.xcaperc)'
 alias gdb='gdb -q'
 alias ddwatch='watch -n5 "kill -USR1 $(pgrep ^dd)"'
@@ -296,5 +296,9 @@ sleeptildate(){
 ytpl(){
     pl=$(echo $1 | sed 's/youtube.com\/.*list=/youtube.com\/playlist\?list=/')
     mpv --no-video --load-unsafe-playlists "$pl"
+}
+
+ssh+vnc(){
+    ssh -CL 5900:localhost:5900 "$1" 'x11vnc -nopw -forever -localhost'
 }
 
