@@ -137,6 +137,7 @@ alias mspdebug-eg='LD_LIBRARY_PATH=$HOME/.opt/energia-0101E0017/hardware/tools/m
 alias apt-upd8='apt update -qq && apt upgrade -y && apt dist-upgrade && apt autoremove && apt clean'
 alias upg='apt upgrade -y && apt dist-upgrade; apt autoremove; apt clean'
 alias ytdl='youtube-dl --title --ignore-errors --merge-output-format mkv --no-mtime -f bestvideo+bestaudio --sub-lang en,pt --write-sub --embed-subs --convert-subs srt'
+alias dirty='watch grep -e Dirty: -e Writeback: /proc/meminfo'
 
 # Color definitions (taken from Color Bash Prompt HowTo).
 # Some colors might look different of some terminals.
