@@ -24,6 +24,7 @@ echo 'Should I install zprezto? [y/n]'
 read a
 if [[ "$a" =~ ^(yes|y|Y)$ ]]; then
     git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+    ./install_zsh_custom_prompt.sh
 fi
 
 echo 'Set zsh as default shell?'
