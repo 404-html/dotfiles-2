@@ -14,22 +14,22 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 
     Plug 'morhetz/gruvbox'                " Color theme
-    Plug 'kien/ctrlp.vim'                 " ctrl-p is a fuzzy file finder.
     Plug 'vim-airline/vim-airline'        " airline is a better status line and a tab-bar for nvim.
     Plug 'vim-airline/vim-airline-themes' " airline themes
     Plug 'tpope/vim-surround'             " faster edits for surrounding whatever
-    Plug 'benekastah/neomake'             " Asynchronous syntax checking
     Plug 'jiangmiao/auto-pairs'           " Autoclose brackets and what not...  
     Plug 'tpope/vim-repeat'               " Support for repeating plugin executions with '.'
-    Plug 'mileszs/ack.vim'                " Ag, faster grep
-    Plug 'dhruvasagar/vim-table-mode'     " Tables Support =D
     Plug 'Shougo/deoplete.nvim'           " Autocomplete
-    Plug 'scrooloose/nerdtree'            " List files
-    Plug 'rust-lang/rust.vim'
-    "Plug 'Valloric/YouCompleteMe'         " Autocomplete
-    "Plug 'takac/vim-hardtime'             " Help drop bad vim habits
+    Plug 'kien/ctrlp.vim'                 " ctrl-p is a fuzzy file finder.
 
     " Maybies...
+    "Plug 'benekastah/neomake'             " Asynchronous syntax checking
+    "Plug 'scrooloose/nerdtree'            " List files
+    "Plug 'rust-lang/rust.vim'             " Rust Lang
+    "Plug 'Valloric/YouCompleteMe'         " Autocomplete
+    "Plug 'takac/vim-hardtime'             " Help drop bad vim habits
+    "Plug 'mileszs/ack.vim'                " Ag, faster grep
+    "Plug 'dhruvasagar/vim-table-mode'     " Tables Support =D
     "Plug 'airblade/vim-gitgutter'         " airline git mods
     "Plug 'ervandew/supertab'              " Tab completion
     "Plug 'tpope/vim-vinegar'              " Explore files
@@ -334,17 +334,17 @@ let g:airline_right_sep = ' '
 let g:airline_right_alt_sep = '|'
 let g:airline_theme= 'base16'
 
-" NeoMake
-let g:neomake_airline = 1
-autocmd! BufWritePost * Neomake " Run it every filesave
-
 " Deoplete.
 let g:deoplete#enable_at_startup = 1
-" User the bloody tab and ctrl-space keys -_- ...
+" tab and ctrl-space keys ...
 imap <expr><tab>   pumvisible() ? "\<C-n>" : "\<tab>"
 imap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
-inoremap <expr> <C-Space> deoplete#mappings#manual_complete()
-imap <C-@> <C-Space>
+"inoremap <expr> <C-Space> deoplete#mappings#manual_complete()
+"imap <C-@> <C-Space>
+
+" NeoMake
+"let g:neomake_airline = 1
+"autocmd! BufWritePost * Neomake " Run it every filesave
 
 " YouCompleteMe
 "let g:ycm_global_ycm_extra_conf = '~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
@@ -353,23 +353,23 @@ imap <C-@> <C-Space>
 "let g:ycm_key_invoke_completion = '<C-Space>'
 
 " NerdTree
-map <leader>n :NERDTreeToggle<CR>
+"map <leader>n :NERDTreeToggle<CR>
 
-" Ag
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
+" Ack
+"if executable('ag')
+"  let g:ackprg = 'ag --vimgrep'
+"endif
 
 " table mode
-let g:table_mode_corner_corner="+"
+"let g:table_mode_corner_corner="+"
 "let g:table_mode_corner="|"
 "let g:table_mode_header_fillchar="="
 ":TableModeToggle
 
 " Hardtime
-let g:hardtime_showmsg = 1
-let g:hardtime_default_on = 1 
-let g:hardtime_allow_different_key = 1
-let g:hardtime_maxcount = 4
-let g:hardtime_timeout = 1000
+"let g:hardtime_showmsg = 1
+"let g:hardtime_default_on = 1 
+"let g:hardtime_allow_different_key = 1
+"let g:hardtime_maxcount = 4
+"let g:hardtime_timeout = 1000
 
