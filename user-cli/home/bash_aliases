@@ -103,7 +103,7 @@ ii(){   # Get current host related info.
         echo -e "\n${BRed}Memory stats :$NC " ; free
         echo -e "\n${BRed}Diskspace :$NC " ; df -h / $HOME
         echo -e "\n${BRed}WAN IP Address :$NC" ; wanip
-        echo -e "\n${BRed}Open connections :$NC "; netstat -np46l 2>/dev/null;
+        echo -e "\n${BRed}Open connections :$NC "; \grc netstat -np46l 2>/dev/null;
         echo
     } | less -R
 }
