@@ -25,3 +25,9 @@ read a
 if [[ "$a" =~ ^(yes|y|Y)$ ]]; then
     git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 fi
+
+echo 'Set zsh as default shell?'
+read a
+if [[ "$a" =~ ^(yes|y|Y)$ ]]; then
+    chsh -s /usr/bin/zsh
+fi
