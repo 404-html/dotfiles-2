@@ -4,11 +4,13 @@
 " => Install Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let hasplugins=1
 " If vim-plug is not installed, do it first
 if (!filereadable(expand("$HOME/.config/nvim/autoload/plug.vim")))
     echo " -- Installing vim-plug -- "
     echo ""
     silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    let hasplugins=0
 endif
 
 call plug#begin('~/.local/share/nvim/plugged')
@@ -35,6 +37,13 @@ call plug#begin('~/.local/share/nvim/plugged')
     "Plug 'tpope/vim-vinegar'              " Explore files
 
 call plug#end()
+
+if hasplugins == 0
+    echo "Installing Plugins, please ignore key map error messages"
+    echo ""
+    :PlugInstall
+    :q
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
