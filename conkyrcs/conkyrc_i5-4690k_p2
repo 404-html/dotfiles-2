@@ -60,6 +60,7 @@ ${voffset -8}$hr${voffset 10}
 ${color grey}Date:$color $alignr${time %a %b %e, %k:%M:%S}
 ${color grey}Hostname:$color $alignr$nodename
 ${color grey}Kernel:$color $alignr$kernel
+${color grey}Nvidia:$color ${alignr}${exec nvidia-smi -h | sed -ne '1 s/.*-- v\([0-9.]\+\)/\1/1p'}
 ${color grey}Uptime:$color $alignr$uptime
 ${color grey}Outdated packages:$color ${alignr} ${exec cat /tmp/$USER_conky/apt_ulist }
 
