@@ -95,7 +95,7 @@ URxvt*scrollTtyKeypress:    true
 
 !XFT
 !Xft.dpi: 130
-!Xft.dpi: 115
+Xft.dpi: 115
 Xft.lcdfilter : lcddefault
 Xft.hintstyle : hintslight
 Xft.hinting   : true
