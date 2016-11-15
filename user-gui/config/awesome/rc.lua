@@ -48,6 +48,7 @@ naughty.config.defaults.icon_size = 32
 -- This is used later as the default terminal and editor to run.
 wwwbrowser = "firefox-nightly"
 terminal = "x-terminal-emulator"
+filemanager = "dolphin"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -120,7 +121,7 @@ myawesomemenu = {
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "Debian", debian.menu.Debian_menu.Debian },
                                     { "terminal", terminal },
-                                    { "file manager", "nemo" },
+                                    { "file manager", filemanager},
                                     { "web browser",  wwwbrowser },
                                     { "-------",  nil},
                                     { "switch user", "bash -c '(sleep 1;xscreensaver-command -lock && dm-tool switch-to-greeter) &'"},
@@ -319,7 +320,7 @@ globalkeys = awful.util.table.join(
     awful.key({ "Control", "Shift"}, "Escape", function () awful.util.spawn("mate-system-monitor") end),
     awful.key({ modkey,           }, "w", function () awful.util.spawn(wwwbrowser) end),
     awful.key({ modkey,           }, "space", function () awful.util.spawn("rofi -show run -run-command \"bash -c '{cmd}'\"") end),
-    awful.key({ modkey,           }, "e", function () awful.util.spawn("nemo") end),
+    awful.key({ modkey,           }, "e", function () awful.util.spawn(filemanager) end),
     awful.key({ "Control", "Shift"}, "l", function () awful.util.spawn_with_shell("xscreensaver-command -lock") end),
     awful.key({ modkey,           }, "Up", function () awful.util.spawn_with_shell("amixer set Master 5%+") end),
     awful.key({ modkey,           }, "Down", function () awful.util.spawn_with_shell("amixer set Master 5%-") end),
