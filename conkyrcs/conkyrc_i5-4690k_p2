@@ -52,7 +52,7 @@ conky.config = {
 }
 
 -- Done by cron:
--- ${voffset -11}${execi 300 curl -4 wttr.in | sed -n '3,6p' | perl -pe 's/\e\[?.*?[\@-~]//g' > /tmp/$USER_conkyrc_p2}
+-- ${voffset -11}${execi 300 curl -4 wttr.in | sed -n '3,6p' | perl -pe 's/\e\[?.*?[\@-~]//g' > /tmp/${USER}_conkyrc_p2}
 
 conky.text = [[
 ${alignc}System
@@ -62,15 +62,11 @@ ${color grey}Hostname:$color $alignr$nodename
 ${color grey}Kernel:$color $alignr$kernel
 ${color grey}Nvidia:$color ${alignr}${exec nvidia-smi -h | sed -ne '1 s/.*-- v\([0-9.]\+\)/\1/1p'}
 ${color grey}Uptime:$color $alignr$uptime
-${color grey}Outdated packages:$color ${alignr} ${exec cat /tmp/$USER_conky/apt_ulist }
+${color grey}Outdated packages:$color ${alignr} ${exec cat /tmp/${USER}_conky/apt_ulist }
 
 ${alignc}Weather
 ${voffset -8}$hr${voffset 10}
-${color grey}${exec sed -n '1p' /tmp/$USER_conky/weather | cut -c 1-15}$color      ${exec sed -n '1p' /tmp/$USER_conky/weather | cut -c 16-}
-${color grey}${exec sed -n '2p' /tmp/$USER_conky/weather | cut -c 1-15}$color      ${exec sed -n '2p' /tmp/$USER_conky/weather | cut -c 16-}
-${color grey}${exec sed -n '3p' /tmp/$USER_conky/weather | cut -c 1-15}$color      ${exec sed -n '3p' /tmp/$USER_conky/weather | cut -c 16-}
-${color grey}${exec sed -n '4p' /tmp/$USER_conky/weather | cut -c 1-15}$color      ${exec sed -n '4p' /tmp/$USER_conky/weather | cut -c 16-}
-${color grey}${exec sed -n '5p' /tmp/$USER_conky/weather | cut -c 1-15}$color      ${exec sed -n '5p' /tmp/$USER_conky/weather | cut -c 16-}
+${exec cat /tmp/${USER}_conky/weather}
 
 ${alignc}Storage
 ${voffset -8}$hr${voffset 10}
@@ -96,7 +92,7 @@ ${color grey}${top_io name 4}${color}${alignr} ${top_io io_perc 4} %
 
 ${alignc}Network
 ${voffset -8}$hr${voffset 10}
-${color grey}wan:$color ${alignr}${exec cat /tmp/$USER_conky/wanip}
+${color grey}wan:$color ${alignr}${exec cat /tmp/${USER}_conky/wanip}
 ${color grey}eth1:$color ${alignr}${addr eth1}
 ${color grey}↓ $color${downspeed eth1} ${alignr}${color grey}↑$color ${upspeed eth1}
 ${downspeedgraph eth1 25,170} ${alignr}${upspeedgraph eth1 25,170}

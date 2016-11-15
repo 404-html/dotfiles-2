@@ -3,6 +3,7 @@ user-cli/vim/bundle
 user-cli/oh-my-zsh/cache
 user-cli/home/zprezto/modules/node/cache.zsh
 user-cli/config/nvim/autoload
+user-cli/config/nvim/.netrwhist
 
 user-gui/config/gtk-3.0/bookmarks
 user-gui/config/mpv/watch_later
