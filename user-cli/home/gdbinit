@@ -1,2 +1,13 @@
-set disassembly-flavor intel
 
+python
+import glob, os
+
+s = os.getenv("HOME") + "/.gdbinit.d/"
+
+for f in glob.iglob(s + '/*.gdb'):
+    gdb.execute('source %s' %f)
+
+for f in glob.iglob(s + '*.py'):
+    gdb.execute('source %s' %f)
+
+end
