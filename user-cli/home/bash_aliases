@@ -167,7 +167,7 @@ ytpl(){
 }
 
 ssh+vnc(){
-    ssh -CL 5900:localhost:5900 "$1" 'x11vnc -nopw -forever -localhost'
+    ssh -CL 5900:localhost:5900 "$1" 'x11vnc -nopw -forever -localhost --display :0'
 }
 
 #
