@@ -1,12 +1,15 @@
 #!/bin/bash
 
+# Mute the anoying speaker beep
+xset -b
+
 # Numlock on
 numlockx
 
-# Keyboard locale
+# Keyboard layout
 setxkbmap -layout us -variant altgr-intl 
 
-if [ -s ~/.Xmodmap ]; then
+if [ -r ~/.Xmodmap ]; then
     xmodmap ~/.Xmodmap
 fi
 

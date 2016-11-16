@@ -1,31 +1,24 @@
 #!/bin/sh
 
+if [ -r /etc/.profile ]; then
+    . /etc/profile
+fi
 
-############################################################
-#                   PREPARE                                #
-############################################################
+if [ -r $HOME/.profile ]; then
+    . $HOME/.profile
+fi
 
-hostname=`hostname`
+if [ -r $HOME/.Xresources ]; then
+    xrdb $HOME/.Xresources
+fi
 
-############################################################
-#                   Init                                   #
-############################################################
-
-# I want my profile scripts in my X session.
-. /etc/profile
-. ~/.profile
-
-#lightdm does this for me
-xrdb ~/.Xresources
-
-# Mute the anoying speaker beep
-xset -b
-
-for f in $HOME/.xsessionrc.d/*.sh; do
-    if [ -r "$f" ]; then
-        source "$f"
-    fi
-done
+if [ -d $HOME/.xsessionrc.d ]; then
+    for f in $HOME/.xsessionrc.d/*.sh; do
+        if [ -r "$f" ]; then
+            . "$f"
+        fi
+    done
+fi
 
 
 
