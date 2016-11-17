@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/sh 
 
 # Netkit
 if [ -d $HOME/.opt/netkit ]; then
@@ -6,7 +6,7 @@ if [ -d $HOME/.opt/netkit ]; then
     export MANPATH=:$NETKIT_HOME/man
     export PATH=$NETKIT_HOME/bin:$PATH
     export CDPATH="$CDPATH:$HOME/workspace"
-    #source $NETKIT_HOME/bin/netkit_bash_completion
+    #. $NETKIT_HOME/bin/netkit_bash_completion
 fi
 
 

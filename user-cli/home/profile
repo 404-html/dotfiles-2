@@ -23,7 +23,7 @@ fi
 if [ -d $HOME/.profile.d ]; then
     for f in $HOME/.profile.d/*.sh; do
         if [ -r "$f" ]; then
-            source "$f"
+            . "$f"
         fi
     done
     unset f
