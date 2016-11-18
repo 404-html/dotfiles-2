@@ -1,7 +1,9 @@
 
 if [ `hostname` = "t560" ];then 
+    # Font scaling
     export GDK_DPI_SCALE=1.2
     export ELM_SCALE=1.2
-    export QT_SCALE_FACTORS=1.2
-    export QT_AUTO_SCREEN_SCALE_FACTOR=0
+    #export QT_SCALE_FACTOR=1.1 # This breaks kwin
+
+    echo Xft.dpi: 115 | xrdb -merge
 fi
