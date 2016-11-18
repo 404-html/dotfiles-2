@@ -124,15 +124,12 @@ def detect_desktop_environment():
                     qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript '
                         var allDesktops = desktops();
                         print (allDesktops);
-                        for (i=0;i<allDesktops.length;i++) {{
-                            d = allDesktops[i];
-                            d.wallpaperPlugin = "org.kde.image";
-                            d.currentConfigGroup = Array("Wallpaper",
-                                                   "org.kde.image",
-                                                   "General");
-                            d.writeConfig("Image", "file:///{save_location}")
-                            break // Only change first desktop
-                        }}
+                        d = allDesktops[0];
+                        d.wallpaperPlugin = "org.kde.image";
+                        d.currentConfigGroup = Array("Wallpaper",
+                                               "org.kde.image",
+                                               "General");
+                        d.writeConfig("Image", "file:///{save_location}")
                     '
                 """
     elif os.environ.get("GNOME_DESKTOP_SESSION_ID"):
@@ -185,18 +182,17 @@ if __name__ == '__main__':
                                                                             id=image["id"])
 
         if os.path.isfile(save_location):
-            sys.exit("Info: Image already exists, nothing to do, the program is" \
-                  " now exiting")
+            print("Image already downloaded, skipping writing file.")
+        else:
+            # Create folders if they don't exist
+            dir = os.path.dirname(save_location)
+            if not os.path.exists(dir):
+                os.makedirs(dir)
 
-        # Create folders if they don't exist
-        dir = os.path.dirname(save_location)
-        if not os.path.exists(dir):
-            os.makedirs(dir)
-
-        # Write to disk
-        with open(save_location, "wb") as fo:
-            for chunk in response.iter_content(4096):
-                fo.write(chunk)
+            # Write to disk
+            with open(save_location, "wb") as fo:
+                for chunk in response.iter_content(4096):
+                    fo.write(chunk)
 
         # Check OS and environments
         platform_name = platform.system()
