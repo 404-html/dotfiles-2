@@ -75,7 +75,7 @@ URxvt.geometry  : 80x26
 
 !URxvt.font        : xft:Dejavu Sans Mono:regular:pixelsize=13
 !URxvt.font        : xft:Monospace:pixelsize=12
-URxvt.font:             xft:inconsolata:pixelsize=16
+URxvt.font:             xft:inconsolata:pixelsize=14
 ! For some reason, the font width is exagerated in debian.
 URxvt.letterSpace:      -1
 URxvt.termName    : rxvt-256color

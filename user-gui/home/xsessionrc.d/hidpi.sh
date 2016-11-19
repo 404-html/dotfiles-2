@@ -5,5 +5,9 @@ if [ `hostname` = "t560" ];then
     export ELM_SCALE=1.2
     #export QT_SCALE_FACTOR=1.1 # This breaks kwin
 
-    echo Xft.dpi: 115 | xrdb -merge
+    cat << 'EOF' | xrdb -merge
+Xft.dpi: 115 
+URxvt.font: xft:inconsolata:pixelsize=14
+EOF
+
 fi
