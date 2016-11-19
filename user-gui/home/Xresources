@@ -93,7 +93,7 @@ URxvt*scrollWithBuffer:     true
 URxvt*scrollTtyKeypress:    true
 
 !XFT
-#Xft.dpi: 120
+!Xft.dpi: 120
 Xft.lcdfilter : lcddefault
 Xft.hintstyle : hintslight
 Xft.hinting   : true
