@@ -7,7 +7,7 @@ if [ `hostname` = "t560" ];then
 
     cat << 'EOF' | xrdb -merge
 Xft.dpi: 115 
-URxvt.font: xft:inconsolata:pixelsize=14
+URxvt.font: xft:inconsolata:pixelsize=16
 EOF
 
 fi
