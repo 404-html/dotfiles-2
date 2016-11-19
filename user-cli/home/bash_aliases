@@ -167,7 +167,8 @@ ytpl(){
 }
 
 ytas() {
-    mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch10:"$@"
+    query="$@"
+    mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch10:"$query"
 }
 
 ssh+vnc(){
