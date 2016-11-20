@@ -22,7 +22,7 @@ else:
 
 def load_config():
     default = defaultdict(str)
-    default["subreddit"] = "wallpapers"
+    default["subreddit"] = "wallpapers+wallpaper"
     default["nsfw"] = "False"
     default["time"] = "day"
     default["display"] = "0"
@@ -74,10 +74,10 @@ def parse_args():
     parser.add_argument("-s", "--subreddit", type=str, default=config["subreddit"],
                         help="Example: art, getmotivated, wallpapers, ...")
     parser.add_argument("-t", "--time", type=str, default=config["time"],
-                        help="Example: new, hour, day, week, month, year")
+                        help="Example: top, hot, new, hour, day, week, month, year")
     parser.add_argument("-n", "--nsfw", action='store_true', default=config["nsfw"], help="Enables NSFW tagged posts.")
     parser.add_argument("-d", "--display", type=int, default=config["display"],
-                        help="Desktop display number on OS X (0: all displays, 1: main display, etc")
+                        help="Desktop display number. Only OSX and KDE/Linux  (0: all displays, 1: main display, etc")
     parser.add_argument("-o", "--output", type=str, default=config["output"],
                         help="Set the outputfolder in the home directory to save the Wallpapers to.")
 
@@ -90,8 +90,14 @@ def get_top_image(sub_reddit):
     :sub_reddit: name of the sub reddit
     :return: the image link
     """
-    submissions = sub_reddit.get_new(limit=10) if args.time == "new" else sub_reddit.get_top(params={"t": args.time},
-                                                                                             limit=10)
+
+    if args.time == "hot":
+        submissions = sub_reddit.get_hot(limit=10)
+    elif args.time == "new":
+        submissions = sub_reddit.get_new(limit=10)
+    else:
+        submissions = sub_reddit.get_top(params={"t": args.time}, limit=10)
+
     for submission in submissions:
         ret = {"id": submission.id}
         if not args.nsfw and submission.over_18:
@@ -120,16 +126,27 @@ def detect_desktop_environment():
     environment = {}
     if os.environ.get("KDE_FULL_SESSION") == "true":
         environment["name"] = "kde"
+
+        if args.display == 0:
+            i=str(0)
+            limit="allDesktops.length"
+        else:
+            i=str(args.display-1)
+            limit=str(args.display)
+
         environment["command"] = """
                     qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript '
                         var allDesktops = desktops();
                         print (allDesktops);
-                        d = allDesktops[0];
-                        d.wallpaperPlugin = "org.kde.image";
-                        d.currentConfigGroup = Array("Wallpaper",
-                                               "org.kde.image",
-                                               "General");
-                        d.writeConfig("Image", "file:///{save_location}")
+                        for (i="""+i+""";i<"""+limit+""";i++) {{
+                            d = allDesktops[i];
+                            d.wallpaperPlugin = "org.kde.image";
+                            d.currentConfigGroup = Array("Wallpaper",
+                                                   "org.kde.image",
+                                                   "General");
+                            d.writeConfig("Image", "file:///{save_location}")
+                            break // Only change first desktop
+                        }}
                     '
                 """
     elif os.environ.get("GNOME_DESKTOP_SESSION_ID"):
@@ -182,22 +199,27 @@ if __name__ == '__main__':
                                                                             id=image["id"])
 
         if os.path.isfile(save_location):
-            print("Image already downloaded, skipping writing file.")
-        else:
-            # Create folders if they don't exist
-            dir = os.path.dirname(save_location)
-            if not os.path.exists(dir):
-                os.makedirs(dir)
+            sys.exit("Info: Image already exists, nothing to do, the program is" \
+                  " now exiting")
 
-            # Write to disk
-            with open(save_location, "wb") as fo:
-                for chunk in response.iter_content(4096):
-                    fo.write(chunk)
+        # Create folders if they don't exist
+        dir = os.path.dirname(save_location)
+        if not os.path.exists(dir):
+            os.makedirs(dir)
+
+        # Write to disk
+        with open(save_location, "wb") as fo:
+            for chunk in response.iter_content(4096):
+                fo.write(chunk)
+
 
         # Check OS and environments
         platform_name = platform.system()
         if platform_name.startswith("Lin"):
 
+            # For some reason I don't understand, KDE can't
+            # read some images unless they are reencoded.
+            os.system("convert "+save_location+" "+save_location)
             # Check desktop environments for linux
             desktop_environment = detect_desktop_environment()
             if desktop_environment and desktop_environment["name"] in supported_linux_desktop_envs:
