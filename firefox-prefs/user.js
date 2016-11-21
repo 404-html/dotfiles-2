@@ -115,3 +115,6 @@ user_pref("browser.search.openintab", true);
 // time to disable buttons on security-sensitive dialog boxes.
 user_pref("security.dialog_enable_delay", 0);
 
+// Open all popups in a new tab.
+user_pref("browser.link.open_newwindow.restriction", 0);
+
