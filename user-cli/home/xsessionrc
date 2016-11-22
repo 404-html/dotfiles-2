@@ -9,7 +9,7 @@ if [ -r $HOME/.profile ]; then
 fi
 
 if [ -r $HOME/.Xresources ]; then
-    xrdb $HOME/.Xresources
+    xrdb -merge $HOME/.Xresources
 fi
 
 if [ -d $HOME/.xsessionrc.d ]; then
@@ -19,6 +19,4 @@ if [ -d $HOME/.xsessionrc.d ]; then
         fi
     done
 fi
-
-
 

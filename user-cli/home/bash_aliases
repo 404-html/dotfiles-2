@@ -171,9 +171,14 @@ ytas() {
     mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch10:"$query"
 }
 
-ssh+vnc(){
-    ssh -CL 5900:localhost:5900 "$1" 'x11vnc -nopw -forever -localhost --display :0'
-}
+# sshvnc command from the ssvnc package does this for me.
+#ssh+vnc(){                                                                                                                                                                                 ;)
+#    ssh -CL 5900:localhost:5900 "$1" 'x11vnc -nopw -forever -localhost --display :0' &
+#    pid=$!
+#    sleep 1
+#    vncviewer localhost
+#    kill $pid
+#}
 
 #
 # Aliases

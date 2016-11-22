@@ -2,7 +2,7 @@
 
 conky.config = {
 	-- ### GENERAL ###
-    font = 'Fira Code:size=11',
+    font = 'Fira Code:size=8',
     use_xft = true,
     update_interval = 10.0,
 	no_buffers = true,
@@ -48,12 +48,12 @@ conky.config = {
 
 
 conky.text = [[
-${color white}SYSTEM ${hr 1}${color}
+${color white}System ${hr 1}${color}
 Hostname: $alignr$nodename
 Kernel: $alignr$kernel
 Uptime: $alignr$uptime
-BAT0: $alignr${exec battery_rate.sh 0} W
-BAT1: $alignr${exec battery_rate.sh 1} W
+Bat0: $alignr${exec battery_rate.sh 0} W
+Bat1: $alignr${exec battery_rate.sh 1} W
 wlan0: $alignr${hwmon 4 temp 1} C
 SDD: $alignr${exec sudo /usr/sbin/hddtemp -n /dev/disk/by-id/ata-KINGSTON_SV300S37A240G_50026B7258067EF6} C
 PCH: ${alignr}${if_existing /sys/class/hwmon/hwmon2/temp1_input}${hwmon 2 temp 1}${else}${hwmon 1 temp 1}${endif} C
@@ -72,7 +72,7 @@ ${cpubar cpu3}
 CPU4 ${alignr}${cpu cpu4}%
 ${cpubar cpu4}
 
-Ram ${alignr}$mem / $memmax ($memperc%)
+ram ${alignr}$mem / $memmax ($memperc%)
 ${membar 4}
 swap ${alignr}$swap / $swapmax ($swapperc%)
 ${swapbar 4}
