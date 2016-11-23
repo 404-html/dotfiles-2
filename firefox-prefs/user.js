@@ -118,3 +118,5 @@ user_pref("security.dialog_enable_delay", 0);
 // Open all popups in a new tab.
 user_pref("browser.link.open_newwindow.restriction", 0);
 
+// Disable webrtc
+user_pref("media.peerconnection.enabled", false);
