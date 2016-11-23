@@ -120,3 +120,7 @@ user_pref("browser.link.open_newwindow.restriction", 0);
 
 // Disable webrtc
 user_pref("media.peerconnection.enabled", false);
+
+// disable Location-Aware Browsing
+// http://www.mozilla.org/en-US/firefox/geolocation/
+user_pref("geo.enabled", false);
