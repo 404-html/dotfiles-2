@@ -73,7 +73,7 @@ URxvt.urlLuncher:     /usr/bin/firefox
 
 URxvt.geometry  : 80x26
 
-URxvt.font:             xft:Fira Code Retina:pixelsize=14
+URxvt.font:             xft:Fira Code Retina:pixelsize=16
 !URxvt.font:             xft:inconsolata:pixelsize=16
 ! For some reason, the font width is exagerated in debian.
 URxvt.letterSpace:      -1
@@ -93,7 +93,7 @@ URxvt*scrollWithBuffer:     true
 URxvt*scrollTtyKeypress:    true
 
 !XFT
-!Xft.dpi: 120
+Xft.dpi: 125
 Xft.lcdfilter : lcddefault
 Xft.hintstyle : hintslight
 Xft.hinting   : true
