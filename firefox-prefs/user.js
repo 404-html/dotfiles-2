@@ -8,8 +8,8 @@ user_pref("extensions.e10sBlocksEnabling", false);
 
 // GPU accel
 user_pref("layers.acceleration.force-enabled", true);
-user_pref("webgl.force-enabled", true);
-user_pref("webgl.msaa-force", true);
+//user_pref("webgl.force-enabled", true);
+//user_pref("webgl.msaa-force", true);
 
 // Disable search in url bar 
 user_pref("keyword.enabled", false);
@@ -124,3 +124,12 @@ user_pref("media.peerconnection.enabled", false);
 // disable Location-Aware Browsing
 // http://www.mozilla.org/en-US/firefox/geolocation/
 user_pref("geo.enabled", false);
+
+// Prevent font fingerprinting
+// http://www.browserleaks.com/fonts
+// https://github.com/pyllyukko/user.js/issues/120
+//user_pref("browser.display.use_document_fonts", 0);
+
+// disable webGL
+// http://www.contextis.com/resources/blog/webgl-new-dimension-browser-exploitation/
+user_pref("webgl.disabled", true);
