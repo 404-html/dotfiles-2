@@ -15,9 +15,9 @@ fi
 
 
 ### EDIT ME
-authid=$(secret-tool lookup nanosat user)   # username
-authpw=$(secret-tool lookup nanosat pwd)    # password
-section=Intranet.TransProt                  # wiki section e.g Intranet.TransProt
+authid=$(secret-tool lookup nanosat user)     # username
+authpw=$(secret-tool lookup nanosat pwd)      # password
+section=$(secret-tool lookup nanosat section) # Section to upload (i.e. GET parameter "n" when logged in section.)
 ###
 
 # Login
