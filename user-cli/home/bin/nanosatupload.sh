@@ -6,9 +6,9 @@
 # this stuff is worth it, you can buy me a beer in return.   Poul-Henning Kamp
 # ----------------------------------------------------------------------------
 
-if [ "$#" -ne 1 ];then
+if [ "$#" -lt 1 ];then
     echo
-    echo "usage: $0 file2upload"
+    echo "usage: $0 [file]..." >&2
     echo
     exit 1
 fi
@@ -26,21 +26,30 @@ cookie=$(mktemp)
 action=login
 n=Site.SideBar
 
-curl -c "$cookie" -F "authid=$authid" -F "authpw=$authpw" "$url" >/dev/null
+curl -c "$cookie" \
+     -F "authid=$authid" \
+     -F "authpw=$authpw" \
+     "$url" >/dev/null
 
-# Upload
-uploadfile=$1
-upname=$(basename "$1")
-action=postupload
-res=$(mktemp)
+for file in "$@"; do
+    if ! [ -r "$file" ]; then
+        echo "[Error] Unable to read [$file]. Skipping." >&2
+        continue
+    fi
 
-curl -F "uploadfile=@$uploadfile" \
-     -F "action=$action" \
-     -F "n=$section" \
-     -F "upname=$upname" \
-     -b "$cookie" \
-     "$url" > "$res"
+    # Upload
+    uploadfile=$file
+    upname=$(basename "$file")
+    action=postupload
+    ret=$(mktemp)
 
-shred -u "$res"
+    curl -F "uploadfile=@$uploadfile" \
+         -F "action=$action" \
+         -F "n=$section" \
+         -F "upname=$upname" \
+         -b "$cookie" \
+         "$url" > /dev/null
+done
+
 shred -u "$cookie"
 
