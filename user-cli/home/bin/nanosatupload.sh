@@ -41,7 +41,6 @@ for file in "$@"; do
     uploadfile=$file
     upname=$(basename "$file")
     action=postupload
-    ret=$(mktemp)
 
     curl -F "uploadfile=@$uploadfile" \
          -F "action=$action" \
