@@ -171,6 +171,14 @@ ytas() {
     mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch10:"$query"
 }
 
+secret-tool-create() {
+    if [ "$#" -ne 2 ]; then
+        secret-tool store --label="$1" "$2"
+    else
+        echo "Usage $0 label key" >&2
+    fi
+}
+
 # sshvnc command from the ssvnc package does this for me.
 #ssh+vnc(){                                                                                                                                                                                 ;)
 #    ssh -CL 5900:localhost:5900 "$1" 'x11vnc -nopw -forever -localhost --display :0' &
