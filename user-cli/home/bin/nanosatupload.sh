@@ -23,8 +23,6 @@ section=Intranet.TransProt                  # wiki section e.g Intranet.TransPro
 # Login
 url=http://istnanosat.ist.utl.pt/index.php
 cookie=$(mktemp)
-action=login
-n=Site.SideBar
 
 curl -c "$cookie" \
      -F "authid=$authid" \
