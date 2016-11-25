@@ -133,3 +133,6 @@ user_pref("geo.enabled", false);
 // disable webGL
 // http://www.contextis.com/resources/blog/webgl-new-dimension-browser-exploitation/
 user_pref("webgl.disabled", true);
+
+// Flash plugin state - never activate
+user_pref("plugin.state.flash", 0);
