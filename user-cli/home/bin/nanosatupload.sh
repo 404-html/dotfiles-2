@@ -18,12 +18,12 @@ fi
 authid=$(secret-tool lookup nanosat user)     # username
 authpw=$(secret-tool lookup nanosat pwd)      # password
 section=$(secret-tool lookup nanosat section) # Section to upload (i.e. GET parameter "n" when logged in section.)
+url=$(secret-tool lookup nanosat url)         # url to index.php
 ###
 
-# Login
-url=http://istnanosat.ist.utl.pt/index.php
 cookie=$(mktemp)
 
+# Login
 curl -c "$cookie" \
      -F "authid=$authid" \
      -F "authpw=$authpw" \
@@ -35,11 +35,11 @@ for file in "$@"; do
         continue
     fi
 
-    # Upload
     uploadfile=$file
     upname=$(basename "$file")
     action=postupload
 
+    # Upload
     curl -F "uploadfile=@$uploadfile" \
          -F "action=$action" \
          -F "n=$section" \
