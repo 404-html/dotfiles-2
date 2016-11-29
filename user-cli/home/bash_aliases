@@ -104,7 +104,7 @@ ii(){   # Get current host related info.
         echo -e "\n${BRed}Machine stats :$NC " ; uptime
         echo -e "\n${BRed}Memory stats :$NC " ; free
         echo -e "\n${BRed}Diskspace :$NC " ; df -h / $HOME
-        echo -e "\n${BRed}WAN IP Address :$NC" ; wanip
+        echo -e "\n${BRed}WAN IP Address :$NC" ; dig +short myip.opendns.com @resolver1.opendns.com
         echo -e "\n${BRed}Open connections :$NC "; $g netstat -np46l 2>/dev/null;
         echo
     } | less -R
@@ -172,10 +172,10 @@ ytas() {
 }
 
 secret-tool-create() {
-    if [ "$#" -ne 2 ]; then
-        secret-tool store --label="$1" "$2"
+    if [ "$#" -eq 3 ]; then
+        secret-tool store --label="$1" "$2" "$3"
     else
-        echo "Usage $0 label key" >&2
+        echo "Usage $0 label name key" >&2
     fi
 }
 
@@ -313,6 +313,7 @@ alias m='f -e mplayer' # quick opening files with mplayer
 alias o='f -e xdg-open' # quick opening files with xdg-open
 
 # Easy to forget cmds
+alias inxi='inxi -F'
 alias lsfs='dumpe2fs'
 alias lsefi='efibootmgr -v'
 alias modfs='tune2fs'
