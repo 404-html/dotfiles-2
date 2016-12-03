@@ -454,6 +454,8 @@ awful.rules.rules = {
                      buttons = clientbuttons
                  -- Start new windows has slaves, not masters.
                  }, callback = awful.client.setslave},
+    { rule = { class = "Icedove" },
+      properties = { tag = tags[1][9] } },
     { rule = { class = "steam" },
       properties = { tag = tags[1][8] } },
     { rule = { class = "Steam" },
