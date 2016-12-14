@@ -20,6 +20,14 @@ for d in config local/share ;do
     cd - >/dev/null
 done
 
+echo 'Install fasd? [y/n]'
+read a
+if [[ "$a" =~ ^(yes|y|Y)$ ]]; then
+    mkdir -p $HOME/.local/bin
+    curl 'https://raw.githubusercontent.com/clvv/fasd/master/fasd' -o $HOME/.local/bin/fasd
+    chmod +x $HOME/.local/bin/fasd
+fi
+
 echo 'Should I install zprezto? [y/n]'
 read a
 if [[ "$a" =~ ^(yes|y|Y)$ ]]; then
@@ -27,7 +35,7 @@ if [[ "$a" =~ ^(yes|y|Y)$ ]]; then
     ./install_zsh_custom_prompt.sh
 fi
 
-echo 'Set zsh as default shell?'
+echo 'Set zsh as default shell? [y/n]'
 read a
 if [[ "$a" =~ ^(yes|y|Y)$ ]]; then
     chsh -s /usr/bin/zsh
