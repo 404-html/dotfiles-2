@@ -23,6 +23,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'tpope/vim-repeat'               " Support for repeating plugin executions with '.'
     Plug 'Shougo/deoplete.nvim'           " Autocomplete
     Plug 'kien/ctrlp.vim'                 " ctrl-p is a fuzzy file finder.
+    Plug 'junegunn/vim-easy-align'        " Helps aligning txt
 
     " Maybies...
     "Plug 'benekastah/neomake'             " Asynchronous syntax checking
@@ -382,3 +383,9 @@ imap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
 "let g:hardtime_maxcount = 4
 "let g:hardtime_timeout = 1000
 
+" Easy align
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)

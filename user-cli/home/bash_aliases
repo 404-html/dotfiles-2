@@ -309,6 +309,7 @@ alias forkbomb=':(){ :|:& };:'
 
 ####### FASD ALIAS ######
 alias v="f -e ${neo}vim" # quick opening files with vim
+alias vr="f -e ${neo}vim -R" # quick opening files with vim
 alias m='f -e mplayer' # quick opening files with mplayer
 alias o='f -e xdg-open' # quick opening files with xdg-open
 
