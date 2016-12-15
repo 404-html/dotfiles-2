@@ -29,6 +29,7 @@ typeset -gU cdpath fpath mailpath path
 
 # prezto modules
 zstyle ':prezto:load' pmodule \
+  'command-not-found' \
   'environment' \
   'terminal' \
   'editor' \
@@ -45,8 +46,8 @@ zstyle ':prezto:load' pmodule \
   'python' \
   'utility' \
   'dpkg' \
-  'prompt' \
-  'ssh'
+  'prompt'
+  #'ssh'
   #'homebrew' \
   #'osx' \
   #'ruby' \
@@ -151,8 +152,8 @@ zstyle ':prezto:module:utility:grep' color 'no'
    'main' \
    'brackets' \
    'pattern' \
-#   'root'
-#   'cursor' \
+   'cursor'
+   #'root' \
 
 #
 # Set syntax highlighting styles.
