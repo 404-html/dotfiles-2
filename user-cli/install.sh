@@ -20,23 +20,30 @@ for d in config local/share ;do
     cd - >/dev/null
 done
 
-echo 'Install fasd? [y/n]'
+echo 'Install necessary packages[y/n]'
 read a
 if [[ "$a" =~ ^(yes|y|Y)$ ]]; then
-    mkdir -p $HOME/.local/bin
-    curl 'https://raw.githubusercontent.com/clvv/fasd/master/fasd' -o $HOME/.local/bin/fasd
-    chmod +x $HOME/.local/bin/fasd
+    ./install_pkgs.sh
 fi
 
-echo 'Should I install zprezto? [y/n]'
+echo 'Clone fasd? [y/n]'
 read a
 if [[ "$a" =~ ^(yes|y|Y)$ ]]; then
-    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+    mkdir -p "$HOME/.local/bin"
+    curl 'https://raw.githubusercontent.com/clvv/fasd/master/fasd' -o "$HOME/.local/bin/fasd"
+    chmod +x "$HOME/.local/bin/fasd"
+fi
+
+echo 'Clone zprezto? [y/n]'
+read a
+if [[ "$a" =~ ^(yes|y|Y)$ ]]; then
+    git clone --recursive 'https://github.com/sorin-ionescu/prezto.git' "${ZDOTDIR:-$HOME}/.zprezto"
     ./install_zsh_custom_prompt.sh
 fi
 
 echo 'Set zsh as default shell? [y/n]'
 read a
 if [[ "$a" =~ ^(yes|y|Y)$ ]]; then
-    chsh -s /usr/bin/zsh
+    chsh -s "$(which zsh)"
 fi
+
