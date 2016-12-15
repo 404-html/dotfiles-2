@@ -35,10 +35,22 @@ autoload run-help-svn
 autoload run-help-svk
 alias help=run-help
 
-# zsh options
-setopt EXTENDED_GLOB RM_STAR_WAIT
+# More Globs
+setopt EXTENDED_GLOB
+# 10 second wait if you do something that will delete everything. 
+# I wish I'd had this before...
+setopt RM_STAR_WAIT
 # Disable Substituition verification
 unsetopt HIST_VERIFY NO_CLOBBER AUTO_CD
+# If we have a glob this will expand it
+setopt GLOB_COMPLETE
+setopt PUSHD_MINUS
+# This makes cd=pushd
+setopt AUTO_PUSHD
+# Don't save duplicates entries in history
+setopt HISTIGNOREDUPS
+# Don't save history entries that start with a space
+setopt HISTIGNORESPACE
 
 # fasd init
 # https://github.com/clvv/fasd

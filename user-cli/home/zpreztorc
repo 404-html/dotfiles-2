@@ -151,8 +151,8 @@ zstyle ':prezto:module:utility:grep' color 'no'
  zstyle ':prezto:module:syntax-highlighting' highlighters \
    'main' \
    'brackets' \
-   'pattern' \
-   'cursor'
+   'pattern'
+   #'cursor'
    #'root' \
 
 #
