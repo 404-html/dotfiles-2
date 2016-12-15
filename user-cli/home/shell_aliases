@@ -126,7 +126,7 @@ loop(){       # Repeat n times command.
 }
 
 add-alias(){
-    echo "alias $1=\047$2\047" >> ~/.bash_aliases
+    echo "alias $1=\047$2\047" >> ~/.shell_aliases
 }
 
 sddev(){
@@ -247,8 +247,8 @@ alias syslog="tailf /var/log/syslog"
 alias sdu="du -hs * .??* | egrep '^[0-9.]+[MG]'"
 alias vimrc='vim ~/.vimrc'
 alias bashrc='vim ~/.bashrc'
-alias bash_aliases='vim ~/.bash_aliases'
-alias aliases='vim ~/.bash_aliases'
+alias shell_aliases='vim ~/.shell_aliases'
+alias aliases='vim ~/.shell_aliases'
 alias zshrc='vim ~/.zshrc'
 alias profile='vim ~/.profile'
 alias zprofile='vim ~/.zprofile'

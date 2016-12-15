@@ -85,8 +85,8 @@ if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
-if [ -r ~/.bash_aliases ];then
-    source ~/.bash_aliases
+if [ -r ~/.shell_aliases ];then
+    source ~/.shell_aliases
 fi
 
 # Workaround #
