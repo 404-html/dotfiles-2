@@ -7,9 +7,16 @@ if ! hash uudecode &>/dev/null; then
     exit -1
 fi
 
-if [ "$(id -u)" -ne 0 ]; then
-    sudo "$0" "$@"
-    exit
+if [ "$UID" -ne 0 ]; then
+    is_sudo_available=$(sudo -n uptime 2>&1|grep "load"|wc -l)
+    if [ $is_sudo_available -eq 1 ]; then
+        sudo "$0"
+        exit
+    else
+        >&2 echo 'Root login:'
+        su -c "$0"
+        exit 
+    fi
 fi
 
 TMPDIR=$(mktemp -d /tmp/firefox.XXXX) 

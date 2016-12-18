@@ -1,8 +1,8 @@
 #!/bin/bash
 
 if [ "$UID" -ne 0 ]; then
-    CAN_I_RUN_SUDO=$(sudo -n uptime 2>&1|grep "load"|wc -l)
-    if [ $CAN_I_RUN_SUDO -eq 1 ]; then
+    is_sudo_available=$(sudo -n uptime 2>&1|grep "load"|wc -l)
+    if [ $is_sudo_available -eq 1 ]; then
         sudo "$0"
         exit
     else
