@@ -20,6 +20,8 @@ for d in config local/share ;do
     cd - >/dev/null
 done
 
+mkdir -p $HOME/{.opt,.bin,.local/bin}
+
 echo 'Install necessary packages[y/n]'
 read a
 if [[ "$a" =~ ^(yes|y|Y)$ ]]; then

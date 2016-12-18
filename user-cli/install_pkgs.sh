@@ -19,7 +19,7 @@ if hash apt-get &>/dev/null; then
         xclip xcape x11vnc sudo xcape pdfgrep
         trash-cli dnsutils python3-pyftpdlib inxi
         tmux mpv wine wine-development libsecret-tools
-        youtube-dl net-tools ffmpeg silversearcher-ag)
+        youtube-dl net-tools ffmpeg silversearcher-ag command-not-found)
 
     "$tool" install "${pkgs[@]}"
 else
