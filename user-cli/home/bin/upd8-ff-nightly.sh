@@ -24,8 +24,8 @@ tar jxf "$TMPDIR/ff-nightly.tar.bz2" \
         && rm -rf firefox-nightly.old) \
     || mv firefox-nightly.old firefox-nightly
 
-if ! [ -f /usr/bin/firefox-nightly ]; then
-    ln -s /opt/firefox-nightly/firefox /usr/bin/firefox-nightly
+if ! [ -f /usr/local/bin/firefox-nightly ]; then
+    ln -s /opt/firefox-nightly/firefox /usr/local/bin/firefox-nightly
 fi
 
 if ! [ -f /usr/share/applications/firefox-nightly.desktop ]; then
