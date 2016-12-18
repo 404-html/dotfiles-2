@@ -21,8 +21,8 @@ conky.config = {
 
 	-- ### X Related ###
     own_window = true,
-    own_window_type = "override",
-	own_window_class = 'Conky',
+    own_window_type = "normal",
+	own_window_class = 'Conky2',
     own_window_argb_visual = true,
     own_window_argb_value = 155,
     own_window_colour = "000000",
