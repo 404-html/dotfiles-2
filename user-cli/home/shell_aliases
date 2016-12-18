@@ -206,6 +206,15 @@ if [ $ZSH_VERSION ];then
     }
 fi
 
+dotfile() {
+    fname=$(basename $1)
+    fname=${fname#.} 
+    dpath="${2}/${fname}"
+    spath="$1"
+
+    mv -v "${spath}" "${dpath}"
+    ln -vsr "${dpath}" "${spath}"
+}
 
 # sshvnc command from the ssvnc package does this for me.
 #ssh+vnc(){                                                                                                                                                                                 ;)
