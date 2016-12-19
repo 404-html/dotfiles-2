@@ -244,13 +244,17 @@ swap() {
 
 
 # sshvnc command from the ssvnc package does this for me.
-#ssh+vnc(){                                                                                                                                                                                 ;)
-#    ssh -CL 5900:localhost:5900 "$1" 'x11vnc -nopw -forever -localhost --display :0' &
-#    pid=$!
-#    sleep 1
-#    vncviewer localhost
-#    kill $pid
-#}
+if ! hash sshvnc &>/dev/null; then
+    sshvnc() {
+        [ "$#" -ne 1 ] && >&2 echo "Usage: $0 <host>" && return 1
+
+        ssh -CL 5900:localhost:5900 "$1" 'x11vnc -nopw -forever -localhost --display :0' &
+        pid=$!
+        sleep 1
+        vncviewer localhost
+        kill $pid
+    }
+fi
 
 #
 # Aliases
@@ -301,7 +305,6 @@ alias vncserver='x11vnc -forever -nopw -display $DISPLAY'
 alias gdb='gdb -q'
 alias ddwatch='watch -n5 "kill -USR1 $(pgrep ^dd)"'
 alias pdfgrep='pdfgrep -ic'
-alias mkdir='mkdir -p'
 alias mysql-ist='mysql -h $(secret-tool lookup istdb host) -p$(secret-tool lookup istdb pass) -u $(secret-tool lookup istdb user) $(secret-tool lookup istdb user)'
 alias fdate='date --iso-8601=minute'
 alias matlab-cli='matlab -nodesktop -nosplash'
@@ -332,6 +335,7 @@ alias ne='2>/dev/null'
 alias rm='rm -v'
 alias cp='cp -iva'
 alias mv='mv -iv'
+alias mkdir='mkdir -p'
 alias tp='trash-put'
 alias trash-restore='restore-trash'
 alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
@@ -339,7 +343,9 @@ alias px='ps x'
 alias offline='unshare -n'
 
 # Because dcfldd is hard to remember.
-alias dd='dcfldd'
+if hash dcfldd &>/dev/null; then
+    alias dd='dcfldd'
+fi
 
 alias gunzip='gunzip -k'
 alias we='dolphin $PWD'
@@ -357,7 +363,7 @@ alias weather="curl http://wttr.in/"
 #alias firefox='env GTK_THEME=Adwaita firefox'
 
 # grcat aliases
-if hash grc 2>/dev/null; then
+if hash grc &>/dev/null; then
     alias cvs='\grc cvs'
     alias df='\grc df'
     alias esperanto='\grc esperanto'
@@ -378,10 +384,12 @@ fi
 alias forkbomb=':(){ :|:& };:'
 
 ####### FASD ALIAS ######
-alias v="f -e ${neo}vim" # quick opening files with vim
-alias vr="f -e ${neo}vim -R" # quick opening files with vim
-alias m='f -e mplayer' # quick opening files with mplayer
-alias o='f -e xdg-open' # quick opening files with xdg-open
+if hash fasd &>/dev/null; then
+    alias v="f -e ${neo}vim" # quick opening files with vim
+    alias vr="f -e ${neo}vim -R" # quick opening files with vim
+    alias m='f -e mplayer' # quick opening files with mplayer
+    alias o='f -e xdg-open' # quick opening files with xdg-open
+fi
 
 # Easy to forget cmds
 alias inxi='inxi -F'
