@@ -256,6 +256,16 @@ if ! hash sshvnc &>/dev/null; then
     }
 fi
 
+dirit() {
+    [ $# -ne 2  ] && echo "Usage: $0 [dir] [file...]" && return 1
+
+    dir=$1
+    shift
+    mkdir -p "${dir}"
+
+    mv -nv "$@" "${dir}"
+}
+
 #
 # Aliases
 #
