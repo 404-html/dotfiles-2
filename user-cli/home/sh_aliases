@@ -216,9 +216,9 @@ fi
 
 dotfile() {
 
-    [ "$#" -ne 2 ] && >&2 echo "Error: Usage $0 <file> <dir>" && exit 1
-    ! [ -f "$1" ] && >&2 echo "Error: Unable to read file" && exit 1
-    ! [ -d "$2" ] && >&2 echo "Error: Unable to read dir" && exit 1
+    [ "$#" -ne 2 ] && >&2 echo "Error: Usage $0 <file> <dir>" && return 1
+    ! [ -f "$1" ] && >&2 echo "Error: Unable to read file" && return 1
+    ! [ -d "$2" ] && >&2 echo "Error: Unable to read dir" && return 1
 
     fname=$(basename $1)
     fname=${fname#.} 
