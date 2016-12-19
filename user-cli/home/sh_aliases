@@ -183,7 +183,7 @@ secret-tool-create() {
     if [ "$#" -eq 3 ]; then
         secret-tool store --label="$1" "$2" "$3"
     else
-        echo "Usage $0 label name key" >&2
+        echo "Usage $0 <label> <name> <key>" >&2
     fi
 }
 
