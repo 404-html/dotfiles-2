@@ -107,14 +107,14 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # ls -l */**(Lk+100) # List all files larger than 100kb in this tree
 # ls DATA_[0-9](#c4,7).csv # List DATA_nnnn.csv to DATA_nnnnnnn.csv
 
-function bashmotd()
+function motd()
 {
     [ -r ~/.sh_motd ] && cat ~/.sh_motd
     hash fortune 2>/dev/null && echo '  '$(fortune -s)
 }
 
 if ! [[ -o login ]] && ! [ -e ~/.hushlogin ];then
-    bashmotd
+    motd
 fi
 
 true

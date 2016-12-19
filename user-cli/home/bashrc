@@ -132,14 +132,14 @@ else
     [ -r "$HOME/.sh_theme" ] && source $HOME/.sh_theme
 fi
 
-bashmotd() {
+motd() {
 
     [ -r ~/.sh_motd ] && cat ~/.sh_motd
     hash fortune 2>/dev/null && echo '  '$(fortune -s)
 }
 
 if ! shopt -q login_shell && ! [ -e ~/.hushlogin ];then
-    bashmotd
+    motd
 fi
 
 true
