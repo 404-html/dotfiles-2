@@ -98,10 +98,10 @@ fi
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
-# ~/.shell_aliases, instead of adding them here directly.
+# ~/.sh_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
-if [ -f ~/.shell_aliases ]; then
-    . ~/.shell_aliases
+if [ -f ~/.sh_aliases ]; then
+    . ~/.sh_aliases
 fi
 
 # fasd init
@@ -129,12 +129,12 @@ if [[ "$TERM" == rxvt* ]];then
         clear
     fi
 else
-    [ -r "$HOME/.shell_theme" ] && source $HOME/.shell_theme
+    [ -r "$HOME/.sh_theme" ] && source $HOME/.sh_theme
 fi
 
 bashmotd() {
 
-    [ -r ~/.bash_motd ] && cat ~/.bash_motd
+    [ -r ~/.sh_motd ] && cat ~/.sh_motd
     hash fortune 2>/dev/null && echo '  '$(fortune -s)
 }
 
