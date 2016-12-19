@@ -77,7 +77,7 @@ if [[ "$TERM" == rxvt* ]];then
         clear
     fi
 else
-    [ -r "$HOME/.bash_theme" ] && source $HOME/.bash_theme
+    [ -r "$HOME/.shell_theme" ] && source $HOME/.shell_theme
 fi
 
 # Apply dircolor theme. Should be done before the aliases.
