@@ -59,6 +59,14 @@ path(){
     echo $PATH | tr -s ':' '\n'
 }
 
+libpath(){
+    echo $LIB_LIBRARY_PATH | tr -s ':' '\n'
+}
+
+classpath(){
+    echo $CLASS_PATH | tr -s ':' '\n'
+}
+
 #Backup File
 bak(){
     cp "$1"{,".bak"}
@@ -207,14 +215,33 @@ if [ $ZSH_VERSION ];then
 fi
 
 dotfile() {
+
+    [ "$#" -ne 2 ] && >&2 echo "Error: Usage $0 <file> <dir>" && exit 1
+    ! [ -f "$1" ] && >&2 echo "Error: Unable to read file" && exit 1
+    ! [ -d "$2" ] && >&2 echo "Error: Unable to read dir" && exit 1
+
     fname=$(basename $1)
     fname=${fname#.} 
     dpath="${2}/${fname}"
     spath="$1"
 
-    mv -v "${spath}" "${dpath}"
-    ln -vsr "${dpath}" "${spath}"
+    mv -nv "${spath}" "${dpath}"
+    ln -nvsr "${dpath}" "${spath}"
 }
+
+# Swap 2 filenames around, if they exist (from Uzi's bashrc).
+swap() {
+    local TMPFILE=tmp.$$
+
+    [ $# -ne 2  ] && echo "swap: 2 arguments needed" && return 1
+    [ ! -e $1  ] && echo "swap: $1 does not exist" && return 1
+    [ ! -e $2  ] && echo "swap: $2 does not exist" && return 1
+
+    mv "$1" $TMPFILE
+    mv "$2" "$1"
+    mv $TMPFILE "$2"
+}
+
 
 # sshvnc command from the ssvnc package does this for me.
 #ssh+vnc(){                                                                                                                                                                                 ;)
@@ -298,9 +325,6 @@ else
     alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 fi
 
-# I like coloured output.
-alias less='less -R'
-
 alias ll='ls -lFh'
 alias la='ls -alFh'
 alias l='ls -CF'
@@ -380,3 +404,6 @@ alias su='su --login'
 
 alias color-palette='(x=`tput op` y=`printf %76s`;for i in {0..256};do o=00$i;echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;done)'
 alias term-caps="infocmp -1 | sed -nu 's/^[ \000\t ]*//;s/[ \000\t ]*$//;/[^ \t\000]\{1,\}/!d;/acsc/d;s/=.*,//p'|column -c80"
+alias tree='tree -Csh'
+alias du='du -h'
+alias df='df -Th'
