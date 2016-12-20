@@ -396,8 +396,9 @@ alias forkbomb=':(){ :|:& };:'
 ####### FASD ALIAS ######
 if hash fasd &>/dev/null; then
     alias v="f -e ${neo}vim" # quick opening files with vim
-    alias vr="f -e ${neo}vim -R" # quick opening files with vim
-    alias m='f -e mplayer' # quick opening files with mplayer
+    alias vr="f -e ${neo}vim -R" # quick opening(readonly) files with vim
+    alias c="f -e cat" # quick cat files
+    alias m='f -e mpv' # quick opening files with mpv
     alias o='f -e xdg-open' # quick opening files with xdg-open
 fi
 
