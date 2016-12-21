@@ -171,12 +171,12 @@ sleeptildate(){
 
 ytpl(){
     pl=$(echo $1 | sed 's/youtube.com\/.*list=/youtube.com\/playlist\?list=/')
-    mpv --no-video --load-unsafe-playlists "$pl"
+    mpv --no-video --load-unsafe-playlists --no-resume-playback "$pl"
 }
 
 ytas() {
     query="$@"
-    mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch10:"$query"
+    mpv --no-video --ytdl-format=bestaudio --no-resume-playback ytdl://ytsearch10:"$query"
 }
 
 secret-tool-create() {
@@ -426,3 +426,4 @@ alias term-caps="infocmp -1 | sed -nu 's/^[ \000\t ]*//;s/[ \000\t ]*$//;/[^ \t\
 alias tree='tree -Csh'
 alias du='du -h'
 alias df='df -Th'
+alias youtube-dl='youtube-dl --no-mtime'
