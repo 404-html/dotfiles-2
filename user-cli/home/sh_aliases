@@ -328,9 +328,10 @@ alias logsize="du -hs /var/log/* 2>/dev/null | egrep '^[.0-9]*[MG]'"
 alias sdu="du -hs * .??* | egrep '^[0-9.]+[MG]'"
 alias genpw='< /dev/urandom tr -dc \!-\~ | head -c30'
 alias xclip='xclip -selection clipboard' # I use the clipboard buffer.
+alias px='ps x'
 
 # Fast file access 
-alias passwd='column -s: -t /etc/passwd | grep petrucci'
+alias passwd='column -s: -t /etc/passwd'
 alias vimrc='vim ~/.vimrc'
 alias bashrc='vim ~/.bashrc'
 alias sh_aliases='vim ~/.sh_aliases'
@@ -360,7 +361,6 @@ alias mkdir='mkdir -p'
 alias tp='trash-put'
 alias trash-restore='restore-trash'
 alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
-alias px='ps x'
 alias offline='unshare -n'
 
 # Because dcfldd is hard to remember.
