@@ -23,7 +23,7 @@ conky.config = {
 	own_window_argb_value = 155,
 	-- own_window_transparent = true,
     own_window_colour = "000000",
-    own_window_hints = 'undecorated,bellow,sticky,skip_taskbar,skip_pager',
+    own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
 
 	-- ### Appearance ###
 	stippled_borders = 0,
