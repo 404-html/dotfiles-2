@@ -416,4 +416,5 @@ alias starwars='telnet towel.blinkenlights.nl'
 alias inxi='inxi -F'
 alias lsbios='biosdecode'
 alias lsefi='efibootmgr -v'
+alias namei='namei -om'
 
