@@ -331,6 +331,7 @@ alias profile='vim ~/.profile'
 alias zprofile='vim ~/.zprofile'
 alias syslog="tailf /var/log/syslog"
 alias resolv='cat /etc/resolv.conf'
+alias hosts='getent hosts'
 
 # Add an "alert" alias for long running commands.  Use like so: sleep 10; alert
 if [ $ZSH_VERSION ];then
