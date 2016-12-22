@@ -263,6 +263,15 @@ dirit() {
     mv -nv "$@" "${dir}"
 }
 
+fuck() {
+    is_sudo=$(sudo -n uptime 2>&1|grep "load"|wc -l)
+    if [ "${is_sudo}" = 1 ];then
+        eval 'sudo $(fc -ln -1)'
+    else
+        eval 'su -c "$(fc -ln -1)"'
+    fi
+}
+
 #
 # Aliases
 #
@@ -426,6 +435,5 @@ alias inxi='inxi -F'
 alias lsbios='biosdecode'
 alias lsefi='efibootmgr -v'
 alias namei='namei -om'
-alias fuck='eval "sudo $(fc -ln -1)"'
 alias cl='cd "$@" && ls'
 
