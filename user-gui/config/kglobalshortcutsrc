@@ -55,7 +55,7 @@ _k_friendly_name=Power Management
 display=Display,Display\tMeta+P,Switch Display
 
 [khotkeys]
-_k_friendly_name=KDE Daemon
+_k_friendly_name=System Settings Module
 {1f777b45-0092-4d69-84e7-16fc7fccda11}=Home Page,none,firefox
 {1ff611f2-0df2-4f64-bd33-411e6810407c}=Tools,none,systemsettings5
 {22cd53dc-cc15-4444-91ac-885a343950c9}=Ctrl+Shift+Esc,none,ksysguard
@@ -64,27 +64,27 @@ _k_friendly_name=KDE Daemon
 {58312147-aba6-4cfb-b9a3-37d1577926b7}=Print,none,ksnapshot
 {5ed3ea93-71eb-4d8a-85bc-985bee4e1404}=Launch (1),none,kcalc
 {7943a673-a6d7-4e36-8445-c22b060058c1}=Meta+F1,none,fan_mode_toogle
-{7ee0719e-ec94-4d4c-a1bc-ee45d79faf8d}=,none,thunderbird
+{7ee0719e-ec94-4d4c-a1bc-ee45d79faf8d}=none,none,thunderbird
 {87a686c7-7d82-413a-9a94-70dfeb4f75f8}=Meta+Print,none,ksnapshot-window
 {9213fb1e-8570-402e-bd7e-39c9c379413f}=Microphone Mute,none,Mic Toogle
 {a2bffdd8-ac86-4a13-b657-d04131225def}=Shift+Print,none,ksnapshot-region
 {ab61816c-47d3-4c0e-8cb2-1f88a4cc85b5}=Meta+W,none,firefox-we
-{b15367a4-195e-45b3-9e90-e7bac39a235b}=,none,Start Screenshot Tool
+{b15367a4-195e-45b3-9e90-e7bac39a235b}=none,none,Start Screenshot Tool
 {c161a642-b4b1-4070-9132-72203867d3c7}=Meta+E,none,dolphin
 {c8288c90-c37f-4b44-bd5b-4c06b481735e}=Meta+Return,none,urxvtcd
-{cef05515-9aef-467a-a30f-9a777710098a}=,none,Take Active Window Screenshot
+{cef05515-9aef-467a-a30f-9a777710098a}=none,none,Take Active Window Screenshot
 {d03619b6-9b3c-48cc-9d9c-a2aadb485550}=,none,Search
-{d845cc41-aad2-40c5-8e5f-1f6700a863ed}=,none,Take Full Screen Screenshot
+{d845cc41-aad2-40c5-8e5f-1f6700a863ed}=none,none,Take Full Screen Screenshot
 {e64489c0-230f-4dc1-938b-ca2d0558fc67}=Meta+Shift+Print,none,Take Rectangular Region Screenshot
 
 [kmix]
 _k_friendly_name=Audio Volume
-decrease_microphone_volume=Microphone Volume Down,Microphone Volume Down,Decrease Microphone Volume
+decrease_microphone_volume=Microphone Volume Down\tMeta+Ctrl+Down,Microphone Volume Down,Decrease Microphone Volume
 decrease_volume=Volume Down\tMeta+Down,Volume Down,Decrease Volume
-increase_microphone_volume=Microphone Volume Up,Microphone Volume Up,Increase Microphone Volume
+increase_microphone_volume=Microphone Volume Up\tMeta+Ctrl+Up,Microphone Volume Up,Increase Microphone Volume
 increase_volume=Volume Up\tMeta+Up,Volume Up,Increase Volume
 mic_mute=Alt+M,Microphone Mute,Mute Microphone
-mute=Volume Mute,Volume Mute,Mute
+mute=Volume Mute\tMeta+End,Volume Mute,Mute
 
 [knotes]
 _k_friendly_name=KNotes
@@ -182,8 +182,8 @@ Walk Through Desktops=none,none,Walk Through Desktops
 Walk Through Desktops (Reverse)=none,none,Walk Through Desktops (Reverse)
 Walk Through Window Tabs=none,none,Walk Through Window Tabs
 Walk Through Window Tabs (Reverse)=none,none,Walk Through Window Tabs (Reverse)
-Walk Through Windows=Alt+Tab,none,Walk Through Windows
-Walk Through Windows (Reverse)=Alt+Shift+Tab,none,Walk Through Windows (Reverse)
+Walk Through Windows=Alt+Tab\tMeta+J,none,Walk Through Windows
+Walk Through Windows (Reverse)=Alt+Shift+Tab\tMeta+K,none,Walk Through Windows (Reverse)
 Walk Through Windows Alternative=none,none,Walk Through Windows Alternative
 Walk Through Windows Alternative (Reverse)=none,none,Walk Through Windows Alternative (Reverse)
 Walk Through Windows of Current Application=Alt+`,none,Walk Through Windows of Current Application
@@ -276,7 +276,7 @@ activate widget 18=none,none,Activate System Tray Widget
 activate widget 2=,none,Activate Application Launcher Widget
 activate widget 22=none,none,Activate System Tray Widget
 activate widget 58=none,none,Activate Digital Clock Widget
-activate widget 81=none,none,Activate Application Launcher Widget
+activate widget 81=Alt+F1,none,Activate Application Launcher Widget
 clear-history=none,none,Clear Clipboard History
 clipboard_action=Ctrl+Alt+X,Ctrl+Alt+X,Enable Clipboard Actions
 cycleNextAction=none,none,Next History Item
