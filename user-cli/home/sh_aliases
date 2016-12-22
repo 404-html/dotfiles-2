@@ -305,10 +305,6 @@ alias vimdiff=${neo}'vim -d'
 alias lshpa='hdparm -N'
 alias udevmon='udevadm monitor --environment --udev'
 alias lsblk='lsblk -o name,model,fstype,size,label,uuid,mountpoint'
-
-# I use the clipboard buffer.
-alias xclip='xclip -selection clipboard'
-
 alias httpserver='python3 -m http.server'
 alias ftpserver='python3 -m pyftpdlib'
 alias vncserver='x11vnc -forever -nopw -display $DISPLAY'
@@ -320,8 +316,12 @@ alias fdate='date --iso-8601=minute'
 alias matlab-cli='matlab -nodesktop -nosplash'
 alias rot13="tr a-zA-Z n-za-mN-ZA-M"
 alias logsize="du -hs /var/log/* 2>/dev/null | egrep '^[.0-9]*[MG]'"
-alias syslog="tailf /var/log/syslog"
 alias sdu="du -hs * .??* | egrep '^[0-9.]+[MG]'"
+alias genpw='< /dev/urandom tr -dc \!-\~ | head -c30'
+alias xclip='xclip -selection clipboard' # I use the clipboard buffer.
+
+# Fast file access 
+alias passwd='column -s: -t /etc/passwd | grep petrucci'
 alias vimrc='vim ~/.vimrc'
 alias bashrc='vim ~/.bashrc'
 alias sh_aliases='vim ~/.sh_aliases'
@@ -329,7 +329,8 @@ alias aliases='vim ~/.sh_aliases'
 alias zshrc='vim ~/.zshrc'
 alias profile='vim ~/.profile'
 alias zprofile='vim ~/.zprofile'
-alias genpw='< /dev/urandom tr -dc \!-\~ | head -c30'
+alias syslog="tailf /var/log/syslog"
+alias resolv='cat /etc/resolv.conf'
 
 # Add an "alert" alias for long running commands.  Use like so: sleep 10; alert
 if [ $ZSH_VERSION ];then
@@ -362,15 +363,8 @@ alias we='dolphin $PWD'
 alias xo='xdg-open'
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
-alias resolv='cat /etc/resolv.conf'
 alias latexidff='latexdiff --exclude-textcmd="section,subsection,chapter"'
 alias weather="curl http://wttr.in/"
-
-# Thunderbird doesn't seem to like my gtk2 theme (numix).
-# Update: Not anymore
-#alias thunderbird='env GTK2_RC_FILES=/usr/share/themes/Adwaita/gtk-2.0/gtkrc thunderbird'
-# Neither does firefox (gtk3 in nightly build)
-#alias firefox='env GTK_THEME=Adwaita firefox'
 
 # grcat aliases
 if hash grc &>/dev/null; then
@@ -411,7 +405,6 @@ alias ytdl='youtube-dl --title --ignore-errors --merge-output-format mkv --no-mt
 alias ffmpeg='ffmpeg -hide_banner'
 alias dirty='watch grep -e Dirty: -e Writeback: /proc/meminfo'
 alias su='su --login'
-
 alias color-palette='(x=`tput op` y=`printf %76s`;for i in {0..256};do o=00$i;echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;done)'
 alias term-caps="infocmp -1 | sed -nu 's/^[ \000\t ]*//;s/[ \000\t ]*$//;/[^ \t\000]\{1,\}/!d;/acsc/d;s/=.*,//p'|column -c80"
 alias tree='tree -Csh'
@@ -422,3 +415,4 @@ alias starwars='telnet towel.blinkenlights.nl'
 alias inxi='inxi -F'
 alias lsbios='biosdecode'
 alias lsefi='efibootmgr -v'
+

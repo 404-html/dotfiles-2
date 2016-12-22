@@ -2,4 +2,5 @@ dumpe2fs # info about file system
 tune2fs  # edit file system
 cssh     # ssh multicast
 ag       # string search, like grep, but a lot faster.
+namei    # ls whole dir tree
 
