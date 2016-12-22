@@ -402,15 +402,6 @@ if hash fasd &>/dev/null; then
     alias o='f -e xdg-open' # quick opening files with xdg-open
 fi
 
-# Easy to forget cmds
-alias inxi='inxi -F'
-alias lsfs='dumpe2fs'
-alias lsefi='efibootmgr -v'
-alias modfs='tune2fs'
-alias cssh='cssh'
-alias lsbios='biosdecode'
-alias ag='ag'
-
 #MSP
 alias mspdebug-cc='LD_LIBRARY_PATH=$HOME/.opt/ti/ccsv6/ccs_base/DebugServer/drivers/:$HOME/.opt/msptexas/lib $HOME/.opt/msptexas/bin/mspdebug tilib'
 alias mspdebug-eg='LD_LIBRARY_PATH=$HOME/.opt/energia-0101E0017/hardware/tools/msp430/bin mspdebug tilib'
@@ -428,3 +419,6 @@ alias du='du -h'
 alias df='df -Th'
 alias youtube-dl='youtube-dl --no-mtime'
 alias starwars='telnet towel.blinkenlights.nl'
+alias inxi='inxi -F'
+alias lsbios='biosdecode'
+alias lsefi='efibootmgr -v'
