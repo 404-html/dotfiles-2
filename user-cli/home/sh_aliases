@@ -35,6 +35,8 @@ On_Purple=$'\e[45m'      # Purple
 On_Cyan=$'\e[46m'        # Cyan
 On_White=$'\e[47m'       # White
 
+Blink=$'\e[5m'
+
 NC=$'\e[0m'              # Color Reset
 
 #
