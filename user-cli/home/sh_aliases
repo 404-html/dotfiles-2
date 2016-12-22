@@ -272,6 +272,10 @@ fuck() {
     fi
 }
 
+cd() {
+    builtin cd "$@" && ls 
+}
+
 #
 # Aliases
 #
@@ -295,7 +299,7 @@ fi
 # this gives man colors too =D
 export LESS=-R
 export LESS_TERMCAP_md=${BRed}   # begin bold
-export LESS_TERMCAP_vb=''        # begin blink
+export LESS_TERMCAP_mb=${Blink}  # begin blink
 export LESS_TERMCAP_us=${BGreen} # begin underline
 export LESS_TERMCAP_so=''        # begin reverse video
 export LESS_TERMCAP_ue=${NC}     # reset underline
@@ -435,5 +439,4 @@ alias inxi='inxi -F'
 alias lsbios='biosdecode'
 alias lsefi='efibootmgr -v'
 alias namei='namei -om'
-alias cl='cd "$@" && ls'
 
