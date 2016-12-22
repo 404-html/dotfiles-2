@@ -289,6 +289,7 @@ fi
 # this gives man colors too =D
 export LESS=-R
 export LESS_TERMCAP_md=${BRed}   # begin bold
+export LESS_TERMCAP_vb=''        # begin blink
 export LESS_TERMCAP_us=${BGreen} # begin underline
 export LESS_TERMCAP_so=''        # begin reverse video
 export LESS_TERMCAP_ue=${NC}     # reset underline
