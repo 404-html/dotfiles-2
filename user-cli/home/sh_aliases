@@ -367,7 +367,6 @@ alias mkdir='mkdir -p'
 alias tp='trash-put'
 alias trash-restore='restore-trash'
 alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
-alias offline='unshare -n'
 
 # Because dcfldd is hard to remember.
 if hash dcfldd &>/dev/null; then
@@ -375,12 +374,13 @@ if hash dcfldd &>/dev/null; then
 fi
 
 alias gunzip='gunzip -k'
-alias we='dolphin $PWD'
-alias xo='xdg-open'
 alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
 alias latexidff='latexdiff --exclude-textcmd="section,subsection,chapter"'
 alias weather="curl http://wttr.in/"
+alias we='&>/dev/null dolphin $PWD &'
+alias xo='&>/dev/null xdg-open &'
+alias offline='unshare -n'
 
 # grcat aliases
 if hash grc &>/dev/null; then
