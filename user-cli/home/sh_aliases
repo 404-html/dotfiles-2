@@ -438,7 +438,7 @@ alias su='su --login'
 alias color-palette='(x=`tput op` y=`printf %76s`;for i in {0..256};do o=00$i;echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;done)'
 alias term-caps="infocmp -1 | sed -nu 's/^[ \000\t ]*//;s/[ \000\t ]*$//;/[^ \t\000]\{1,\}/!d;/acsc/d;s/=.*,//p'|column -c80"
 alias tree='tree -Csh'
-alias du='du -h'
+alias du='du -hs'
 alias df='df -Th'
 alias youtube-dl='youtube-dl --no-mtime'
 alias starwars='telnet towel.blinkenlights.nl'
