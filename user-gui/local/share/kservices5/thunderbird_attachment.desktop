@@ -1,0 +1,21 @@
+[Desktop Action attachToEmail]
+Exec=thunderbird -compose "attachment='$(echo %F | sed 's/\\ \\//,\\/\\//g')'" 
+Icon=icedove
+Name=Attach to Thunderbird Mail
+Name[cz]=Odeslat jako přílohu Thunderbirdem
+Name[de]=Als Anhang mit Thunderbird verschicken
+Name[es]=Enviar adjunto con Thunderbird
+Name[fr]=Envoyer avec Thunderbird
+Name[it]=Invia E-mail con Thunderbird
+Name[nl]=Voeg toe als bijlage aan Thunderbird
+Name[pl]=Wyślij jako załącznik Thunderbirda
+Name[pt]=Anexar ao Thunderbird E-mail
+Name[pt_BR]=Enviar arquivo(s) como anexo(s)
+Name[ru]=Отправить с помощью Thunderbird
+
+[Desktop Entry]
+Actions=attachToEmail
+Encoding=UTF-8
+ExcludeServiceTypes=application/x-iso,kdedevice/*,inode/directory
+ServiceTypes=KonqPopupMenu/Plugin,all/allfiles
+Type=Service
