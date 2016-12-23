@@ -8,8 +8,7 @@ if ! hash uudecode &>/dev/null; then
 fi
 
 if [ "$UID" -ne 0 ]; then
-    is_sudo_available=$(sudo -n uptime 2>&1|grep "load"|wc -l)
-    if [ $is_sudo_available -eq 1 ]; then
+    if hash sudo && groups | egrep -q "\<(sudo|wheel)\>"; then
         sudo "$0"
         exit
     else

@@ -4,4 +4,5 @@ cssh     # ssh multicast
 ag       # string search, like grep, but a lot faster.
 namei    # ls whole dir tree
 rename   # batch renaming
+timeout  # run a command with a time limit
 

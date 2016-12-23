@@ -263,12 +263,14 @@ dirit() {
     mv -nv "$@" "${dir}"
 }
 
-fuck() {
-    is_sudo=$(sudo -n uptime 2>&1|grep "load"|wc -l)
-    if [ "${is_sudo}" = 1 ];then
-        eval 'sudo $(fc -ln -1)'
+sudo() { 
+    if [ "$UID" -eq 0 ]; then
+        eval "$@"
+    elif hash sudo && groups | egrep -q "\<(sudo|wheel)\>"; then
+        sudo "$@"
     else
-        eval 'su -c "$(fc -ln -1)"'
+        cmd="$@"
+        su -c "$cmd" root
     fi
 }
 
@@ -415,14 +417,18 @@ alias mspdebug-cc='LD_LIBRARY_PATH=$HOME/.opt/ti/ccsv6/ccs_base/DebugServer/driv
 alias mspdebug-eg='LD_LIBRARY_PATH=$HOME/.opt/energia-0101E0017/hardware/tools/msp430/bin mspdebug tilib'
 
 # apt-get
-alias aptup='tmux-new "apt update -qq && apt upgrade -y && apt autoremove; apt clean; read"'
+alias aptug='tmux-new "apt update -qq && apt upgrade -y && apt autoremove; apt clean; read"'
 alias aptit='apt install'
 alias aptrm='apt remove'
 alias aptsh='apt show'
 alias aptmd='apt-cache madison'
-alias aptvr='dpkg -l'
-alias aptls='dpkg -L'
-alias aptsr='dpkg -S'
+# --
+alias aptps='apt search'
+alias aptfs='apt-file search'
+alias aptdi='dpkg -i'
+alias aptdl='dpkg -l'
+alias aptdL='dpkg -L'
+alias aptdS='dpkg -S'
 
 alias ytdl='youtube-dl --title --ignore-errors --merge-output-format mkv --no-mtime -f bestvideo+bestaudio --sub-lang en,pt --write-sub --embed-subs --convert-subs srt'
 alias ffmpeg='ffmpeg -hide_banner'
@@ -439,4 +445,5 @@ alias inxi='inxi -F'
 alias lsbios='biosdecode'
 alias lsefi='efibootmgr -v'
 alias namei='namei -om'
+alias fuck='sudo $(fc -ln -1)'
 

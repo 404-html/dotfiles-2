@@ -275,6 +275,7 @@ _k_friendly_name=Plasma
 activate widget 18=none,none,Activate System Tray Widget
 activate widget 2=,none,Activate Application Launcher Widget
 activate widget 22=none,none,Activate System Tray Widget
+activate widget 41=,none,Activate Application Launcher Widget
 activate widget 58=none,none,Activate Digital Clock Widget
 activate widget 81=Alt+F1,none,Activate Application Launcher Widget
 clear-history=none,none,Clear Clipboard History
