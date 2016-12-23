@@ -420,6 +420,7 @@ alias mspdebug-eg='LD_LIBRARY_PATH=$HOME/.opt/energia-0101E0017/hardware/tools/m
 alias aptug='tmux-new "apt update -qq && apt upgrade -y && apt autoremove; apt clean; read"'
 alias aptit='apt install'
 alias aptrm='apt remove'
+alias aptar='apt autoremove'
 alias aptsh='apt show'
 alias aptmd='apt-cache madison'
 # --
