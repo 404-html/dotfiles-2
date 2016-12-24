@@ -263,13 +263,14 @@ dirit() {
     mv -nv "$@" "${dir}"
 }
 
-sudo() { 
+fuck() { 
+    cmd=$(fc -ln -1)
+
     if [ "$UID" -eq 0 ]; then
-        eval "$@"
+        eval "$cmd"
     elif hash sudo && groups | egrep -q "\<(sudo|wheel)\>"; then
-        sudo "$@"
+        sudo "$cmd"
     else
-        cmd="$@"
         su -c "$cmd" root
     fi
 }
@@ -446,5 +447,4 @@ alias inxi='inxi -F'
 alias lsbios='biosdecode'
 alias lsefi='efibootmgr -v'
 alias namei='namei -om'
-alias fuck='sudo $(fc -ln -1)'
 
