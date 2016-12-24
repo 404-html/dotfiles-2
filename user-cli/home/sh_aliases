@@ -447,4 +447,7 @@ alias inxi='inxi -F'
 alias lsbios='biosdecode'
 alias lsefi='efibootmgr -v'
 alias namei='namei -om'
+# powertop only work when your root, so what's the point of not 
+# sudoing anyway...
+alias powertop='sudo powertop'  
 
