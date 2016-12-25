@@ -394,6 +394,11 @@ alias we='&>/dev/null dolphin $PWD &'
 alias xo='&>/dev/null xdg-open &'
 alias offline='unshare -n'
 
+# Ignore sudo if it is not installed
+if ! hash sudo; then
+    alias sudo=''
+fi
+
 # grcat aliases
 if hash grc &>/dev/null; then
     alias cvs='\grc cvs'
@@ -429,19 +434,18 @@ alias mspdebug-cc='LD_LIBRARY_PATH=$HOME/.opt/ti/ccsv6/ccs_base/DebugServer/driv
 alias mspdebug-eg='LD_LIBRARY_PATH=$HOME/.opt/energia-0101E0017/hardware/tools/msp430/bin mspdebug tilib'
 
 # apt-get
-alias aptug='tmux-new "apt update -qq && apt upgrade -y && apt autoremove; apt clean; read"'
-alias aptit='apt install'
-alias aptrm='apt remove'
-alias aptar='apt autoremove'
+alias aptug='tmux-new "sudo apt update -qq && sudo apt upgrade -y && sudo apt autoremove; sudo apt clean; read"'
+alias aptit='sudo apt install'
+alias aptrm='sudo apt remove'
+alias aptar='sudo apt autoremove'
 alias aptsh='apt show'
 alias aptmd='apt-cache madison'
-# --
 alias aptps='apt search'
 alias aptfs='apt-file search'
-alias aptdi='dpkg -i'
 alias aptdl='dpkg -l'
 alias aptdL='dpkg -L'
 alias aptdS='dpkg -S'
+alias aptdi='sudo dpkg -i'
 
 alias ytdl='youtube-dl --title --ignore-errors --merge-output-format mkv --no-mtime -f bestvideo+bestaudio --sub-lang en,pt --write-sub --embed-subs --convert-subs srt'
 alias ffmpeg='ffmpeg -hide_banner'
