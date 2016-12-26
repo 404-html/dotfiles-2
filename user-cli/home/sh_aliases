@@ -264,14 +264,12 @@ dirit() {
 }
 
 fuck() { 
-    cmd=$(fc -ln -1)
-
     if [ "$UID" -eq 0 ]; then
-        eval "$cmd"
+        eval $(fc -ln -1)
     elif hash sudo && groups | egrep -q "\<(sudo|wheel)\>"; then
-        sudo "$cmd"
+        sudo $(fc -ln -1)
     else
-        su -c "$cmd" root
+        su -c "$(fc -ln -1)" root
     fi
 }
 
