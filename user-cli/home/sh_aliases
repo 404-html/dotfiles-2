@@ -107,8 +107,8 @@ ii(){   # Get current host related info.
                  cut -d " " -f1 | sort | uniq
         echo -e "\n${BRed}Current date :$NC " ; date
         echo -e "\n${BRed}Machine stats :$NC " ; uptime
-        echo -e "\n${BRed}Memory stats :$NC " ; free
-        echo -e "\n${BRed}Diskspace :$NC " ; df -h / $HOME
+        echo -e "\n${BRed}Memory stats :$NC " ; free -h
+        echo -e "\n${BRed}Diskspace :$NC " ; $g df -h / $HOME
         echo -e "\n${BRed}WAN IP Address :$NC" ; dig +short myip.opendns.com @resolver1.opendns.com
         echo -e "\n${BRed}Open connections :$NC "; $g netstat -np46l 2>/dev/null;
         echo
@@ -397,6 +397,8 @@ alias offline='unshare -n'
 # Ignore sudo if it is not installed
 if ! hash sudo; then
     alias sudo=''
+else
+    alias sudo='sudo '
 fi
 
 # grcat aliases
