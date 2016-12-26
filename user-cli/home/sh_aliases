@@ -417,6 +417,9 @@ if hash grc &>/dev/null; then
     alias proftpd='\grc proftpd'
     alias traceroute='\grc traceroute'
     alias wdiff='\grc wdiff'
+    alias ps='\grc ps'
+    alias ifconfig='\grc ifconfig'
+    alias dig='\grc dig'
 fi
 
 # Super usefull...
