@@ -270,7 +270,7 @@ fuck() {
 }
 
 cd() {
-    builtin cd "$@" && ls 
+    builtin cd "$@" >/dev/null && ls --color=auto
 }
 
 wine-env() {

@@ -37,14 +37,11 @@ zstyle ':prezto:load' pmodule \
   'history-substring-search' \
   'directory' \
   'spectrum' \
-  'utility' \
   'completion' \
-  'git' \
   'python' \
   'syntax-highlighting' \
   'tmux' \
   'python' \
-  'utility' \
   'dpkg' \
   'prompt'
   #'ssh'

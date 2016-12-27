@@ -52,6 +52,8 @@ setopt AUTO_PUSHD
 setopt HISTIGNOREDUPS
 # Don't save history entries that start with a space
 setopt HISTIGNORESPACE
+# Deal with non matched * like bash does
+setopt NONOMATCH
 
 # fasd init
 # https://github.com/clvv/fasd
