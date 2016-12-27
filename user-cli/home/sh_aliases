@@ -276,12 +276,11 @@ cd() {
 wine-env() {
     [ $# -ne 1 ] && 2>/dev/null echo "Usage: $0 <prefix name>" && return 1
 
-    pname=$(basename $1)
-    pfdir=$HOME/WinePrefixes
-    mkdir -p "$pfdir"
+    pname=$(basename $1); pname=${pname%.exe}
+    pfdir=$HOME/WinePrefixes; mkdir -p "$pfdir"
 
     export WINEARCH=win64
-    export WINEPREFIX=${pfdir}/${pname%.exe}
+    export WINEPREFIX=${pfdir}/${pname}
 }
 
 iommu-groups() {
