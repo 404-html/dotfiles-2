@@ -285,7 +285,7 @@ wine-env() {
 }
 
 iommu-groups() {
-    ! grep -q 'iommu=on' /proc/cmdline && >&2 echo 'Error: Please enable iommu first.' && return 1
+    ! egrep -q 'iommu=on' /proc/cmdline && >&2 echo 'Error: Please enable iommu first.' && return 1
     [ $# -lt 1 ] && >&2 echo "Usage: $0 [Device Name]..." && return 1
 
     devs="($1"; shift
@@ -294,7 +294,7 @@ iommu-groups() {
     done
     devs+=")"
 
-    buses=( $(lspci | grep -i "$devs" | grep -o '^[a-f0-9:.]+') )
+    buses=( $(lspci | egrep -i "$devs" | egrep -o '^[a-f0-9:.]+') )
 
     groups=()
     for b in ${buses}; do
@@ -326,7 +326,7 @@ pci-ids() {
     done
     devs+=")"
     
-    lspci -nn | grep -i "$devs" | egrep -o '\<[0-9a-f]{4}:[0-9a-f]{4}\>'
+    lspci -nn | egrep -i "$devs" | egrep -o '\<[0-9a-f]{4}:[0-9a-f]{4}\>'
 }
 
 pci-slots() {
@@ -337,7 +337,7 @@ pci-slots() {
     done
     devs+=")"
     
-    lspci | grep -i "$devs" | egrep -o '^[a-f0-9:.]+'
+    lspci | egrep -i "$devs" | egrep -o '^[a-f0-9:.]+'
 }
 
 iommu-info() {
