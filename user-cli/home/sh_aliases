@@ -343,6 +343,14 @@ pci-slots() {
 iommu-info() {
     [ $# -lt 1 ] && >&2 echo "Usage: $0 [Device Name]..." && return 1
 
+    devs="("
+    for dev in "$@"; do
+        devs+="$dev|"
+    done
+    devs="${devs%?})"
+    
+    echo "${BBlue}-----Devices Matched-----${NC}"
+    lspci | egrep --color=auto -i "$devs"
     echo "${BBlue}-----Groups-----${NC}"
     iommu-groups "$@"
     echo "${BBlue}-----PCI IDS-----${NC}"
