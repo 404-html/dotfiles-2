@@ -107,8 +107,8 @@ ii(){   # Get current host related info.
                  cut -d " " -f1 | sort | uniq
         echo -e "\n${BRed}Current date :$NC " ; date
         echo -e "\n${BRed}Machine stats :$NC " ; uptime
-        echo -e "\n${BRed}Memory stats :$NC " ; free
-        echo -e "\n${BRed}Diskspace :$NC " ; df -h / $HOME
+        echo -e "\n${BRed}Memory stats :$NC " ; free -h
+        echo -e "\n${BRed}Diskspace :$NC " ; $g df -h / $HOME
         echo -e "\n${BRed}WAN IP Address :$NC" ; dig +short myip.opendns.com @resolver1.opendns.com
         echo -e "\n${BRed}Open connections :$NC "; $g netstat -np46l 2>/dev/null;
         echo
@@ -264,19 +264,28 @@ dirit() {
 }
 
 fuck() { 
-    cmd=$(fc -ln -1)
-
     if [ "$UID" -eq 0 ]; then
-        eval "$cmd"
+        eval $(fc -ln -1)
     elif hash sudo && groups | egrep -q "\<(sudo|wheel)\>"; then
-        sudo "$cmd"
+        sudo $(fc -ln -1)
     else
-        su -c "$cmd" root
+        su -c "$(fc -ln -1)" root
     fi
 }
 
 cd() {
     builtin cd "$@" && ls 
+}
+
+wine-env() {
+    [ $# -ne 1 ] && 2>/dev/null echo "Usage: $0 <prefix name>" && return 1
+
+    pname=$(basename $1)
+    pfdir=$HOME/WinePrefixes
+    mkdir -p "$pfdir"
+
+    export WINEARCH=win64
+    export WINEPREFIX=${pfdir}/${pname%.exe}
 }
 
 #
@@ -386,6 +395,8 @@ alias offline='unshare -n'
 # Ignore sudo if it is not installed
 if ! hash sudo; then
     alias sudo=''
+else
+    alias sudo='sudo '
 fi
 
 # grcat aliases
@@ -404,6 +415,9 @@ if hash grc &>/dev/null; then
     alias proftpd='\grc proftpd'
     alias traceroute='\grc traceroute'
     alias wdiff='\grc wdiff'
+    alias ps='\grc ps'
+    alias ifconfig='\grc ifconfig'
+    alias dig='\grc dig'
 fi
 
 # Super usefull...
@@ -453,5 +467,7 @@ alias lsefi='efibootmgr -v'
 alias namei='namei -om'
 # powertop only work when your root, so what's the point of not 
 # sudoing anyway...
-alias powertop='sudo powertop'  
+alias powertop='sudo powertop'
+alias iptables='sudo iptables'
+alias iptables6='sudo iptables6'
 
