@@ -145,10 +145,6 @@ rsa2host(){
     cat ~/.ssh/id_rsa.pub | ssh $1 'mkdir -pm 700 ~/.ssh; cat >> ~/.ssh/authorized_keys'
 }
 
-ps(){
-    command ps "$@" |& less
-}
-
 tmux-new() {
   if [[ -n $TMUX ]]; then
     tmux new-window "$@"
@@ -290,12 +286,70 @@ wine-env() {
 
 iommu-groups() {
     ! grep -q 'iommu=on' /proc/cmdline && >&2 echo 'Error: Please enable iommu first.' && return 1
+    [ $# -lt 1 ] && >&2 echo "Usage: $0 [Device Name]..." && return 1
 
-    for d in /sys/kernel/iommu_groups/*/devices/*; do 
-        n=${d#*/iommu_groups/*}; n=${n%%/*}
-        printf 'IOMMU Group %s ' "$n"
-        lspci -nns "${d##*/}"
-    done | sort -V
+    devs="($1"; shift
+    for dev in "$@"; do
+        devs+="|$dev"
+    done
+    devs+=")"
+
+    buses=( $(lspci | grep -i "$devs" | grep -o '^[a-f0-9:.]+') )
+
+    groups=()
+    for b in ${buses}; do
+        d=$(echo /sys/kernel/iommu_groups/*/devices/*"$b")
+        group=${d#*/iommu_groups/*}; group=${group%%/*}
+        # If not in there
+        if [[ ! " ${groups[@]} " =~ " ${group} " ]]; then
+            groups+=${group}
+        fi
+    done
+
+    for group in ${groups[@]}; do
+        echo ${BRed}"Group ${group}:"${NC}
+        for d in /sys/kernel/iommu_groups/*/devices/*; do 
+            g=${d#*/iommu_groups/*}; g=${g%%/*}
+            [ $g != ${group} ] && continue
+
+            slotid=${d##*/}
+            lspci -s "$slotid"
+        done | sort -V
+    done
+}
+
+pci-ids() {
+    [ $# -lt 1 ] && >&2 echo "Usage: $0 [Device Name]..." && return 1
+    devs="($1"; shift
+    for dev in "$@"; do
+        devs+="|$dev"
+    done
+    devs+=")"
+    
+    lspci -nn | grep -i "$devs" | egrep -o '\<[0-9a-f]{4}:[0-9a-f]{4}\>'
+}
+
+pci-slots() {
+    [ $# -lt 1 ] && >&2 echo "Usage: $0 [Device Name]..." && return 1
+    devs="($1"; shift
+    for dev in "$@"; do
+        devs+="|$dev"
+    done
+    devs+=")"
+    
+    lspci | grep -i "$devs" | egrep -o '^[a-f0-9:.]+'
+}
+
+iommu-info() {
+    [ $# -lt 1 ] && >&2 echo "Usage: $0 [Device Name]..." && return 1
+
+    echo "${BBlue}-----Groups-----${NC}"
+    iommu-groups "$@"
+    echo "${BBlue}-----PCI IDS-----${NC}"
+    pci-ids "$@"
+    echo "${BBlue}-----PCI Slots-----${NC}"
+    pci-slots "$@"
+
 }
 
 #
