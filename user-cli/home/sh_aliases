@@ -289,6 +289,8 @@ wine-env() {
 }
 
 iommu-groups() {
+    ! grep -q 'iommu=on' /proc/cmdline && >&2 echo 'Error: Please enable iommu first.' && return 1
+
     for d in /sys/kernel/iommu_groups/*/devices/*; do 
         n=${d#*/iommu_groups/*}; n=${n%%/*}
         printf 'IOMMU Group %s ' "$n"
