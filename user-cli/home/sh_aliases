@@ -524,7 +524,7 @@ alias aptdi='sudo dpkg -i'
 alias ytdl='youtube-dl --title --ignore-errors --merge-output-format mkv --no-mtime -f bestvideo+bestaudio --sub-lang en,pt --write-sub --embed-subs --convert-subs srt'
 alias ffmpeg='ffmpeg -hide_banner'
 alias dirty='watch grep -e Dirty: -e Writeback: /proc/meminfo'
-alias su='su --login --preserve-environment'
+alias su='su --login'
 alias color-palette='(x=`tput op` y=`printf %76s`;for i in {0..256};do o=00$i;echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;done)'
 alias term-caps="infocmp -1 | sed -nu 's/^[ \000\t ]*//;s/[ \000\t ]*$//;/[^ \t\000]\{1,\}/!d;/acsc/d;s/=.*,//p'|column -c80"
 alias tree='tree -Csh'
@@ -540,5 +540,5 @@ alias namei='namei -om'
 # sudoing anyway...
 alias powertop='sudo powertop'
 alias iptables='sudo iptables'
-alias iptables6='sudo iptables6'
+alias ip6tables='sudo ip6tables'
 
