@@ -412,7 +412,7 @@ alias fdate='date --iso-8601=minute'
 alias matlab-cli='matlab -nodesktop -nosplash'
 alias rot13="tr a-zA-Z n-za-mN-ZA-M"
 alias logsize="du -hs /var/log/* 2>/dev/null | egrep '^[.0-9]*[MG]'"
-alias sdu="du -hs * .??* | egrep '^[0-9.]+[MG]'"
+alias sdu="du -hs * .??* 2>/dev/null | egrep '^[0-9.]+[MG]'"
 alias genpw='< /dev/urandom tr -dc \!-\~ | head -c30'
 alias xclip='xclip -selection clipboard' # I use the clipboard buffer.
 alias px='ps x'
