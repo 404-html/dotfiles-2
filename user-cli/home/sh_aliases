@@ -541,4 +541,5 @@ alias namei='namei -om'
 alias powertop='sudo powertop'
 alias iptables='sudo iptables'
 alias ip6tables='sudo ip6tables'
+alias bootw10='synergy &; spicy -h localhost -p 5900 &; sudo virsh start win10'
 
