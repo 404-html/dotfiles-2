@@ -359,6 +359,15 @@ iommu-info() {
 
 }
 
+bootwin10() {
+    synergy &
+    {sleep 10; spicy -h localhost -p 5900 &>/dev/null} &
+    echo start win10 | virsh --connect qemu:///system
+    echo Starting caffeine
+    caffeine.sh
+}
+
+
 #
 # Aliases
 #
@@ -541,5 +550,4 @@ alias namei='namei -om'
 alias powertop='sudo powertop'
 alias iptables='sudo iptables'
 alias ip6tables='sudo ip6tables'
-alias bootw10='synergy &; spicy -h localhost -p 5900 &; sudo virsh start win10'
 
