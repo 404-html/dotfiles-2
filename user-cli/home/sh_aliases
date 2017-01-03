@@ -247,6 +247,8 @@ if ! hash sshvnc &>/dev/null; then
         vncviewer localhost
         kill $pid
     }
+else
+    alias sshvnc='tsvnc'
 fi
 
 dirit() {
