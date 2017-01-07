@@ -7,7 +7,7 @@ find "$HOME" -maxdepth 1 -xtype l -ok rm '{}' \;
 cd home
 for f in *;do
     if [ -e "$f" ]; then
-        ln -Tsf "$PWD/$f" "$HOME/.$f"
+        ln -rTsf "$PWD/$f" "$HOME/.$f"
     fi
 done
 cd - >/dev/null
@@ -18,7 +18,7 @@ for d in config local/share ;do
     cd "$d"
     for f in *;do
         if [ -e "$f" ]; then
-            ln -Tsf "$PWD/$f" "$HOME/.$d/$f"
+            ln -rTsf "$PWD/$f" "$HOME/.$d/$f"
         fi
     done
     cd - >/dev/null
