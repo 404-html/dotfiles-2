@@ -60,7 +60,6 @@ ${voffset -8}$hr${voffset 10}
 ${color grey}Date:$color $alignr${time %a %b %e, %k:%M:%S}
 ${color grey}Hostname:$color $alignr$nodename
 ${color grey}Kernel:$color $alignr$kernel
-${color grey}Nvidia:$color ${alignr}${exec nvidia-smi -h | sed -ne '1 s/.*-- v\([0-9.]\+\)/\1/1p'}
 ${color grey}Uptime:$color $alignr$uptime
 ${color grey}Outdated packages:$color ${alignr} ${exec cat /tmp/${USER}_conky/apt_ulist }
 
@@ -70,14 +69,14 @@ ${exec cat /tmp/${USER}_conky/weather}
 
 ${alignc}Storage
 ${voffset -8}$hr${voffset 10}
-${color grey}/var $color ${alignr}${fs_used /var}/${fs_size /var} [ ${fs_used_perc /var}% ]
-${fs_bar 6 /var}
-${color grey}/boot/efi $color ${alignr}${fs_used /boot/efi}/${fs_size /boot/efi} [ ${fs_used_perc /boot/efi}% ]
+${color grey}efi $color ${alignr}${fs_used /boot/efi}/${fs_size /boot/efi} [ ${fs_used_perc /boot/efi}% ]
 ${fs_bar 6 /boot/efi}
-${color grey}/ $color ${alignr}${fs_used /}/${fs_size /} [ ${fs_used_perc /}% ]
+${color grey}system $color ${alignr}${fs_used /}/${fs_size /} [ ${fs_used_perc /}% ]
 ${fs_bar 6 /}
-${color grey}/home $color ${alignr}${fs_used /home}/${fs_size /home} [ ${fs_used_perc /home}% ]
+${color grey}home $color ${alignr}${fs_used /home}/${fs_size /home} [ ${fs_used_perc /home}% ]
 ${fs_bar 6 /home}
+${color grey}garage $color ${alignr}${fs_used /mnt/garage/petrucci}/${fs_size /mnt/garage/petrucci} [ ${fs_used_perc /mnt/garage/petrucci}% ]
+${fs_bar 6 /mnt/garage/petrucci}
 
 ${alignc}IO
 ${voffset -8}$hr${voffset 10}
