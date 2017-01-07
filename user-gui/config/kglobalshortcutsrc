@@ -77,6 +77,16 @@ _k_friendly_name=KDE Daemon
 {d845cc41-aad2-40c5-8e5f-1f6700a863ed}=none,none,Take Full Screen Screenshot
 {e64489c0-230f-4dc1-938b-ca2d0558fc67}=Meta+Shift+Print,none,Take Rectangular Region Screenshot
 
+[klipper]
+_k_friendly_name=Klipper
+clear-history=none,none,Clear Clipboard History
+clipboard_action=,Ctrl+Alt+X,Enable Clipboard Actions
+cycleNextAction=none,none,Next History Item
+cyclePrevAction=none,none,Previous History Item
+edit_clipboard=none,none,Edit Contents...
+repeat_action=,Ctrl+Alt+R,Manually Invoke Action on Current Clipboard
+show-on-mouse-pos=none,none,Open Klipper at Mouse Position
+
 [kmix]
 _k_friendly_name=Audio Volume
 decrease_microphone_volume=Microphone Volume Down\tMeta+Ctrl+Down,Microphone Volume Down,Decrease Microphone Volume
