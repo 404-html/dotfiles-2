@@ -371,8 +371,14 @@ bootwin10() {
 
     #virt-manager 
     #synergy &>/dev/null &; local pidsyner=$!
-    spicy -h localhost -p 5900 &>/dev/null &; local pidspicy=$!
-    cd $HOME/VMs/share >/dev/null; python3 -m pyftpdlib -w &>/dev/null &; local pidftp=$!; cd - >/dev/null
+    spicy -h localhost -p 5900 &>/dev/null &
+    local pidspicy=$!
+
+    cd $HOME/VMs/share >/dev/null
+    python3 -m pyftpdlib -w &>/dev/null &
+    local pidftp=$!
+    cd - >/dev/null
+
     echo '[Caffeine]' >&2; caffeine.sh
 
     echo shutdown win10-nvidia   | virsh --connect qemu:///system >/dev/null
