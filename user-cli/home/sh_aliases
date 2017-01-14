@@ -370,7 +370,7 @@ bootwin10() {
     echo start win10-nvidia    | virsh --connect qemu:///system >/dev/null
 
     #virt-manager 
-    #synergy &>/dev/null &; local pidsyner=$!
+    synergy &>/dev/null &; local pidsyner=$!
     spicy -h localhost -p 5900 &>/dev/null &
     local pidspicy=$!
 
