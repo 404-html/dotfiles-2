@@ -20,7 +20,7 @@ if [ "$hostname" = "a300" ];then
 fi
 
 # caps is both escape and ctrl
-if hash xcape 2>/dev/null; then
-    xcape -e 'Control_R=Escape'
-fi
+#if hash xcape 2>/dev/null; then
+#    xcape -e 'Control_R=Escape'
+#fi
 
