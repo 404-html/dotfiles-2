@@ -53,7 +53,7 @@ conky.text = [[
 ${alignc}Temperatures
 ${voffset -8}$hr${voffset 10}
 ${color grey}MB:$color $alignr${hwmon 0 temp 1}C
-${color grey}SSD:$color $alignr${exec sudo /usr/sbin/hddtemp -n /dev/disk/by-id/ata-KINGSTON_SV300S37A120G_50026B7756011E7B }C
+${color grey}SSD:$color $alignr${exec sudo /usr/sbin/hddtemp -n /dev/disk/by-id/ata-KINGSTON_SV300S37A240G_50026B766500B1BC }C
 ${color grey}HDD:$color $alignr${exec sudo /usr/sbin/hddtemp -n /dev/disk/by-id/ata-ST2000DM001-1ER164_W4Z1B72H }C
 ${color grey}CPU:$color $alignr${hwmon 1 temp 1}C
 ${if_existing /etc/X11/xorg.conf.d/nvidia-options.conf}
