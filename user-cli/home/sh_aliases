@@ -371,21 +371,16 @@ bootwin10() {
     echo start win10-nvidia  | virsh --connect qemu:///system >/dev/null
 
     #virt-manager 
-    synergy &>/dev/null &; local pidsyner=$!
+    #synergy &>/dev/null &; local pidsyner=$!
     spicy -h localhost -p 5900 &>/dev/null &
     local pidspicy=$!
-
-    cd $HOME/Public >/dev/null
-    python3 -m pyftpdlib -w &>/dev/null &
-    local pidftp=$!
-    cd - >/dev/null
 
     echo '[Caffeine]' >&2; caffeine.sh
 
     echo shutdown win10-nvidia | virsh --connect qemu:///system &>/dev/null
     echo net-destroy vlan | virsh --connect qemu:///system >/dev/null
     echo net-destroy nat  | virsh --connect qemu:///system >/dev/null
-    kill $pidsyner $pidspicy $pidftp &>/dev/null
+    kill $pidsyner $pidspicy &>/dev/null
 
     #sudo sysctl -w vm.nr_hugepages=0
     sudo cpupower frequency-set -g powersave
