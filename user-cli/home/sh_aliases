@@ -363,26 +363,20 @@ iommu-info() {
 
 bootwin10() {
     # 4096MiB*2MiB+30MiB=8GiB
-    #sudo sysctl -w vm.nr_hugepages=4300
+    sudo sysctl -w vm.nr_hugepages=4300
     sudo cpupower frequency-set -g performance
 
     echo net-start vlan | virsh --connect qemu:///system >/dev/null
     echo net-start nat  | virsh --connect qemu:///system >/dev/null
-    echo start win10-nvidia  | virsh --connect qemu:///system >/dev/null
-
-    #virt-manager 
-    #synergy &>/dev/null &; local pidsyner=$!
-    spicy -h localhost -p 5900 &>/dev/null &
-    local pidspicy=$!
+    echo start win10-nvidia | virsh --connect qemu:///system >/dev/null
 
     echo '[Caffeine]' >&2; caffeine.sh
 
     echo shutdown win10-nvidia | virsh --connect qemu:///system &>/dev/null
     echo net-destroy vlan | virsh --connect qemu:///system >/dev/null
     echo net-destroy nat  | virsh --connect qemu:///system >/dev/null
-    kill $pidsyner $pidspicy &>/dev/null
 
-    #sudo sysctl -w vm.nr_hugepages=0
+    sudo sysctl -w vm.nr_hugepages=0
     sudo cpupower frequency-set -g powersave
 }
 
@@ -573,5 +567,5 @@ alias namei='namei -om'
 alias powertop='sudo powertop'
 alias iptables='sudo iptables'
 alias ip6tables='sudo ip6tables'
-alias lscpufreq='watch -n 0,3 "cat /proc/cpuinfo | grep MHz"'
+alias watchcpufreq='watch -n 0,3 "cat /proc/cpuinfo | grep MHz"'
 
