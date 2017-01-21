@@ -68,16 +68,10 @@ fi
 # ctrl-u does the same it did in bash.
 bindkey \^U backward-kill-line
 
-if [[ "$TERM" == rxvt* ]];then
-    # urxvt scroll buffer being stupid workaround.
-    # https://superuser.com/questions/442589/xmonad-urxvt-issue-text-disappears-after-resizing
-    if [ -z "$urxvt_debuged" ] ;then
-        for (( i=1; i<=$LINES; i++ )); do
-            echo
-        done
-        export urxvt_debuged=1
-        clear
-    fi
+if [[ "$TERM" == rxvt* ]] || [[ "$TERM" == xterm* ]];then
+    #urxvt resize eats output
+    #http://lists.schmorp.de/pipermail/rxvt-unicode/2014q4/002058.html
+    printf '\e[99999;H\n\e[H'
 else
     [ -r "$HOME/.sh_theme" ] && source $HOME/.sh_theme
 fi
