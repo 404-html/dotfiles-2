@@ -77,7 +77,8 @@ URxvt.font:             xft:Fira Code Retina:pixelsize=14
 !URxvt.font:             xft:inconsolata:pixelsize=16
 ! For some reason, the font width is exagerated in debian.
 URxvt.letterSpace:      -1
-URxvt.termName    : rxvt-256color
+!URxvt.termName    : rxvt-256color
+URxvt.termName    : xterm-256color
 URxvt.iso14755    : false
 
 URxvt.urgentOnBell: true
