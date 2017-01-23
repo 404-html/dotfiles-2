@@ -363,7 +363,7 @@ iommu-info() {
 
 bootwin10() {
     # 4096MiB*2MiB+30MiB=8GiB
-    sudo sysctl -w vm.nr_hugepages=4300
+    #sudo sysctl -w vm.nr_hugepages=4300
     sudo cpupower frequency-set -g performance
 
     echo net-start vlan | virsh --connect qemu:///system >/dev/null
@@ -376,7 +376,7 @@ bootwin10() {
     echo net-destroy vlan | virsh --connect qemu:///system >/dev/null
     echo net-destroy nat  | virsh --connect qemu:///system >/dev/null
 
-    sudo sysctl -w vm.nr_hugepages=0
+    #sudo sysctl -w vm.nr_hugepages=0
     sudo cpupower frequency-set -g powersave
 }
 
