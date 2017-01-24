@@ -52,40 +52,17 @@
   </pm>
   <devices>
     <emulator>/usr/bin/kvm</emulator>
-    <disk type='file' device='cdrom'>
-      <driver name='qemu' type='raw'/>
-      <target dev='sdc' bus='sata'/>
-      <readonly/>
-      <address type='drive' controller='0' bus='0' target='0' unit='2'/>
-    </disk>
     <disk type='file' device='disk'>
       <driver name='qemu' type='raw' cache='none' io='native'/>
       <source file='/opt/games/VMs/win10.raw'/>
       <target dev='vda' bus='virtio'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x0a' function='0x0'/>
     </disk>
-    <controller type='usb' index='0' model='ich9-ehci1'>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x7'/>
-    </controller>
-    <controller type='usb' index='0' model='ich9-uhci1'>
-      <master startport='0'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x0' multifunction='on'/>
-    </controller>
-    <controller type='usb' index='0' model='ich9-uhci2'>
-      <master startport='2'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x1'/>
-    </controller>
-    <controller type='usb' index='0' model='ich9-uhci3'>
-      <master startport='4'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x2'/>
-    </controller>
     <controller type='pci' index='0' model='pci-root'/>
-    <controller type='sata' index='0'>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x06' function='0x0'/>
-    </controller>
     <controller type='virtio-serial' index='0'>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x0'/>
     </controller>
+    <controller type='usb' index='0' model='none'/>
     <interface type='network'>
       <mac address='52:54:00:9d:97:d2'/>
       <source network='nat'/>
@@ -98,17 +75,11 @@
       <model type='virtio'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x0d' function='0x0'/>
     </interface>
-    <serial type='pty'>
-      <target port='0'/>
-    </serial>
-    <console type='pty'>
-      <target type='serial' port='0'/>
-    </console>
+    <input type='tablet' bus='virtio'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x09' function='0x0'/>
+    </input>
     <input type='mouse' bus='ps2'/>
     <input type='keyboard' bus='ps2'/>
-    <input type='tablet' bus='usb'>
-      <address type='usb' bus='0' port='1'/>
-    </input>
     <sound model='ich6'>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0'/>
     </sound>
