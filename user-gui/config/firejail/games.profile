@@ -1,5 +1,5 @@
 # Steam profile (applies to games/apps launched from Steam as well)
-private ${HOME}/.local/share/firejails/games
+private ${HOME}/FireJails/games
 private-tmp
 noblacklist ${HOME}/.steam
 noblacklist ${HOME}/.local/share/steam

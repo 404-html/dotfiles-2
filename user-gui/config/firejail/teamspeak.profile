@@ -1,4 +1,5 @@
 # Skype profile
+private
 noblacklist ${HOME}/.opt/teamspeak
 #include /etc/firejail/disable-mgmt.inc
 #include /etc/firejail/disable-secret.inc
