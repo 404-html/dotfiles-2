@@ -7,8 +7,6 @@
   <cputune>
     <vcpupin vcpu='0' cpuset='0'/>
     <vcpupin vcpu='1' cpuset='1'/>
-    <vcpupin vcpu='2' cpuset='2'/>
-    <vcpupin vcpu='3' cpuset='3'/>
   </cputune>
   <resource>
     <partition>/machine</partition>
@@ -17,7 +15,7 @@
     <type arch='x86_64' machine='pc-i440fx-2.7'>hvm</type>
     <loader readonly='yes' type='pflash'>/usr/share/OVMF/OVMF_CODE.fd</loader>
     <nvram>/var/lib/libvirt/qemu/nvram/win10_VARS.fd</nvram>
-    <bootmenu enable='yes'/>
+    <bootmenu enable='no'/>
   </os>
   <features>
     <acpi/>
@@ -52,36 +50,29 @@
   </pm>
   <devices>
     <emulator>/usr/bin/kvm</emulator>
-    <disk type='file' device='cdrom'>
-      <driver name='qemu' type='raw' cache='none' io='native'/>
-      <target dev='sdc' bus='sata'/>
-      <readonly/>
-      <boot order='3'/>
-      <address type='drive' controller='0' bus='0' target='0' unit='2'/>
-    </disk>
     <disk type='file' device='disk'>
       <driver name='qemu' type='raw' cache='none' io='native'/>
       <source file='/opt/games/VMs/win10.raw'/>
-      <target dev='vda' bus='virtio'/>
-      <boot order='2'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x0a' function='0x0'/>
+      <target dev='sda' bus='scsi'/>
+      <boot order='1'/>
+      <address type='drive' controller='0' bus='0' target='0' unit='0'/>
     </disk>
     <disk type='file' device='disk'>
       <driver name='qemu' type='raw' cache='none' io='native'/>
-      <source file='/opt/games/VMs/opensuse.raw'/>
-      <target dev='vdb' bus='virtio'/>
-      <boot order='1'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x0'/>
+      <source file='/opt/games/VMs/debian.raw'/>
+      <target dev='sdb' bus='scsi'/>
+      <boot order='2'/>
+      <address type='drive' controller='0' bus='0' target='0' unit='1'/>
     </disk>
     <controller type='pci' index='0' model='pci-root'/>
-    <controller type='sata' index='0'>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x06' function='0x0'/>
+    <controller type='scsi' index='0' model='virtio-scsi'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x0f' function='0x0'/>
     </controller>
-    <controller type='virtio-serial' index='0'>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x0'/>
+    <controller type='sata' index='0'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x0'/>
     </controller>
     <controller type='usb' index='0' model='nec-xhci'>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x0'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x0'/>
     </controller>
     <interface type='network'>
       <mac address='52:54:00:9d:97:d2'/>
@@ -101,14 +92,13 @@
     <console type='pty'>
       <target type='serial' port='0'/>
     </console>
-    <channel type='spicevmc'>
-      <target type='virtio' name='com.redhat.spice.0'/>
-      <address type='virtio-serial' controller='0' bus='0' port='1'/>
-    </channel>
     <input type='mouse' bus='ps2'/>
     <input type='keyboard' bus='ps2'/>
-    <input type='tablet' bus='virtio'>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x0b' function='0x0'/>
+    <input type='mouse' bus='virtio'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x0c' function='0x0'/>
+    </input>
+    <input type='keyboard' bus='virtio'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x0e' function='0x0'/>
     </input>
     <graphics type='spice' autoport='yes' listen='127.0.0.1'>
       <listen type='address' address='127.0.0.1'/>
