@@ -57,16 +57,16 @@ ${color grey}SSD:$color $alignr${exec sudo /usr/sbin/hddtemp -n /dev/disk/by-id/
 ${color grey}HDD:$color $alignr${exec sudo /usr/sbin/hddtemp -n /dev/disk/by-id/ata-ST2000DM001-1ER164_W4Z1B72H }C
 ${color grey}CPU:$color $alignr${hwmon 1 temp 1}C
 ${if_existing /etc/X11/xorg.conf.d/nvidia-options.conf}
-${color grey}GPU:$color $alignr${exec nvidia-settings -q '[gpu:0]/gpucoretemp' -t}C
+${color grey}GPU:$color $alignr${exec [ -e /etc/X11/xorg.conf.d/nvidia-options.conf ] && nvidia-settings -q '[gpu:0]/gpucoretemp' -t}C
 ${alignc}GPU
 ${voffset -8}$hr${voffset 10}
-${color grey}Nvidia:$color ${alignr}${exec nvidia-smi -h | sed -ne '1 s/.*-- v\([0-9.]\+\)/\1/1p'}
-${color grey}Fan:$color $alignr${exec nvidia-settings -q "[fan:0]/GPUCurrentFanSpeedRPM" | awk -F ":" 'NR==2{print $4}' |sed 's/[^0-9]*//g'} rpm -- ${exec nvidia-settings -q 'GPUCurrentFanSpeed' | awk -F'[^0-9]*' '/fan:0/ {print $6}'}%
-${color grey}Freq:$color ${alignr}${exec nvidia-settings -q 'GPUCurrentClockFreqs' | awk -F'[^0-9]*' '/gpu:0/ {print $6}' RS=,} MHZ
-${color grey}Usage:$color $alignr${exec nvidia-settings -q 'GPUUtilization' | awk -F'[^0-9]*' '/graphics/ {print $6}' RS=,}%
-${color grey}Power:$color ${alignr}${exec nvidia-smi --query-gpu=power.draw --format=nounits,noheader,csv} W/${exec nvidia-smi --query-gpu=power.max_limit --format=nounits,noheader,csv} W
-${color grey}VRAM:$color ${alignr}${color0}${execi 5 nvidia-settings -q [gpu:0]/UsedDedicatedGPUMemory -t} MiB/${exec nvidia-settings -q [gpu:0]/TotalDedicatedGPUMemory -t} MiB
-${execbar echo " 100 * $(nvidia-settings -q '[gpu:0]/UsedDedicatedGPUMemory' -t ) / $( nvidia-settings -q '[gpu:0]/TotalDedicatedGPUMemory' -t)" | bc}
+${color grey}Nvidia:$color ${alignr}${exec [ -e /etc/X11/xorg.conf.d/nvidia-options.conf ] && nvidia-smi -h | sed -ne '1 s/.*-- v\([0-9.]\+\)/\1/1p'}
+${color grey}Fan:$color $alignr${exec [ -e /etc/X11/xorg.conf.d/nvidia-options.conf ] && nvidia-settings -q "[fan:0]/GPUCurrentFanSpeedRPM" | awk -F ":" 'NR==2{print $4}' |sed 's/[^0-9]*//g'} rpm -- ${exec [ -e /etc/X11/xorg.conf.d/nvidia-options.conf ] && nvidia-settings -q 'GPUCurrentFanSpeed' | awk -F'[^0-9]*' '/fan:0/ {print $6}'}%
+${color grey}Freq:$color ${alignr}${exec [ -e /etc/X11/xorg.conf.d/nvidia-options.conf ] && nvidia-settings -q 'GPUCurrentClockFreqs' | awk -F'[^0-9]*' '/gpu:0/ {print $6}' RS=,} MHZ
+${color grey}Usage:$color $alignr${exec [ -e /etc/X11/xorg.conf.d/nvidia-options.conf ] && nvidia-settings -q 'GPUUtilization' | awk -F'[^0-9]*' '/graphics/ {print $6}' RS=,}%
+${color grey}Power:$color ${alignr}${exec [ -e /etc/X11/xorg.conf.d/nvidia-options.conf ] && nvidia-smi --query-gpu=power.draw --format=nounits,noheader,csv} W/${exec [ -e /etc/X11/xorg.conf.d/nvidia-options.conf ] && nvidia-smi --query-gpu=power.max_limit --format=nounits,noheader,csv} W
+${color grey}VRAM:$color ${alignr}${color0}${execi 5 [ -e /etc/X11/xorg.conf.d/nvidia-options.conf ] && nvidia-settings -q [gpu:0]/UsedDedicatedGPUMemory -t} MiB/${exec [ -e /etc/X11/xorg.conf.d/nvidia-options.conf ] && nvidia-settings -q [gpu:0]/TotalDedicatedGPUMemory -t} MiB
+${execbar [ -e /etc/X11/xorg.conf.d/nvidia-options.conf ] && echo " 100 * $(nvidia-settings -q '[gpu:0]/UsedDedicatedGPUMemory' -t ) / $( nvidia-settings -q '[gpu:0]/TotalDedicatedGPUMemory' -t)" | bc}
 ${endif}
 
 ${alignc}CPU

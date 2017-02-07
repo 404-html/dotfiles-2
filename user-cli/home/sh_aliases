@@ -568,5 +568,6 @@ alias powertop='sudo powertop'
 alias iptables='sudo iptables'
 alias ip6tables='sudo ip6tables'
 alias watchcpufreq='watch -n 0,3 "cat /proc/cpuinfo | grep MHz"'
+alias unraw='sudo kbd_mode -s -C /dev/tty7'
 alias dmesg='sudo dmesg'
 
