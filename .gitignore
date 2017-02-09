@@ -18,3 +18,5 @@ user-cli/home/anacron/spool/*
 !user-cli/home/anacron/spool/.placeholder
 
 user-gui/autostart.d/*
+
+user-cli/home/profile.d/omnetpp.sh
