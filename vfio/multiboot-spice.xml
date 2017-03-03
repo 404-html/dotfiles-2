@@ -52,14 +52,14 @@
     <emulator>/usr/bin/kvm</emulator>
     <disk type='file' device='disk'>
       <driver name='qemu' type='raw' cache='none' io='native'/>
-      <source file='/opt/games/VMs/win10.raw'/>
+      <source file='/opt/games/VMs/win10.img'/>
       <target dev='sda' bus='scsi'/>
       <boot order='1'/>
       <address type='drive' controller='0' bus='0' target='0' unit='0'/>
     </disk>
     <disk type='file' device='disk'>
       <driver name='qemu' type='raw' cache='none' io='native'/>
-      <source file='/opt/games/VMs/debian.raw'/>
+      <source file='/opt/games/VMs/debian.img'/>
       <target dev='sdb' bus='scsi'/>
       <boot order='2'/>
       <address type='drive' controller='0' bus='0' target='0' unit='1'/>
