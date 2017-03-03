@@ -278,11 +278,11 @@ cd() {
 wine-env() {
     [ $# -ne 1 ] && 2>/dev/null echo "Usage: $0 <prefix name>" && return 1
 
-    pname=$(basename $1); pname=${pname%.exe}
-    pfdir=$HOME/WinePrefixes; mkdir -p "$pfdir"
+    local pname=$(basename $1); pname=${pname%.exe}
+    local pfdir=$HOME/WinePrefixes; mkdir -p "$pfdir"
 
-    export WINEARCH=win64
     export WINEPREFIX=${pfdir}/${pname}
+    [ -d $WINEPREFIX ] || export WINEARCH=win64
 }
 
 iommu-groups() {
@@ -445,7 +445,7 @@ alias xclip='xclip -selection clipboard' # I use the clipboard buffer.
 alias px='ps x'
 
 # Fast file access 
-alias passwd='column -s: -t /etc/passwd'
+alias passwd_pretty='column -s: -t /etc/passwd'
 alias vimrc='vim ~/.vimrc'
 alias bashrc='vim ~/.bashrc'
 alias sh_aliases='vim ~/.sh_aliases'
@@ -571,4 +571,5 @@ alias watchcpufreq='watch -n 0,3 "cat /proc/cpuinfo | grep MHz"'
 alias unraw='sudo kbd_mode -s -C /dev/tty7'
 alias dmesg='sudo dmesg'
 alias dmidecode='sudo dmidecode'
+alias fstrim='sudo fstrim'
 
