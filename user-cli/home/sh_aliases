@@ -187,7 +187,7 @@ mcd () {
 
 ips () {
     # determine local IP address
-    ifconfig | grep "inet" | awk '{ print $2 }'
+    ifconfig | grep inet | awk '!/::1|127.0.0.1/ { print $2 }' | sort
 }
 
 if [ $ZSH_VERSION ];then
@@ -382,6 +382,14 @@ bootwin10() {
 
 xo() {
     &>/dev/null xdg-open "$@" &
+}
+
+ssh2ssh() {
+    hop=$1
+    dst=$2
+
+    ssh -NfL "2222:${dst}:22" "$hop"
+    ssh -p2222 localhost
 }
 
 
