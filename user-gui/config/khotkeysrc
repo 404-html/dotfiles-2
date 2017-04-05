@@ -1,5 +1,5 @@
 [Data]
-DataCount=19
+DataCount=20
 
 [Data_1]
 Comment=KMenuEdit Global Shortcuts
@@ -330,7 +330,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_18Actions0]
-CommandURL=/home/petrucci/.bin/unminimize_window.sh
+CommandURL=plasma_unminimize_window.sh
 Type=COMMAND_URL
 
 [Data_18Conditions]
@@ -342,7 +342,7 @@ Comment=Simple_action
 TriggersCount=1
 
 [Data_18Triggers0]
-Key=Meta+Ctrl+N
+Key=Meta+Shift+N
 Type=SHORTCUT
 Uuid={36ad5a00-6357-491e-8265-2027100a402e}
 
@@ -410,6 +410,32 @@ ImportId=kde32b1
 Name=Examples
 SystemGroup=0
 Type=ACTION_DATA_GROUP
+
+[Data_20]
+Comment=Comment
+Enabled=true
+Name=restart plasma
+Type=SIMPLE_ACTION_DATA
+
+[Data_20Actions]
+ActionsCount=1
+
+[Data_20Actions0]
+CommandURL=restart_plasma.sh
+Type=COMMAND_URL
+
+[Data_20Conditions]
+Comment=
+ConditionsCount=0
+
+[Data_20Triggers]
+Comment=Simple_action
+TriggersCount=1
+
+[Data_20Triggers0]
+Key=Meta+Shift+R
+Type=SHORTCUT
+Uuid={d15802fe-8e23-4709-8006-998582e2a45f}
 
 [Data_2Conditions]
 Comment=
