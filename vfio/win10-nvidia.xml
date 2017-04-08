@@ -7,14 +7,13 @@
     <hugepages/>
   </memoryBacking>
   <vcpu placement='static'>3</vcpu>
-  <iothreads>2</iothreads>
+  <iothreads>1</iothreads>
   <cputune>
     <vcpupin vcpu='0' cpuset='3'/>
     <vcpupin vcpu='1' cpuset='2'/>
     <vcpupin vcpu='2' cpuset='1'/>
     <emulatorpin cpuset='0'/>
     <iothreadpin iothread='1' cpuset='0'/>
-    <iothreadpin iothread='2' cpuset='0'/>
   </cputune>
   <resource>
     <partition>/machine</partition>
@@ -23,6 +22,7 @@
     <type arch='x86_64' machine='pc-i440fx-2.7'>hvm</type>
     <loader readonly='yes' type='pflash'>/usr/share/OVMF/OVMF_CODE.fd</loader>
     <nvram>/var/lib/libvirt/qemu/nvram/win10_VARS.fd</nvram>
+    <boot dev='hd'/>
     <bootmenu enable='no'/>
   </os>
   <features>
@@ -64,24 +64,13 @@
     <disk type='file' device='disk'>
       <driver name='qemu' type='raw' cache='none' io='native' discard='unmap'/>
       <source file='/opt/games/VMs/win10.img'/>
-      <target dev='sdb' bus='scsi'/>
-      <boot order='1'/>
-      <address type='drive' controller='0' bus='0' target='0' unit='1'/>
-    </disk>
-    <disk type='file' device='disk'>
-      <driver name='qemu' type='raw' cache='none' io='native' discard='unmap'/>
-      <source file='/home/petrucci/VMs/win10_nvidia_D.img'/>
-      <target dev='sdc' bus='scsi'/>
-      <address type='drive' controller='1' bus='0' target='0' unit='2'/>
+      <target dev='sda' bus='scsi'/>
+      <address type='drive' controller='0' bus='0' target='0' unit='0'/>
     </disk>
     <controller type='pci' index='0' model='pci-root'/>
     <controller type='scsi' index='0' model='virtio-scsi'>
       <driver queues='3' iothread='1'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x06' function='0x0'/>
-    </controller>
-    <controller type='scsi' index='1' model='virtio-scsi'>
-      <driver queues='3' iothread='2'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x09' function='0x0'/>
     </controller>
     <controller type='usb' index='0' model='piix3-uhci'>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x2'/>
