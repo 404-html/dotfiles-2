@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE KSysGuardWorkSheet>
+<WorkSheet columns="2" interval="0.5" locked="0" title="VPS" rows="3">
+ <display class="FancyPlotter" title="Total Load" fontSize="8" unit="" autoRange="1" vDistance="30" vScroll="0" stacked="0" version="1" labels="1" hLines="1" rowSpan="1" svgBackground="" row="0" column="0" vLines="0" showUnit="0" columnSpan="1" hScale="6" manualRange="0">
+  <beam sensorType="float" hostName="petruccicasa.no-ip.org" sensorName="cpu/cpu0/TotalLoad" color="0xff0057ae"/>
+  <beam sensorType="float" hostName="petruccicasa.no-ip.org" sensorName="cpu/cpu1/TotalLoad" color="0xffe20800"/>
+  <beam sensorType="float" hostName="petruccicasa.no-ip.org" sensorName="cpu/cpu2/TotalLoad" color="0xfff3c300"/>
+  <beam sensorType="float" hostName="petruccicasa.no-ip.org" sensorName="cpu/cpu3/TotalLoad" color="0xffff0000"/>
+ </display>
+ <display class="FancyPlotter" title="Used Memory" fontSize="8" unit="" autoRange="1" vDistance="30" vScroll="0" stacked="0" version="1" labels="1" hLines="1" rowSpan="1" svgBackground="" row="0" column="1" vLines="0" showUnit="0" columnSpan="1" hScale="6" manualRange="0">
+  <beam sensorType="integer" hostName="petruccicasa.no-ip.org" sensorName="mem/physical/used" color="0xff0057ae"/>
+  <beam sensorType="integer" hostName="petruccicasa.no-ip.org" sensorName="mem/swap/used" color="0xffe20800"/>
+ </display>
+ <display class="FancyPlotter" title="Data Rate" fontSize="8" unit="" autoRange="1" vDistance="30" vScroll="0" stacked="0" version="1" labels="1" hLines="1" rowSpan="1" svgBackground="" row="1" column="0" vLines="0" showUnit="0" columnSpan="1" hScale="6" manualRange="0">
+  <beam sensorType="float" hostName="petruccicasa.no-ip.org" sensorName="network/interfaces/eth0/receiver/data" color="0xff0057ae"/>
+  <beam sensorType="float" hostName="petruccicasa.no-ip.org" sensorName="network/interfaces/eth0/transmitter/data" color="0xffe20800"/>
+ </display>
+ <display class="FancyPlotter" title="Read Data" fontSize="8" unit="" autoRange="1" vDistance="30" vScroll="0" stacked="0" version="1" labels="1" hLines="1" rowSpan="1" svgBackground="" row="1" column="1" vLines="0" showUnit="0" columnSpan="1" hScale="6" manualRange="0">
+  <beam sensorType="float" hostName="petruccicasa.no-ip.org" sensorName="disk/mmcblk0_(179:0)/Rate/rblk" color="0xff0057ae"/>
+  <beam sensorType="float" hostName="petruccicasa.no-ip.org" sensorName="disk/mmcblk0_(179:0)/Rate/wblk" color="0xffe20800"/>
+ </display>
+ <display class="FancyPlotter" title="Temperature" fontSize="8" unit="" autoRange="1" vDistance="30" vScroll="0" stacked="0" version="1" labels="1" hLines="1" rowSpan="1" svgBackground="" row="2" column="1" vLines="0" showUnit="0" columnSpan="1" hScale="6" manualRange="0">
+  <beam sensorType="integer" hostName="petruccicasa.no-ip.org" sensorName="acpi/Thermal_Zone/0-bcm2835_thermal/Temperature" color="0xff0057ae"/>
+ </display>
+ <display class="MultiMeter" title="Uptime" unit="s" mAlarmDigitColor="0xffff0000" lowerLimitActive="0" backgroundColor="0xffffffff" hostName="petruccicasa.no-ip.org" sensorName="system/uptime" rowSpan="1" lowerLimit="0" row="2" sensorType="float" column="0" normalDigitColor="0xff888888" showUnit="1" upperLimit="0" columnSpan="1" upperLimitActive="0"/>
+</WorkSheet>

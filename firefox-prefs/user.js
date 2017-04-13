@@ -136,3 +136,7 @@ user_pref("webgl.disabled", true);
 
 // Flash plugin state - never activate
 user_pref("plugin.state.flash", 0);
+
+// Don't show warning about login in non https webpage. 
+// This makes sense security wise, but it's very annoying.
+user_pref("security.insecure_field_warning.contextual.enabled", false)

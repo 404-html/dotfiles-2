@@ -2,10 +2,15 @@
 
 for file in "$@";do
 
+    if [ -d "$file" ]; then
+        echo "Skipping directory: $file" >&2
+        continue
+    fi 
+
     crc=\[$(crc32 "$file")\]
 
     [[ "$file" == *.* ]] \
-    && newname="${file%%.*}$crc.${file#*.}" \
+    && newname="${file%.*}$crc.${file##*.}" \
     || newname="$file$crc"
     mv -n "$file" "$newname"
 done
