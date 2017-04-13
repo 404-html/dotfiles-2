@@ -366,14 +366,15 @@ bootwin10() {
     #sudo sysctl -w vm.nr_hugepages=4300
     sudo cpupower frequency-set -g performance
 
-    echo net-start vlan | virsh --connect qemu:///system >/dev/null
+    echo net-start host-only | virsh --connect qemu:///system >/dev/null
     echo net-start nat  | virsh --connect qemu:///system >/dev/null
     echo start win10-nvidia | virsh --connect qemu:///system >/dev/null
 
-    echo '[Caffeine]' >&2; caffeine.sh
+    local dummy_var
+    read dummy_var
 
     echo shutdown win10-nvidia | virsh --connect qemu:///system &>/dev/null
-    echo net-destroy vlan | virsh --connect qemu:///system >/dev/null
+    echo net-destroy host-only | virsh --connect qemu:///system >/dev/null
     echo net-destroy nat  | virsh --connect qemu:///system >/dev/null
 
     #sudo sysctl -w vm.nr_hugepages=0
@@ -384,6 +385,18 @@ xo() {
     &>/dev/null xdg-open "$@" &
 }
 
+lsmodparams() {
+cat /proc/modules | cut -f 1 -d " " | while read module; do \
+ echo "Module: $module"; \
+ if [ -d "/sys/module/$module/parameters" ]; then \
+  ls /sys/module/$module/parameters/ | while read parameter; do \
+   echo -n "Parameter: $parameter --> "; \
+   cat /sys/module/$module/parameters/$parameter; \
+  done; \
+ fi; \
+ echo; \
+done
+}
 
 
 #

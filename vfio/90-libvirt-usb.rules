@@ -1,0 +1,10 @@
+ACTION=="add", \
+    SUBSYSTEM=="usb", \
+    ENV{ID_VENDOR_ID}=="054c", \
+    ENV{ID_MODEL_ID}=="0268", \
+    RUN+="/usr/bin/virsh attach-device win10-nvidia /opt/games/VMs/ps3-remote-usb.xml"
+ACTION=="remove", \
+    SUBSYSTEM=="usb", \
+    ENV{ID_VENDOR_ID}=="054c", \
+    ENV{ID_MODEL_ID}=="0268", \
+    RUN+="/usr/bin/virsh detach-device win10-nvidia /opt/games/VMs/ps3-remote-usb.xml"

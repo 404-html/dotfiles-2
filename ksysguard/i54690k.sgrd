@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE KSysGuardWorkSheet>
+<WorkSheet locked="0" interval="0.5" title="Detailed" rows="4" columns="2">
+ <host shell="" command="ksysguardd" port="-1" name="localhost"/>
+ <display hLines="1" rowSpan="1" manualRange="0" row="0" version="1" hScale="6" column="0" columnSpan="1" svgBackground="" title="Total Load" vLines="0" class="FancyPlotter" autoRange="1" labels="1" vDistance="30" showUnit="0" vScroll="0" fontSize="8" stacked="0" unit="">
+  <beam hostName="localhost" sensorName="cpu/cpu0/TotalLoad" sensorType="float" color="0xff0057ae"/>
+  <beam hostName="localhost" sensorName="cpu/cpu1/TotalLoad" sensorType="float" color="0xffe20800"/>
+  <beam hostName="localhost" sensorName="cpu/cpu2/TotalLoad" sensorType="float" color="0xfff3c300"/>
+  <beam hostName="localhost" sensorName="cpu/cpu3/TotalLoad" sensorType="float" color="0xffff0000"/>
+ </display>
+ <display hLines="1" rowSpan="1" manualRange="0" row="0" version="1" hScale="6" column="1" columnSpan="1" svgBackground="" title="Temperature" vLines="0" class="FancyPlotter" autoRange="1" labels="1" vDistance="30" showUnit="0" vScroll="0" fontSize="8" stacked="0" unit="">
+  <beam hostName="localhost" sensorName="lmsensors/coretemp-isa-0000/Physical_id_0" sensorType="float" color="0xff0057ae"/>
+ </display>
+ <display hLines="1" rowSpan="1" manualRange="0" row="1" version="1" hScale="6" column="0" columnSpan="1" svgBackground="" title="Fan" vLines="0" class="FancyPlotter" autoRange="1" labels="1" vDistance="30" showUnit="0" vScroll="0" fontSize="8" stacked="0" unit="">
+  <beam hostName="localhost" sensorName="lmsensors/nct6792-isa-0a30/fan2" sensorType="float" color="0xffe20800"/>
+ </display>
+ <display hLines="1" rowSpan="1" manualRange="0" row="1" version="1" hScale="6" column="1" columnSpan="1" svgBackground="" title="Used Memory" vLines="0" class="FancyPlotter" autoRange="1" labels="1" vDistance="30" showUnit="0" vScroll="0" fontSize="8" stacked="0" unit="">
+  <beam hostName="localhost" sensorName="mem/physical/used" sensorType="integer" color="0xff0057ae"/>
+  <beam hostName="localhost" sensorName="mem/swap/used" sensorType="integer" color="0xffe20800"/>
+ </display>
+ <display hLines="1" rowSpan="1" manualRange="0" row="2" version="1" hScale="6" column="0" columnSpan="1" svgBackground="" title="Data Rate" vLines="0" class="FancyPlotter" autoRange="1" labels="1" vDistance="30" showUnit="0" vScroll="0" fontSize="8" stacked="0" unit="">
+  <beam hostName="localhost" sensorName="network/interfaces/eth1/receiver/data" sensorType="float" color="0xff0057ae"/>
+  <beam hostName="localhost" sensorName="network/interfaces/eth1/transmitter/data" sensorType="float" color="0xffe20800"/>
+ </display>
+ <display hLines="1" rowSpan="1" manualRange="0" row="3" version="1" hScale="6" column="0" columnSpan="1" svgBackground="" title="Read Data" vLines="0" class="FancyPlotter" autoRange="1" labels="1" vDistance="30" showUnit="0" vScroll="0" fontSize="8" stacked="0" unit="">
+  <beam hostName="localhost" sensorName="disk/sda_(8:0)/Rate/rblk" sensorType="float" color="0xff0057ae"/>
+  <beam hostName="localhost" sensorName="disk/sda_(8:0)/Rate/wblk" sensorType="float" color="0xffe20800"/>
+  <beam hostName="localhost" sensorName="disk/sdb_(8:16)/Rate/rblk" sensorType="float" color="0xfff3c300"/>
+  <beam hostName="localhost" sensorName="disk/sdb_(8:16)/Rate/wblk" sensorType="float" color="0xffff0000"/>
+ </display>
+ <display hLines="1" rowSpan="1" manualRange="0" row="2" version="1" hScale="6" column="1" columnSpan="1" svgBackground="" title="Average Clock Frequency" vLines="0" class="FancyPlotter" autoRange="1" labels="1" vDistance="30" showUnit="0" vScroll="0" fontSize="8" stacked="0" unit="">
+  <beam hostName="localhost" sensorName="cpu/system/AverageClock" sensorType="float" color="0xff0057ae"/>
+ </display>
+ <display hLines="1" rowSpan="1" manualRange="0" row="3" version="1" hScale="6" column="1" columnSpan="1" svgBackground="" title="Load Average (1 min)" vLines="0" class="FancyPlotter" autoRange="1" labels="1" vDistance="30" showUnit="0" vScroll="0" fontSize="8" stacked="0" unit="">
+  <beam hostName="localhost" sensorName="cpu/system/loadavg1" sensorType="float" color="0xff0057ae"/>
+  <beam hostName="localhost" sensorName="cpu/system/loadavg5" sensorType="float" color="0xffe20800"/>
+  <beam hostName="localhost" sensorName="cpu/system/loadavg15" sensorType="float" color="0xfff3c300"/>
+ </display>
+</WorkSheet>
