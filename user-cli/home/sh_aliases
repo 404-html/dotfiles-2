@@ -553,7 +553,7 @@ fi
 #MSP
 alias mspdebug-cc='LD_LIBRARY_PATH=$HOME/.opt/ti/ccsv6/ccs_base/DebugServer/drivers/:$HOME/.opt/msptexas/lib $HOME/.opt/msptexas/bin/mspdebug tilib'
 alias mspdebug-eg17='LD_LIBRARY_PATH=$HOME/.opt/energia-0101E0017/hardware/tools/msp430/bin mspdebug tilib'
-alias mspdebug-eg18='LD_LIBRARY_PATH=$HOME/.opt/energia-1.6.10E18/hardware/tools/msp430/bin mspdebug tilib'
+alias mspdebug-eg18='LD_LIBRARY_PATH=$HOME/.opt/energia-1.6.10E18/lib mspdebug tilib'
 
 # apt-get
 alias aptug='tmux-new "sudo apt update -qq; sudo apt upgrade -y && sudo apt autoremove; sudo apt clean; read"'
