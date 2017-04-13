@@ -555,7 +555,7 @@ alias mspdebug-cc='LD_LIBRARY_PATH=$HOME/.opt/ti/ccsv6/ccs_base/DebugServer/driv
 alias mspdebug-eg='LD_LIBRARY_PATH=$HOME/.opt/energia-0101E0017/hardware/tools/msp430/bin mspdebug tilib'
 
 # apt-get
-alias aptug='tmux-new "sudo apt update -qq && sudo apt upgrade -y && sudo apt autoremove; sudo apt clean; read"'
+alias aptug='tmux-new "sudo apt update -qq; sudo apt upgrade -y && sudo apt autoremove; sudo apt clean; read"'
 alias aptit='sudo apt install'
 alias aptrm='sudo apt remove'
 alias aptar='sudo apt autoremove'
