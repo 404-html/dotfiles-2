@@ -11,9 +11,6 @@
     <vcpupin vcpu='2' cpuset='1'/>
     <vcpupin vcpu='3' cpuset='0'/>
   </cputune>
-  <resource>
-    <partition>/machine</partition>
-  </resource>
   <os>
     <type arch='x86_64' machine='pc-i440fx-2.8'>hvm</type>
   </os>
@@ -62,8 +59,20 @@
       <driver queues='4' iothread='1'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x0'/>
     </controller>
-    <controller type='usb' index='0' model='piix3-uhci'>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x2'/>
+    <controller type='usb' index='0' model='ich9-ehci1'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x7'/>
+    </controller>
+    <controller type='usb' index='0' model='ich9-uhci1'>
+      <master startport='0'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x0' multifunction='on'/>
+    </controller>
+    <controller type='usb' index='0' model='ich9-uhci2'>
+      <master startport='2'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x1'/>
+    </controller>
+    <controller type='usb' index='0' model='ich9-uhci3'>
+      <master startport='4'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x2'/>
     </controller>
     <interface type='network'>
       <mac address='52:54:00:85:46:90'/>
@@ -91,7 +100,5 @@
       <address type='pci' domain='0x0000' bus='0x00' slot='0x08' function='0x0'/>
     </memballoon>
   </devices>
-  <seclabel type='none' model='none'/>
-  <seclabel type='dynamic' model='dac' relabel='yes'/>
 </domain>
 
