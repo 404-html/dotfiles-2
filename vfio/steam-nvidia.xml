@@ -21,7 +21,7 @@
   <os>
     <type arch='x86_64' machine='pc-i440fx-2.7'>hvm</type>
     <loader readonly='yes' type='pflash'>/usr/share/OVMF/OVMF_CODE.fd</loader>
-    <nvram>/var/lib/libvirt/qemu/nvram/win10_VARS.fd</nvram>
+    <nvram>/var/lib/libvirt/qemu/nvram/steam-nvidia_VARS.fd</nvram>
     <bootmenu enable='no'/>
   </os>
   <features>
