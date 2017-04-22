@@ -64,16 +64,13 @@
       <driver name='qemu' type='raw' cache='none' io='native' discard='unmap'/>
       <source file='/home/petrucci/VMs/steam-nvidia.img'/>
       <target dev='sda' bus='scsi'/>
-      <boot order='2'/>
+      <boot order='1'/>
       <address type='drive' controller='0' bus='0' target='0' unit='0'/>
     </disk>
     <controller type='pci' index='0' model='pci-root'/>
     <controller type='scsi' index='0' model='virtio-scsi'>
       <driver queues='3' iothread='1'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x06' function='0x0'/>
-    </controller>
-    <controller type='virtio-serial' index='0'>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x09' function='0x0'/>
     </controller>
     <controller type='usb' index='0' model='ich9-ehci1'>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x0a' function='0x7'/>
@@ -103,20 +100,24 @@
       <model type='virtio'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x0d' function='0x0'/>
     </interface>
-    <console type='pty'>
-      <target type='virtio' port='0'/>
-    </console>
     <input type='mouse' bus='ps2'/>
     <input type='keyboard' bus='ps2'/>
+    <input type='mouse' bus='virtio'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x09' function='0x0'/>
+    </input>
     <input type='keyboard' bus='virtio'>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x0'/>
-    </input>
-    <input type='mouse' bus='usb'>
-      <address type='usb' bus='0' port='1'/>
     </input>
     <sound model='ac97'>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0'/>
     </sound>
+    <hostdev mode='subsystem' type='usb' managed='yes'>
+      <source>
+        <vendor id='0x1131'/>
+        <product id='0x1004'/>
+      </source>
+      <address type='usb' bus='0' port='2'/>
+    </hostdev>
     <hostdev mode='subsystem' type='pci' managed='yes'>
       <source>
         <address domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
@@ -128,13 +129,6 @@
         <address domain='0x0000' bus='0x01' slot='0x00' function='0x1'/>
       </source>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x0'/>
-    </hostdev>
-    <hostdev mode='subsystem' type='usb' managed='yes'>
-      <source>
-        <vendor id='0x1131'/>
-        <product id='0x1004'/>
-      </source>
-      <address type='usb' bus='0' port='2'/>
     </hostdev>
     <memballoon model='virtio'>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x08' function='0x0'/>
