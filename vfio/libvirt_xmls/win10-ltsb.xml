@@ -1,8 +1,8 @@
-<domain type='kvm' id='2'>
+<domain type='kvm'>
   <name>win10-ltsb</name>
   <uuid>e1e8eeee-41e0-4f87-970d-7d64bd6b56a3</uuid>
   <memory unit='KiB'>4194304</memory>
-  <currentMemory unit='KiB'>4194304</currentMemory>
+  <currentMemory unit='KiB'>2097152</currentMemory>
   <vcpu placement='static'>4</vcpu>
   <iothreads>1</iothreads>
   <cputune>
@@ -62,83 +62,59 @@
     <disk type='file' device='disk'>
       <driver name='qemu' type='raw' cache='none' io='native' discard='unmap'/>
       <source file='/home/petrucci/VMs/win10_ltsb_2016.img'/>
-      <backingStore/>
       <target dev='sda' bus='scsi'/>
-      <alias name='scsi0-0-0-0'/>
       <address type='drive' controller='0' bus='0' target='0' unit='0'/>
     </disk>
-    <controller type='pci' index='0' model='pci-root'>
-      <alias name='pci.0'/>
-    </controller>
+    <controller type='pci' index='0' model='pci-root'/>
     <controller type='scsi' index='0' model='virtio-scsi'>
       <driver queues='3' iothread='1'/>
-      <alias name='scsi0'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x06' function='0x0'/>
     </controller>
     <controller type='usb' index='0' model='ich9-ehci1'>
-      <alias name='usb'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x7'/>
     </controller>
     <controller type='usb' index='0' model='ich9-uhci1'>
-      <alias name='usb'/>
       <master startport='0'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x0' multifunction='on'/>
     </controller>
     <controller type='usb' index='0' model='ich9-uhci2'>
-      <alias name='usb'/>
       <master startport='2'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x1'/>
     </controller>
     <controller type='usb' index='0' model='ich9-uhci3'>
-      <alias name='usb'/>
       <master startport='4'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x2'/>
     </controller>
     <interface type='network'>
       <mac address='52:54:00:9d:97:d2'/>
-      <source network='nat' bridge='virbr0'/>
-      <target dev='vnet0'/>
+      <source network='nat'/>
       <model type='virtio'/>
       <link state='up'/>
-      <alias name='net0'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
     </interface>
-    <input type='mouse' bus='ps2'>
-      <alias name='input0'/>
-    </input>
-    <input type='keyboard' bus='ps2'>
-      <alias name='input1'/>
-    </input>
+    <input type='mouse' bus='ps2'/>
+    <input type='keyboard' bus='ps2'/>
     <input type='tablet' bus='virtio'>
-      <alias name='input2'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x0'/>
     </input>
     <input type='keyboard' bus='virtio'>
-      <alias name='input3'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x0'/>
     </input>
-    <graphics type='spice' port='5900' autoport='yes' listen='127.0.0.1'>
-      <listen type='address' address='127.0.0.1'/>
+    <graphics type='spice' autoport='yes'>
+      <listen type='address'/>
     </graphics>
     <sound model='ac97'>
-      <alias name='sound0'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0'/>
     </sound>
     <video>
-      <model type='qxl' ram='131072' vram='65536' vgamem='65536' heads='1' primary='yes'/>
-      <alias name='video0'/>
+      <model type='qxl' ram='65536' vram='65536' vgamem='65536' heads='1' primary='yes'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x09' function='0x0'/>
     </video>
-    <memballoon model='virtio'>
-      <stats period='5'/>
-      <alias name='balloon0'/>
+    <memballoon model='virtio' autodeflate='on'>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x08' function='0x0'/>
     </memballoon>
   </devices>
   <seclabel type='none' model='none'/>
-  <seclabel type='dynamic' model='dac' relabel='yes'>
-    <label>+1000:+138</label>
-    <imagelabel>+1000:+138</imagelabel>
-  </seclabel>
+  <seclabel type='dynamic' model='dac' relabel='yes'/>
 </domain>
 
