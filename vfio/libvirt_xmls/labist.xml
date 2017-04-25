@@ -2,7 +2,7 @@
   <name>labist</name>
   <uuid>d6c75981-e4b6-4d4a-b884-687af0e4d3d2</uuid>
   <memory unit='KiB'>4194304</memory>
-  <currentMemory unit='KiB'>4194304</currentMemory>
+  <currentMemory unit='KiB'>2097152</currentMemory>
   <vcpu placement='static'>4</vcpu>
   <iothreads>1</iothreads>
   <cputune>
@@ -10,6 +10,8 @@
     <vcpupin vcpu='1' cpuset='2'/>
     <vcpupin vcpu='2' cpuset='1'/>
     <vcpupin vcpu='3' cpuset='0'/>
+    <emulatorpin cpuset='0'/>
+    <iothreadpin iothread='1' cpuset='1'/>
   </cputune>
   <os>
     <type arch='x86_64' machine='pc-i440fx-2.8'>hvm</type>
@@ -93,7 +95,7 @@
       <image compression='off'/>
     </graphics>
     <video>
-      <model type='qxl' ram='65536' vram='65536' vgamem='16384' heads='1' primary='yes'/>
+      <model type='qxl' ram='65536' vram='65536' vgamem='65536' heads='1' primary='yes'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0'/>
     </video>
     <memballoon model='virtio'>
