@@ -69,8 +69,8 @@ ${exec cat /tmp/${USER}_conky/weather}
 
 ${alignc}Storage
 ${voffset -8}$hr${voffset 10}
-${color grey}efi $color ${alignr}${fs_used /boot/efi}/${fs_size /boot/efi} [ ${fs_used_perc /boot/efi}% ]
-${fs_bar 6 /boot/efi}
+${color grey}esp $color ${alignr}${fs_used /boot/esp}/${fs_size /boot/esp} [ ${fs_used_perc /boot/esp}% ]
+${fs_bar 6 /boot/esp}
 ${color grey}system $color ${alignr}${fs_used /}/${fs_size /} [ ${fs_used_perc /}% ]
 ${fs_bar 6 /}
 ${color grey}home $color ${alignr}${fs_used /home}/${fs_size /home} [ ${fs_used_perc /home}% ]
