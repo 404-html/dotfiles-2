@@ -38,13 +38,38 @@ if ! [ -f /usr/share/applications/firefox-nightly.desktop ]; then
     uudecode "$0"
 fi
 
-if ! [ -x /etc/cron.daily/upd8-ff-nightly.sh ]; then
+if ! [ -r /etc/systemd/system/upd8-ff-nightly.timer ] ||
+   ! [ -r /etc/systemd/system/upd8-ff-nightly.service ]; then
     while true; do
         echo "Install cron job to update daily? (Y/N)"
         read answer
         if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
-            cp "$0" /etc/cron.daily
-            chmod 755 /etc/cron.daily/upd8-ff-nightly.sh
+            cat << 'EOF' > '/etc/systemd/system/upd8-ff-nightly.service'
+[Unit]
+Description=Update firefox nightly
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/upd8-ff-nightly.sh
+EOF
+
+            cat << 'EOF' > '/etc/systemd/system/upd8-ff-nightly.timer'
+[Unit]
+Description=Update firefox nightly daily
+After=network.target
+
+[Timer]
+OnCalendar=daily
+AccuracySec=1h
+Persistent=true
+RandomizedDelaySec=60m
+
+[Install]
+WantedBy=timers.target
+EOF
+            cp "$0" '/usr/local/bin/upd8-ff-nightly.sh'
+            chmod +x '/usr/local/bin/upd8-ff-nightly.sh'
+            systemctl enable upd8-ff-nightly.timer
             break
         elif [ "$answer" = "n" ] || [ "$answer" = "N" ]; then
             break
