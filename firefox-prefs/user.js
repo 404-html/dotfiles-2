@@ -109,6 +109,9 @@ user_pref("browser.pagethumbnails.capturing_disabled", true);
 user_pref("privacy.donottrackheader.enabled", true);
 user_pref("privacy.trackingprotection.enabled", true);
 
+// Allow cookies. No third-party cookies.
+user_pref("network.cookie.cookieBehavior", 1);
+
 // Open searches in new tab
 user_pref("browser.search.openintab", true);
 
