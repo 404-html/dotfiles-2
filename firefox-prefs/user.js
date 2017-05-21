@@ -148,3 +148,7 @@ user_pref("security.insecure_field_warning.contextual.enabled", false)
 // Increase interval at which firefox saves session to 30m (default 15s)
 // https://www.servethehome.com/firefox-is-eating-your-ssd-here-is-how-to-fix-it/
 user_pref("browser.sessionstore.interval", 1800000);
+
+// Don't automatically start videos!
+user_pref("media.autoplay.enabled", false);
+
