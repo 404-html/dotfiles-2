@@ -36,8 +36,8 @@ Toggle Screen Reader On and Off=Meta+Alt+S,Meta+Alt+S,Toggle Screen Reader On an
 _k_friendly_name=kaccess
 
 [kcm_touchpad]
-Disable Touchpad=Touchpad Off,Touchpad Off,Disable Touchpad
-Enable Touchpad=Touchpad On,Touchpad On,Enable Touchpad
+Disable Touchpad=Meta+F10,Touchpad Off,Disable Touchpad
+Enable Touchpad=Touchpad On\tMeta+F11,Touchpad On,Enable Touchpad
 Toggle Touchpad=Touchpad Toggle\tMeta+F9,Touchpad Toggle,Toggle Touchpad
 _k_friendly_name=KDE Daemon
 
