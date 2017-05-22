@@ -150,5 +150,5 @@ user_pref("security.insecure_field_warning.contextual.enabled", false)
 user_pref("browser.sessionstore.interval", 1800000);
 
 // Don't automatically start videos!
-user_pref("media.autoplay.enabled", false);
+//user_pref("media.autoplay.enabled", false);
 
