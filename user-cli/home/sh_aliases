@@ -557,7 +557,7 @@ alias mspdebug-eg='mspdebug-eg18'
 alias mspdebug-cc='LD_LIBRARY_PATH=$HOME/.opt/ti/ccsv7/ccs_base/DebugServer/drivers/:$HOME/.opt/msptexas/lib $HOME/.opt/msptexas/bin/mspdebug tilib'
 
 # apt-get
-alias aptug='tmux-new "sudo apt update -qq; sudo apt upgrade -y && sudo apt autoremove; sudo apt clean; read"'
+alias aptug='tmux-new "sudo apt update -qq && sudo apt upgrade -y && sudo apt autoremove; sudo apt clean; [ -d /opt/firefox-nightly ] && upd8-ff-nightly.sh; read"'
 alias aptit='sudo apt install'
 alias aptrm='sudo apt remove'
 alias aptar='sudo apt autoremove'
