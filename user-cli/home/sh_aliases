@@ -596,4 +596,5 @@ alias unraw='sudo kbd_mode -s -C /dev/tty7'
 alias dmesg='sudo dmesg'
 alias dmidecode='sudo dmidecode'
 alias fstrim='sudo fstrim'
+alias open='gio open'
 
