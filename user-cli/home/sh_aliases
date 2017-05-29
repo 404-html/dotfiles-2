@@ -135,8 +135,9 @@ add-alias(){
 }
 
 sddev(){
-    dev=${1%%[0-9]*}
-    part=$1
+    file=$(readlink -f "$1")
+    dev=${file%%[0-9]*}
+    part=$file
     udisks --unmount "$part"
     udisks --detach "$dev"
 }
