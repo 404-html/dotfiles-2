@@ -122,7 +122,7 @@ user_pref("security.dialog_enable_delay", 0);
 user_pref("browser.link.open_newwindow.restriction", 0);
 
 // Disable webrtc
-user_pref("media.peerconnection.enabled", false);
+//user_pref("media.peerconnection.enabled", false);
 
 // disable Location-Aware Browsing
 // http://www.mozilla.org/en-US/firefox/geolocation/
