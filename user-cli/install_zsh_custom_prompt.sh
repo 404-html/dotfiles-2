@@ -96,13 +96,13 @@ function prompt_steeef_setup {
 
   # Define prompts.
   if [ ${UID} -eq 0 ]; then
-  PROMPT="$terminfo[bold][${_prompt_steeef_colors[4]}%n@%m%f] ${_prompt_steeef_colors[2]}%~%f "'${vcs_info_msg_0_}'"
+  PROMPT="$terminfo[bold][${_prompt_steeef_colors[4]}%*%f][${_prompt_steeef_colors[4]}%* %n@%m%f] ${_prompt_steeef_colors[2]}%~%f "'${vcs_info_msg_0_}'"
 "'$python_info[virtualenv]'"$ "
   else
-  PROMPT="$terminfo[bold][${_prompt_steeef_colors[3]}%n@%m%f] ${_prompt_steeef_colors[2]}%~%f "'${vcs_info_msg_0_}'"
+  PROMPT="$terminfo[bold][${_prompt_steeef_colors[3]}%*%f][${_prompt_steeef_colors[3]}%n@%m%f] ${_prompt_steeef_colors[2]}%~%f "'${vcs_info_msg_0_}'"
 "'$python_info[virtualenv]'"$ "
   fi
-  RPROMPT='%(?:%F{green};)%f:%F{red}:(%f)'
+  RPROMPT="%(?:%F{green} ;)%f:%F{red}:( %?%f)"
   #RPROMPT=''
 }
 
