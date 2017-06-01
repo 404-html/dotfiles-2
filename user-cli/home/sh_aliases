@@ -598,4 +598,5 @@ alias dmesg='sudo dmesg'
 alias dmidecode='sudo dmidecode'
 alias fstrim='sudo fstrim'
 alias open='gio open'
+alias update-grub='sudo update-grub'
 
