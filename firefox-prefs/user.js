@@ -135,14 +135,14 @@ user_pref("geo.enabled", false);
 
 // disable webGL
 // http://www.contextis.com/resources/blog/webgl-new-dimension-browser-exploitation/
-user_pref("webgl.disabled", true);
+//user_pref("webgl.disabled", true);
 
 // Flash plugin state - never activate
 user_pref("plugin.state.flash", 0);
 
 // Don't show warning about login in non https webpage. 
 // This makes sense security wise, but it's very annoying.
-user_pref("security.insecure_field_warning.contextual.enabled", false)
+//user_pref("security.insecure_field_warning.contextual.enabled", false)
 
 
 // Increase interval at which firefox saves session to 30m (default 15s)
