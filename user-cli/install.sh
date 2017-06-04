@@ -13,6 +13,7 @@ done
 cd - >/dev/null
 
 for d in config local/share ;do
+    mkdir -p "$HOME/.$d"
     find "$HOME/.$d" -maxdepth 1 &>/dev/null && echo Searching for broken links
     find "$HOME/.$d" -maxdepth 1 -xtype l -ok rm '{}' \;
     cd "$d"
