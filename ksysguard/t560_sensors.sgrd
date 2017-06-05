@@ -1,39 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE KSysGuardWorkSheet>
-<WorkSheet columns="2" interval="2" locked="0" title="System Sensors" rows="4">
- <host port="-1" shell="" name="localhost" command="ksysguardd"/>
- <display class="FancyPlotter" title="Disk Throughtput" fontSize="8" unit="" autoRange="1" vDistance="30" vScroll="1" stacked="0" version="1" labels="1" hLines="1" rowSpan="1" svgBackground="" row="0" column="0" vLines="1" showUnit="0" columnSpan="1" hScale="6" manualRange="0">
-  <beam sensorType="float" hostName="localhost" regexpSensorName="disk/sd[a-z]*_.*/Rate/rblk" summationName="Reads" color="0xff0057ae"/>
-  <beam sensorType="float" hostName="localhost" regexpSensorName="disk/sd[a-z]*_.*/Rate/wblk" summationName="Writes" color="0xffe20800"/>
+<WorkSheet title="System Sensors" rows="4" columns="2" interval="2" locked="0">
+ <host port="-1" command="ksysguardd" name="localhost" shell=""/>
+ <display showUnit="0" hScale="6" autoRange="1" vLines="1" column="0" labels="1" vScroll="1" vDistance="30" hLines="1" svgBackground="" title="Disk Throughtput" fontSize="8" stacked="0" manualRange="0" class="FancyPlotter" rowSpan="1" unit="" row="0" version="1" columnSpan="1">
+  <beam color="0xff0057ae" sensorType="float" hostName="localhost" regexpSensorName="disk/sd[a-z]*_.*/Rate/rblk" summationName="Reads"/>
+  <beam color="0xffe20800" sensorType="float" hostName="localhost" regexpSensorName="disk/sd[a-z]*_.*/Rate/wblk" summationName="Writes"/>
  </display>
- <display class="FancyPlotter" title="Total Network Rate" fontSize="8" unit="" autoRange="1" vDistance="30" vScroll="0" stacked="0" version="1" labels="1" hLines="1" rowSpan="1" svgBackground="" row="2" column="0" vLines="1" showUnit="0" columnSpan="1" hScale="6" manualRange="0">
-  <beam sensorType="float" hostName="localhost" regexpSensorName="network/interfaces/(?!lo|bridge|usbus|bond).*/receiver/data" summationName="RX" color="0xff00aa00"/>
-  <beam sensorType="float" hostName="localhost" regexpSensorName="network/interfaces/(?!lo|bridge|usbus|bond).*/transmitter/data" summationName="TX" color="0xffff0000"/>
+ <display showUnit="0" hScale="6" autoRange="1" vLines="1" column="0" labels="1" vScroll="0" vDistance="30" hLines="1" svgBackground="" title="Total Network Rate" fontSize="8" stacked="0" manualRange="0" class="FancyPlotter" rowSpan="1" unit="" row="2" version="1" columnSpan="1">
+  <beam color="0xff00aa00" sensorType="float" hostName="localhost" regexpSensorName="network/interfaces/(?!lo|bridge|usbus|bond).*/receiver/data" summationName="RX"/>
+  <beam color="0xffff0000" sensorType="float" hostName="localhost" regexpSensorName="network/interfaces/(?!lo|bridge|usbus|bond).*/transmitter/data" summationName="TX"/>
  </display>
- <display class="FancyPlotter" title="Memory" fontSize="8" unit="" autoRange="1" vDistance="30" vScroll="0" stacked="0" version="1" labels="1" hLines="1" rowSpan="1" svgBackground="" row="3" column="0" vLines="1" showUnit="0" columnSpan="1" hScale="6" manualRange="0">
-  <beam sensorType="integer" hostName="localhost" sensorName="mem/physical/application" color="0xff0057ae"/>
-  <beam sensorType="integer" hostName="localhost" sensorName="mem/swap/used" color="0xffe20800"/>
+ <display showUnit="0" hScale="6" autoRange="1" vLines="1" column="0" labels="1" vScroll="0" vDistance="30" hLines="1" svgBackground="" title="Memory" fontSize="8" stacked="0" manualRange="0" class="FancyPlotter" rowSpan="1" unit="" row="3" version="1" columnSpan="1">
+  <beam color="0xff0057ae" sensorType="integer" sensorName="mem/physical/application" hostName="localhost"/>
+  <beam color="0xffe20800" sensorType="integer" sensorName="mem/swap/used" hostName="localhost"/>
+  <beam color="0xfff3c300" sensorType="integer" sensorName="mem/physical/used" hostName="localhost"/>
  </display>
- <display class="FancyPlotter" title="Wifi Signal Level" fontSize="8" unit="" autoRange="1" vDistance="30" vScroll="0" stacked="0" version="1" labels="1" hLines="1" rowSpan="1" svgBackground="" row="1" column="1" vLines="0" showUnit="0" columnSpan="1" hScale="6" manualRange="0">
-  <beam sensorType="float" hostName="localhost" sensorName="network/interfaces/wlan0/wifi/signal" color="0xff0057ae"/>
-  <beam sensorType="float" hostName="localhost" sensorName="network/interfaces/wlan0/wifi/quality" color="0xffe20800"/>
-  <beam sensorType="float" hostName="localhost" sensorName="network/interfaces/wlan0/wifi/noise" color="0xfff3c300"/>
+ <display showUnit="0" hScale="6" autoRange="1" vLines="0" column="1" labels="1" vScroll="0" vDistance="30" hLines="1" svgBackground="" title="Wifi Signal Level" fontSize="8" stacked="0" manualRange="0" class="FancyPlotter" rowSpan="1" unit="" row="1" version="1" columnSpan="1">
+  <beam color="0xff0057ae" sensorType="float" sensorName="network/interfaces/wlan0/wifi/signal" hostName="localhost"/>
+  <beam color="0xffe20800" sensorType="float" sensorName="network/interfaces/wlan0/wifi/quality" hostName="localhost"/>
+  <beam color="0xfff3c300" sensorType="float" sensorName="network/interfaces/wlan0/wifi/noise" hostName="localhost"/>
  </display>
- <display class="FancyPlotter" title="Temperature" fontSize="8" unit="" autoRange="1" vDistance="30" vScroll="0" stacked="0" version="1" labels="1" hLines="1" rowSpan="1" svgBackground="" row="0" column="1" vLines="0" showUnit="0" columnSpan="1" hScale="6" manualRange="0">
-  <beam sensorType="integer" hostName="localhost" sensorName="acpi/Thermal_Zone/3-iwlwifi/Temperature" color="0xff0057ae"/>
-  <beam sensorType="integer" hostName="localhost" sensorName="acpi/Thermal_Zone/0-acpitz/Temperature" color="0xffe20800"/>
-  <beam sensorType="integer" hostName="localhost" sensorName="acpi/Thermal_Zone/1-pch_skylake/Temperature" color="0xff00aa00"/>
+ <display showUnit="0" hScale="6" autoRange="1" vLines="0" column="1" labels="1" vScroll="0" vDistance="30" hLines="1" svgBackground="" title="Temperature" fontSize="8" stacked="0" manualRange="0" class="FancyPlotter" rowSpan="1" unit="" row="0" version="1" columnSpan="1">
+  <beam color="0xff0057ae" sensorType="integer" sensorName="acpi/Thermal_Zone/3-iwlwifi/Temperature" hostName="localhost"/>
+  <beam color="0xffe20800" sensorType="integer" sensorName="acpi/Thermal_Zone/0-acpitz/Temperature" hostName="localhost"/>
+  <beam color="0xff00aa00" sensorType="integer" sensorName="acpi/Thermal_Zone/1-pch_skylake/Temperature" hostName="localhost"/>
  </display>
- <display class="FancyPlotter" title="CPU Fan" fontSize="8" unit="" autoRange="1" vDistance="30" vScroll="0" stacked="0" version="1" labels="1" hLines="1" rowSpan="1" svgBackground="" row="2" column="1" vLines="0" showUnit="0" columnSpan="1" hScale="6" manualRange="0">
-  <beam sensorType="float" hostName="localhost" sensorName="lmsensors/thinkpad-isa-0000/fan1" color="0xff0057ae"/>
+ <display showUnit="0" hScale="6" autoRange="1" vLines="0" column="1" labels="1" vScroll="0" vDistance="30" hLines="1" svgBackground="" title="CPU Fan" fontSize="8" stacked="0" manualRange="0" class="FancyPlotter" rowSpan="1" unit="" row="2" version="1" columnSpan="1">
+  <beam color="0xff0057ae" sensorType="float" sensorName="lmsensors/thinkpad-isa-0000/fan1" hostName="localhost"/>
  </display>
- <display class="FancyPlotter" title="Total Load" fontSize="8" unit="" autoRange="1" vDistance="30" vScroll="0" stacked="0" version="1" labels="1" hLines="1" rowSpan="1" svgBackground="" row="1" column="0" vLines="0" showUnit="0" columnSpan="1" hScale="6" manualRange="0">
-  <beam sensorType="float" hostName="localhost" sensorName="cpu/cpu0/TotalLoad" color="0xff0057ae"/>
-  <beam sensorType="float" hostName="localhost" sensorName="cpu/cpu1/TotalLoad" color="0xffe20800"/>
-  <beam sensorType="float" hostName="localhost" sensorName="cpu/cpu2/TotalLoad" color="0xfff3c300"/>
-  <beam sensorType="float" hostName="localhost" sensorName="cpu/cpu3/TotalLoad" color="0xffff0000"/>
+ <display showUnit="0" hScale="6" autoRange="1" vLines="0" column="0" labels="1" vScroll="0" vDistance="30" hLines="1" svgBackground="" title="Total Load" fontSize="8" stacked="0" manualRange="0" class="FancyPlotter" rowSpan="1" unit="" row="1" version="1" columnSpan="1">
+  <beam color="0xff0057ae" sensorType="float" sensorName="cpu/cpu0/TotalLoad" hostName="localhost"/>
+  <beam color="0xffe20800" sensorType="float" sensorName="cpu/cpu1/TotalLoad" hostName="localhost"/>
+  <beam color="0xfff3c300" sensorType="float" sensorName="cpu/cpu2/TotalLoad" hostName="localhost"/>
+  <beam color="0xffff0000" sensorType="float" sensorName="cpu/cpu3/TotalLoad" hostName="localhost"/>
  </display>
- <display class="FancyPlotter" title="Average Clock Frequency" fontSize="8" unit="" autoRange="1" vDistance="30" vScroll="0" stacked="0" version="1" labels="1" hLines="1" rowSpan="1" svgBackground="" row="3" column="1" vLines="0" showUnit="0" columnSpan="1" hScale="6" manualRange="0">
-  <beam sensorType="float" hostName="localhost" sensorName="cpu/system/AverageClock" color="0xff0057ae"/>
+ <display showUnit="0" hScale="6" autoRange="1" vLines="0" column="1" labels="1" vScroll="0" vDistance="30" hLines="1" svgBackground="" title="Average Clock Frequency" fontSize="8" stacked="0" manualRange="0" class="FancyPlotter" rowSpan="1" unit="" row="3" version="1" columnSpan="1">
+  <beam color="0xff0057ae" sensorType="float" sensorName="cpu/system/AverageClock" hostName="localhost"/>
  </display>
 </WorkSheet>
