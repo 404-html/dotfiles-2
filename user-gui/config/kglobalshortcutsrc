@@ -5,7 +5,7 @@ switch-to-activity-89f538af-3630-43fa-a436-74d60ea144ed=none,none,
 [KDE Keyboard Layout Switcher]
 Switch keyboard layout to English (international AltGr dead keys)=none,none,Switch keyboard layout to English (international AltGr dead keys)
 Switch to Next Keyboard Layout=Ctrl+Alt+K,Ctrl+Alt+K,Switch to Next Keyboard Layout
-_k_friendly_name=System Settings Module
+_k_friendly_name=KDE Daemon
 
 [amarok]
 _k_friendly_name=Amarok
