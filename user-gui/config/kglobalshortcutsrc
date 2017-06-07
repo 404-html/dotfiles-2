@@ -310,3 +310,7 @@ repeat_action=Ctrl+Alt+R,Ctrl+Alt+R,Manually Invoke Action on Current Clipboard
 show dashboard=Ctrl+F12\t,Ctrl+F12,Show Desktop
 show-on-mouse-pos=none,none,Open Klipper at Mouse Position
 stop current activity=Meta+S,Meta+S,Stop Current Activity
+
+[yakuake]
+_k_friendly_name=Yakuake
+toggle-window-state=F12,F12,Open/Retract Yakuake
