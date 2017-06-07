@@ -599,4 +599,4 @@ alias dmidecode='sudo dmidecode'
 alias fstrim='sudo fstrim'
 alias open='gio open'
 alias update-grub='sudo update-grub'
-
+alias swap-usage="for file in /proc/*/status ; do awk '/VmSwap|Name/{printf $2 " " $3}END{ print "" }' $file; done | sort -k 2 -n -r | less"
