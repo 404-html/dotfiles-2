@@ -55,7 +55,7 @@ _k_friendly_name=Power Management
 display=none,Display\tMeta+P,Switch Display
 
 [khotkeys]
-_k_friendly_name=KDE Daemon
+_k_friendly_name=System Settings Module
 {1f777b45-0092-4d69-84e7-16fc7fccda11}=Home Page,none,firefox
 {1ff611f2-0df2-4f64-bd33-411e6810407c}=Tools,none,systemsettings5
 {22cd53dc-cc15-4444-91ac-885a343950c9}=Ctrl+Shift+Esc,none,ksysguard
@@ -68,7 +68,6 @@ _k_friendly_name=KDE Daemon
 {7ee0719e-ec94-4d4c-a1bc-ee45d79faf8d}=none,none,thunderbird
 {87a686c7-7d82-413a-9a94-70dfeb4f75f8}=Meta+Print,none,ksnapshot-window
 {9213fb1e-8570-402e-bd7e-39c9c379413f}=Microphone Mute,none,Mic Toogle
-{94240679-6525-4a5c-8851-6549d520623f}=none,none,New Action
 {a2bffdd8-ac86-4a13-b657-d04131225def}=Shift+Print,none,ksnapshot-region
 {ab61816c-47d3-4c0e-8cb2-1f88a4cc85b5}=Meta+W,none,firefox-we
 {b15367a4-195e-45b3-9e90-e7bac39a235b}=none,none,Start Screenshot Tool
