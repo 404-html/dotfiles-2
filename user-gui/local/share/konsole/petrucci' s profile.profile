@@ -11,7 +11,9 @@ TerminalRows=22
 AutoCopySelectedText=true
 MiddleClickPasteMode=1
 OpenLinksByDirectClickEnabled=true
+TrimTrailingSpacesInSelectedText=true
 UnderlineFilesEnabled=true
+WordCharacters=:@-./_~?&%+#
 
 [Scrolling]
 HistoryMode=2
