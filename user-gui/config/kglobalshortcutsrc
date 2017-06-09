@@ -55,7 +55,7 @@ _k_friendly_name=Power Management
 display=none,Display\tMeta+P,Switch Display
 
 [khotkeys]
-_k_friendly_name=System Settings Module
+_k_friendly_name=KDE Daemon
 {1f777b45-0092-4d69-84e7-16fc7fccda11}=Home Page,none,firefox
 {1ff611f2-0df2-4f64-bd33-411e6810407c}=Tools,none,systemsettings5
 {22cd53dc-cc15-4444-91ac-885a343950c9}=Ctrl+Shift+Esc,none,ksysguard
