@@ -14,7 +14,7 @@ fi
 if hash apt-get &>/dev/null; then
     hash apt &>/dev/null && tool=apt
     tool=${tool-apt-get}
-    pkgs=(neovim htop curl git grc ssvnc 
+    pkgs=(python3-neovim neovim htop curl git grc ssvnc 
         xclip xcape x11vnc sudo xcape pdfgrep
         trash-cli dnsutils python3-pyftpdlib inxi
         tmux mpv wine wine-development libsecret-tools neofetch
