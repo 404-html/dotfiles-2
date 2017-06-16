@@ -571,7 +571,7 @@ alias aptdL='dpkg -L'
 alias aptdS='dpkg -S'
 alias aptdi='sudo dpkg -i'
 
-alias ytdl='youtube-dl --title --ignore-errors --merge-output-format mkv --no-mtime -f bestvideo+bestaudio --sub-lang en,pt --write-sub --embed-subs --convert-subs srt'
+alias ytdl='youtube-dl --title --ignore-errors --merge-output-format mkv --no-mtime -f "bestvideo[height<=1080]+bestaudio" --sub-lang en,pt --write-sub --embed-subs --convert-subs srt'
 alias ytadl='youtube-dl --title --ignore-errors --no-mtime -f bestaudio'
 alias ffmpeg='ffmpeg -hide_banner'
 alias dirty='watch grep -e Dirty: -e Writeback: /proc/meminfo'
