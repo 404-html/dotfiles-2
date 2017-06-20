@@ -3,13 +3,6 @@
 # Only for interactive shells.
 [[ -o interactive ]] || return
 
-if hash tmux 2>/dev/null; then
-    # Auto-start TMUX in SSH.
-    if [ "$SSH_CONNECTION" ] && [ -z "$TMUX" ];then
-        tmux has-session -t ssh &>/dev/null && exec tmux attach -t ssh || exec tmux new -s ssh
-    fi
-fi
-
 FRAMEWORK=prezto
 if [ $FRAMEWORK = prezto ];then
 
@@ -28,6 +21,8 @@ elif [ $FRAMEWORK = oh-my-zsh ];then
     fi
 fi
 
+# ctrl-u does the same it did in bash.
+bindkey \^U backward-kill-line
 
 # Add help command
 autoload -U run-help
@@ -55,57 +50,22 @@ setopt HISTIGNORESPACE
 # Deal with non matched * like bash does
 setopt NONOMATCH
 
-# fasd init
-# https://github.com/clvv/fasd
-if hash fasd 2>/dev/null; then
-    eval "$(fasd --init auto)"
-fi
-
-if [ -e $HOME/.config/up/up.sh ]; then
-    source ~/.config/up/up.sh
-fi
-
-# ctrl-u does the same it did in bash.
-bindkey \^U backward-kill-line
-
-if [[ "$TERM" == rxvt* ]] || [[ "$TERM" == xterm* ]];then
-    #urxvt resize eats output
-    #http://lists.schmorp.de/pipermail/rxvt-unicode/2014q4/002058.html
-    printf '\e[99999;H\n\e[H'
-else
-    [ -r "$HOME/.sh_theme" ] && source $HOME/.sh_theme
-fi
-
-# Apply dircolor theme. Should be done before the aliases.
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-fi
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe  ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-if [ -r ~/.sh_aliases ] && ! [ -f ~/.noaliases ]; then
-    source ~/.sh_aliases
-fi
-
 # Workaround #
 # Make zsh autocomplete respect dircolors.
 # https://github.com/robbyrussell/oh-my-zsh/issues/1563
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-function motd()
-{
-    [ -r ~/.sh_motd ] && cat ~/.sh_motd
-    hash fortune 2>/dev/null && echo '  '$(fortune -s)
-}
+if [ -r ~/.sh_aliases ] && ! [ -f ~/.noaliases ]; then
+    source ~/.sh_aliases
+fi
 
-if ! [[ -o login ]] && ! [ -e ~/.hushlogin ];then
-    motd
+if [ -d $HOME/.shrc.d ]; then
+    for f in $HOME/.shrc.d/*.sh; do
+        if [ -r "$f" ]; then
+            . "$f"
+        fi
+    done
+    unset f
 fi
 
 true

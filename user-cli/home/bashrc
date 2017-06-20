@@ -6,35 +6,29 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-
-if hash tmux 2>/dev/null; then
-    # Autostart tmux if ssh connecton.
-    if [ -z "$TMUX" ] && [ "$SSH_CONNECTION" ];then
-        if tmux has-session -t "ssh" &>/dev/null;then
-            exec tmux attach -t "ssh"
-        else
-            exec tmux new -s "ssh"
-        fi
-    fi
-fi
-
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
+
+# append to the history file, don't overwrite it
+shopt -s histappend
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+#Bash opts.
+shopt -s nocaseglob nocasematch extglob globstar 
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
@@ -84,18 +78,6 @@ case "$TERM" in
         ;;
 esac
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
-
-# Apply dircolor theme. Should be done before the aliases.
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-fi
-
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.sh_aliases, instead of adding them here directly.
@@ -104,35 +86,13 @@ if [ -r ~/.sh_aliases ] && ! [ -f ~/.noaliases ]; then
     . ~/.sh_aliases
 fi
 
-# fasd init
-# https://github.com/clvv/fasd
-if hash fasd 2>/dev/null; then
-    eval "$(fasd --init auto)"
-fi
-
-if [ -e $HOME/.config/up/up.sh ]; then
-    source ~/.config/up/up.sh
-fi
-
-#Bash opts.
-shopt -s nocaseglob nocasematch extglob globstar 
-
-if [[ "$TERM" == rxvt* ]] || [[ "$TERM" == xterm* ]];then
-    #urxvt resize eats output
-    #http://lists.schmorp.de/pipermail/rxvt-unicode/2014q4/002058.html
-    printf '\e[99999;H\n\e[H'
-else
-    [ -r "$HOME/.sh_theme" ] && source $HOME/.sh_theme
-fi
-
-motd() {
-
-    [ -r ~/.sh_motd ] && cat ~/.sh_motd
-    hash fortune 2>/dev/null && echo '  '$(fortune -s)
-}
-
-if ! shopt -q login_shell && ! [ -e ~/.hushlogin ];then
-    motd
+if [ -d $HOME/.shrc.d ]; then
+    for f in $HOME/.shrc.d/*.sh; do
+        if [ -r "$f" ]; then
+            . "$f"
+        fi
+    done
+    unset f
 fi
 
 true

@@ -21,15 +21,15 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'tpope/vim-surround'             " faster edits for surrounding whatever
     Plug 'jiangmiao/auto-pairs'           " Autoclose brackets and what not...  
     Plug 'tpope/vim-repeat'               " Support for repeating plugin executions with '.'
-    Plug 'Shougo/deoplete.nvim'           " Autocomplete
+    Plug 'Valloric/YouCompleteMe'         " Autocomplete
     Plug 'kien/ctrlp.vim'                 " ctrl-p is a fuzzy file finder.
     Plug 'junegunn/vim-easy-align'        " Helps aligning txt
 
     " Maybies...
+    "Plug 'Shougo/deoplete.nvim'           " Autocomplete
     "Plug 'benekastah/neomake'             " Asynchronous syntax checking
-    "Plug 'scrooloose/nerdtree'            " List files
+    Plug 'scrooloose/nerdtree'            " List files
     "Plug 'rust-lang/rust.vim'             " Rust Lang
-    "Plug 'Valloric/YouCompleteMe'         " Autocomplete
     "Plug 'takac/vim-hardtime'             " Help drop bad vim habits
     "Plug 'mileszs/ack.vim'                " Ag, faster grep
     "Plug 'dhruvasagar/vim-table-mode'     " Tables Support =D
@@ -345,10 +345,10 @@ let g:airline_right_alt_sep = '|'
 let g:airline_theme= 'base16'
 
 " Deoplete.
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
 " tab and ctrl-space keys ...
-imap <expr><tab>   pumvisible() ? "\<C-n>" : "\<tab>"
-imap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
+"imap <expr><tab>   pumvisible() ? "\<C-n>" : "\<tab>"
+"imap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
 "inoremap <expr> <C-Space> deoplete#mappings#manual_complete()
 "imap <C-@> <C-Space>
 
@@ -357,13 +357,13 @@ imap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
 "autocmd! BufWritePost * Neomake " Run it every filesave
 
 " YouCompleteMe
-"let g:ycm_global_ycm_extra_conf = '~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
-"let g:ycm_key_list_select_completion = ['<u>', '<Down>']
-"let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
+let g:ycm_global_ycm_extra_conf = '~/.local/share/nvim/plugged/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
+let g:ycm_key_list_select_completion = ['<u>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
 "let g:ycm_key_invoke_completion = '<C-Space>'
 
 " NerdTree
-"map <leader>n :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
 
 " Ack
 "if executable('ag')
