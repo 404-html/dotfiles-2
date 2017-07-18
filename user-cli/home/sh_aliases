@@ -382,10 +382,6 @@ bootwin10() {
     sudo cpupower frequency-set -g powersave
 }
 
-xo() {
-    &>/dev/null xdg-open "$@" &
-}
-
 lsmodparams() {
 cat /proc/modules | cut -f 1 -d " " | while read module; do \
  echo "Module: $module"; \
@@ -407,6 +403,18 @@ ssh2ssh() {
     ssh -p2222 localhost
 }
 
+lsnetdrivers() {
+    for f in /sys/class/net/*; do
+        dev=$(basename $f)
+        driver=$(readlink $f/device/driver/module)
+        if [ $driver ]; then
+            driver=$(basename $driver)
+        fi
+        addr=$(cat $f/address)
+        operstate=$(cat $f/operstate)
+        printf "%10s [%s]: %10s (%s)\n" "$dev" "$addr" "$driver" "$operstate"
+    done
+}
 
 #
 # Aliases
@@ -548,7 +556,7 @@ if hash fasd &>/dev/null; then
     alias vr="f -e ${neo}vim\ -R" # quick opening(readonly) files with vim
     alias c="f -e cat" # quick cat files
     alias m='f -e mpv' # quick opening files with mpv
-    alias o='f -e xdg-open' # quick opening files with xdg-open
+    alias o='f -e gio open' # quick opening files with xdg-open
 fi
 
 #MSP
@@ -558,7 +566,7 @@ alias mspdebug-eg='mspdebug-eg18'
 alias mspdebug-cc='LD_LIBRARY_PATH=$HOME/.opt/ti/ccsv7/ccs_base/DebugServer/drivers/:$HOME/.opt/msptexas/lib $HOME/.opt/msptexas/bin/mspdebug tilib'
 
 # apt-get
-alias aptug='tmux-new "sudo apt update -qq && sudo apt upgrade -y && sudo apt autoremove; sudo apt clean; [ -d /opt/firefox-nightly ] && [ "$(date +%Y%m%d -r /opt/firefox-nightly)" -lt "$(date +%Y%m%d -d yesterday)" ] && upd8-ff-nightly.sh; read"'
+alias aptug='tmux-new "sudo apt update -qq && sudo apt upgrade -y && sudo apt autoremove; sudo apt clean; [ -d /opt/firefox-nightly ] && upd8-ff-nightly.sh; read"'
 alias aptit='sudo apt install'
 alias aptrm='sudo apt remove'
 alias aptar='sudo apt autoremove'
@@ -598,6 +606,7 @@ alias dmesg='sudo dmesg'
 alias dmidecode='sudo dmidecode'
 alias fstrim='sudo fstrim'
 alias open='gio open'
+alias xo='gio open'
 alias update-grub='sudo update-grub'
 alias swap-usage='for file in /proc/*/status ; do awk /VmSwap\|Name/\{printf\ \$2\ \"\ \"\ \$3\}END\{\ print\ \"\"\ \} $file; done | sort -k 2 -n -r | less'
 alias ufw='sudo ufw'

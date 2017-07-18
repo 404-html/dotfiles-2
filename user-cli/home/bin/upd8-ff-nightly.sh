@@ -7,6 +7,8 @@ if ! hash uudecode &>/dev/null; then
     exit -1
 fi
 
+[ "$(date +%Y%m%d -r /opt/firefox-nightly)" -ge "$(date +%Y%m%d -d yesterday)" ] && exit 0
+
 if [ "$UID" -ne 0 ]; then
     if hash sudo && groups | egrep -q "\<(sudo|wheel)\>"; then
         sudo "$0"
