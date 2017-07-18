@@ -15,7 +15,7 @@ fi
 
 # Remap menu key to actual right click mouse button.
 # This requires scroll lock mouse keys, so you loose your numpad.
-if [ "$hostname" = "a300" ];then
+if [ "$(hostname)" = "a300" ];then
     ~/.bin/rclick
 fi
 
