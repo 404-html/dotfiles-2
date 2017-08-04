@@ -152,3 +152,5 @@ user_pref("browser.sessionstore.interval", 1800000);
 // Don't automatically start videos!
 //user_pref("media.autoplay.enabled", false);
 
+// Don't disable my addons!
+user_pref("extensions.allow-non-mpc-extensions", true);
