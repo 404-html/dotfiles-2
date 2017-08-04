@@ -511,7 +511,7 @@ Comment=Simple_action
 TriggersCount=1
 
 [Data_23Triggers0]
-Key=Volume Up
+Key=
 Type=SHORTCUT
 Uuid={7dd31a4b-5459-4073-9561-d2dbb5d4a890}
 
@@ -563,7 +563,7 @@ Comment=Simple_action
 TriggersCount=1
 
 [Data_25Triggers0]
-Key=Volume Down
+Key=
 Type=SHORTCUT
 Uuid={7beb2444-f7a1-45cd-bbd2-024b9318ac7c}
 
