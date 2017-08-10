@@ -4,13 +4,20 @@
 xset -b
 
 # Numlock on
-numlockx
+numlockx on
 
 # Keyboard layout
-setxkbmap -layout us -variant altgr-intl 
+if [ "$(hostname)" = 't560' ] || [ "$(hostname)" = "a300" ]; then
+    setxkbmap -layout us -variant altgr-intl 
+fi
 
 if [ -r ~/.Xmodmap ]; then
     xmodmap ~/.Xmodmap
+fi
+
+if [ "$(hostname)" = 't560' ]; then
+    xmodmap -e 'keycode 107=Menu'  # remap printSc to Menu
+    xmodmap -e 'keycode 118=Print' # Remap insert to printSc
 fi
 
 # Remap menu key to actual right click mouse button.

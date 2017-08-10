@@ -475,7 +475,7 @@ alias xclip='xclip -selection clipboard' # I use the clipboard buffer.
 alias px='ps x'
 
 # Fast file access 
-alias passwd_pretty='column -s: -t /etc/passwd'
+alias lspasswd='column -s: -t /etc/passwd'
 alias vimrc='vim ~/.vimrc'
 alias bashrc='vim ~/.bashrc'
 alias sh_aliases='vim ~/.sh_aliases'
@@ -582,7 +582,7 @@ alias aptdi='sudo dpkg -i'
 alias ytdl='youtube-dl -o "%(title)s-%(id)s.%(ext)s" --ignore-errors --merge-output-format mkv --no-mtime -f "bestvideo[height<=1080]+bestaudio" --sub-lang en,pt --write-sub --embed-subs --convert-subs srt'
 alias ytadl='youtube-dl -o "%(title)s-%(id)s.%(ext)s" --ignore-errors --no-mtime -f bestaudio'
 alias ffmpeg='ffmpeg -hide_banner'
-alias dirty='watch grep -e Dirty: -e Writeback: /proc/meminfo'
+alias dirtytop='watch grep -e Dirty: -e Writeback: /proc/meminfo'
 alias su='su --login'
 alias color-palette='(x=`tput op` y=`printf %76s`;for i in {0..256};do o=00$i;echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;done)'
 alias term-caps="infocmp -1 | sed -nu 's/^[ \000\t ]*//;s/[ \000\t ]*$//;/[^ \t\000]\{1,\}/!d;/acsc/d;s/=.*,//p'|column -c80"
@@ -610,3 +610,4 @@ alias xo='gio open'
 alias update-grub='sudo update-grub'
 alias swap-usage='for file in /proc/*/status ; do awk /VmSwap\|Name/\{printf\ \$2\ \"\ \"\ \$3\}END\{\ print\ \"\"\ \} $file; done | sort -k 2 -n -r | less'
 alias ufw='sudo ufw'
+alias rsync='rsync --progress --verbose --arquive --compress --update --recursive --human-readable'
