@@ -153,4 +153,8 @@ user_pref("browser.sessionstore.interval", 1800000);
 //user_pref("media.autoplay.enabled", false);
 
 // Don't disable my addons!
+// Enable non multiprocess compatible
 user_pref("extensions.allow-non-mpc-extensions", true);
+// Enable non webextension 
+user_pref("extensions.legacy.enabled", true);
+
