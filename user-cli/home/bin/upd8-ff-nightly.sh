@@ -29,7 +29,8 @@ cd /opt
 mv firefox-nightly firefox-nightly.old 2>/dev/null || true # avoid setting off set -e
 tar jxf "$TMPDIR/ff-nightly.tar.bz2" \
     && (mv firefox firefox-nightly \
-        && rm -rf firefox-nightly.old) \
+        && rm -rf firefox-nightly.old \
+        && find -type d -print0 | xargs -0 chmod o+rx) \
     || mv firefox-nightly.old firefox-nightly
 
 if ! [ -f /usr/local/bin/firefox-nightly ]; then
