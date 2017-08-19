@@ -485,7 +485,7 @@ Comment=Simple_action
 TriggersCount=1
 
 [Data_22Triggers0]
-Key=Meta+Up
+Key=Meta+.
 Type=SHORTCUT
 Uuid={a84e9e1c-d496-41ac-9c13-b25146ed2f93}
 
@@ -537,7 +537,7 @@ Comment=Simple_action
 TriggersCount=1
 
 [Data_24Triggers0]
-Key=Meta+Down
+Key=Meta+,
 Type=SHORTCUT
 Uuid={692af729-330f-4216-be2c-9a14be9877a4}
 
