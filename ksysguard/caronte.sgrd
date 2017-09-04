@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE KSysGuardWorkSheet>
-<WorkSheet title="caronte" rows="3" columns="2" interval="5" locked="0">
- <host port="-1" command="" name="caronte.tecnico.ulisboa.pt" shell="ssh"/>
- <display showUnit="0" hScale="6" autoRange="1" vLines="0" column="0" labels="1" vScroll="0" vDistance="30" hLines="1" svgBackground="" title="Total Load" fontSize="8" stacked="0" manualRange="0" class="FancyPlotter" rowSpan="1" unit="" row="0" version="1" columnSpan="1">
-  <beam color="0xff0057ae" sensorType="float" sensorName="cpu/cpu0/TotalLoad" hostName="caronte.tecnico.ulisboa.pt"/>
-  <beam color="0xffe20800" sensorType="float" sensorName="cpu/cpu1/TotalLoad" hostName="caronte.tecnico.ulisboa.pt"/>
-  <beam color="0xfff3c300" sensorType="float" sensorName="cpu/cpu2/TotalLoad" hostName="caronte.tecnico.ulisboa.pt"/>
-  <beam color="0xffff0000" sensorType="float" sensorName="cpu/cpu3/TotalLoad" hostName="caronte.tecnico.ulisboa.pt"/>
+<WorkSheet columns="2" rows="3" title="caronte" locked="0" interval="0.5">
+ <host shell="ssh" command="" name="caronte.tecnico.ulisboa.pt" port="-1"/>
+ <display hLines="1" version="1" stacked="0" vLines="0" labels="1" svgBackground="" columnSpan="1" rowSpan="1" unit="" manualRange="0" vDistance="30" row="0" title="Total Load" showUnit="0" fontSize="8" column="0" vScroll="0" class="FancyPlotter" hScale="6" autoRange="1">
+  <beam sensorType="float" color="0xff0057ae" sensorName="cpu/cpu0/TotalLoad" hostName="caronte.tecnico.ulisboa.pt"/>
+  <beam sensorType="float" color="0xffe20800" sensorName="cpu/cpu1/TotalLoad" hostName="caronte.tecnico.ulisboa.pt"/>
+  <beam sensorType="float" color="0xfff3c300" sensorName="cpu/cpu2/TotalLoad" hostName="caronte.tecnico.ulisboa.pt"/>
+  <beam sensorType="float" color="0xffff0000" sensorName="cpu/cpu3/TotalLoad" hostName="caronte.tecnico.ulisboa.pt"/>
  </display>
- <display showUnit="0" hScale="6" autoRange="1" vLines="0" column="1" labels="1" vScroll="0" vDistance="30" hLines="1" svgBackground="" title="Average Clock Frequency" fontSize="8" stacked="0" manualRange="0" class="FancyPlotter" rowSpan="1" unit="" row="0" version="1" columnSpan="1">
-  <beam color="0xff0057ae" sensorType="float" sensorName="cpu/system/AverageClock" hostName="caronte.tecnico.ulisboa.pt"/>
+ <display hLines="1" version="1" stacked="0" vLines="0" labels="1" svgBackground="" columnSpan="1" rowSpan="1" unit="" manualRange="1" vDistance="30" row="1" title="Load Average" showUnit="0" min="0" fontSize="8" column="0" vScroll="0" class="FancyPlotter" hScale="6" max="1" autoRange="1">
+  <beam sensorType="float" color="0xff0057ae" sensorName="cpu/system/loadavg1" hostName="caronte.tecnico.ulisboa.pt"/>
+  <beam sensorType="float" color="0xffe20800" sensorName="cpu/system/loadavg5" hostName="caronte.tecnico.ulisboa.pt"/>
+  <beam sensorType="float" color="0xfff3c300" sensorName="cpu/system/loadavg15" hostName="caronte.tecnico.ulisboa.pt"/>
  </display>
- <display showUnit="0" hScale="6" autoRange="1" vLines="0" column="0" labels="1" vScroll="0" vDistance="30" hLines="1" svgBackground="" title="Load Average" fontSize="8" stacked="0" manualRange="0" class="FancyPlotter" rowSpan="1" unit="" row="1" version="1" columnSpan="1">
-  <beam color="0xff0057ae" sensorType="float" sensorName="cpu/system/loadavg1" hostName="caronte.tecnico.ulisboa.pt"/>
-  <beam color="0xffe20800" sensorType="float" sensorName="cpu/system/loadavg5" hostName="caronte.tecnico.ulisboa.pt"/>
-  <beam color="0xfff3c300" sensorType="float" sensorName="cpu/system/loadavg15" hostName="caronte.tecnico.ulisboa.pt"/>
+ <display hLines="1" version="1" stacked="0" vLines="0" labels="1" svgBackground="" columnSpan="1" rowSpan="1" unit="" manualRange="0" vDistance="30" row="1" title="Memory" showUnit="0" fontSize="8" column="1" vScroll="0" class="FancyPlotter" hScale="6" autoRange="1">
+  <beam sensorType="integer" color="0xff0057ae" sensorName="mem/physical/application" hostName="caronte.tecnico.ulisboa.pt"/>
  </display>
- <display showUnit="0" hScale="6" autoRange="1" vLines="0" column="1" labels="1" vScroll="0" vDistance="30" hLines="1" svgBackground="" title="Memory" fontSize="8" stacked="0" manualRange="0" class="FancyPlotter" rowSpan="1" unit="" row="1" version="1" columnSpan="1">
-  <beam color="0xff0057ae" sensorType="integer" sensorName="mem/physical/application" hostName="caronte.tecnico.ulisboa.pt"/>
-  <beam color="0xffe20800" sensorType="integer" sensorName="mem/swap/used" hostName="caronte.tecnico.ulisboa.pt"/>
-  <beam color="0xfff3c300" sensorType="integer" sensorName="mem/physical/used" hostName="caronte.tecnico.ulisboa.pt"/>
+ <display hLines="1" version="1" stacked="0" vLines="0" labels="1" svgBackground="" columnSpan="1" rowSpan="1" unit="" manualRange="0" vDistance="30" row="2" title="Network Rate" showUnit="0" fontSize="8" column="0" vScroll="0" class="FancyPlotter" hScale="6" autoRange="1">
+  <beam sensorType="float" color="0xff0057ae" sensorName="network/interfaces/eth0/receiver/data" hostName="caronte.tecnico.ulisboa.pt"/>
+  <beam sensorType="float" color="0xffe20800" sensorName="network/interfaces/eth0/transmitter/data" hostName="caronte.tecnico.ulisboa.pt"/>
  </display>
- <display showUnit="0" hScale="6" autoRange="1" vLines="0" column="0" labels="1" vScroll="0" vDistance="30" hLines="1" svgBackground="" title="Network Rate" fontSize="8" stacked="0" manualRange="0" class="FancyPlotter" rowSpan="1" unit="" row="2" version="1" columnSpan="1">
-  <beam color="0xff0057ae" sensorType="float" sensorName="network/interfaces/eth0/receiver/data" hostName="caronte.tecnico.ulisboa.pt"/>
-  <beam color="0xffe20800" sensorType="float" sensorName="network/interfaces/eth0/transmitter/data" hostName="caronte.tecnico.ulisboa.pt"/>
+ <display hLines="1" version="1" stacked="0" vLines="0" labels="1" svgBackground="" columnSpan="1" rowSpan="1" unit="" manualRange="0" vDistance="30" row="0" title="Swap Memory" showUnit="0" fontSize="8" column="1" vScroll="0" class="FancyPlotter" hScale="6" autoRange="1">
+  <beam sensorType="integer" color="0xff0057ae" sensorName="mem/swap/used" hostName="caronte.tecnico.ulisboa.pt"/>
  </display>
- <display showUnit="0" hScale="6" autoRange="1" vLines="0" column="1" labels="1" vScroll="0" vDistance="30" hLines="1" svgBackground="" title="Disk rate" fontSize="8" stacked="0" manualRange="0" class="FancyPlotter" rowSpan="1" unit="" row="2" version="1" columnSpan="1">
-  <beam color="0xff0057ae" sensorType="float" hostName="caronte.tecnico.ulisboa.pt" regexpSensorName="disk/sd[a-z]*_.*/Rate/rblk" summationName="Reads"/>
-  <beam color="0xffe20800" sensorType="float" hostName="caronte.tecnico.ulisboa.pt" regexpSensorName="disk/sd[a-z]*_.*/Rate/wblk" summationName="Writes"/>
+ <display hLines="1" version="1" stacked="0" vLines="0" labels="1" svgBackground="" columnSpan="1" rowSpan="1" unit="" manualRange="0" vDistance="30" row="2" title="Disk rate" showUnit="0" fontSize="8" column="1" vScroll="0" class="FancyPlotter" hScale="6" autoRange="1">
+  <beam sensorType="float" color="0xff00aa00" sensorName="disk/sda_(8:0)/Rate/wblk" hostName="caronte.tecnico.ulisboa.pt"/>
+  <beam sensorType="float" color="0xffe20800" sensorName="disk/sda_(8:0)/Rate/rblk" hostName="caronte.tecnico.ulisboa.pt"/>
+  <beam sensorType="float" color="0xff00aa00" sensorName="disk/sdb_(8:16)/Rate/wblk" hostName="caronte.tecnico.ulisboa.pt"/>
+  <beam sensorType="float" color="0xffff0000" sensorName="disk/sdb_(8:16)/Rate/rblk" hostName="caronte.tecnico.ulisboa.pt"/>
  </display>
 </WorkSheet>
