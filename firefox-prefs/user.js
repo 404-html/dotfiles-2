@@ -16,7 +16,7 @@ user_pref("keyword.enabled", false);
 user_pref("browser.fixup.alternate.enabled", false);
 
 // Disable Cisco h264 decoder plugin
-user_pref("media.gmp-provider.enabled", false);
+//user_pref("media.gmp-provider.enabled", false);
 
 // Default search engine
 user_pref("browser.search.defaultenginename", "DuckDuckGo");
@@ -142,7 +142,7 @@ user_pref("plugin.state.flash", 0);
 
 // Don't show warning about login in non https webpage. 
 // This makes sense security wise, but it's very annoying.
-user_pref("security.insecure_field_warning.contextual.enabled", false)
+//user_pref("security.insecure_field_warning.contextual.enabled", false)
 
 
 // Increase interval at which firefox saves session to 30m (default 15s)
@@ -155,6 +155,16 @@ user_pref("browser.sessionstore.interval", 1800000);
 // Don't disable my addons!
 // Enable non multiprocess compatible
 user_pref("extensions.allow-non-mpc-extensions", true);
+
 // Enable non webextension 
 user_pref("extensions.legacy.enabled", true);
+
+// High dpi
+//user_pref("layout.css.devPixelsPerPx", "1.20");
+
+// Disable pocket
+user_pref("extensions.pocket.enabled", false);
+
+// Disable screenshot
+user_pref("extensions.screenshots.disabled", true);
 
