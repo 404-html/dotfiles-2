@@ -470,7 +470,7 @@ alias matlab-cli='matlab -nodesktop -nosplash'
 alias rot13="tr a-zA-Z n-za-mN-ZA-M"
 alias logsize="du -hs /var/log/* 2>/dev/null |  egrep '^[^'$'\t'']+[MG]'"
 alias sdu="du -hs * .??* 2>/dev/null | egrep '^[^'$'\t'']+[MG]'"
-alias genpw='< /dev/urandom tr -dc \!-\~ | head -c30'
+alias genpw='< /dev/urandom | tr -dc "a-zA-Z0-9" | head -c32'
 alias xclip='xclip -selection clipboard' # I use the clipboard buffer.
 alias px='ps x'
 
@@ -611,3 +611,4 @@ alias update-grub='sudo update-grub'
 alias swap-usage='for file in /proc/*/status ; do awk /VmSwap\|Name/\{printf\ \$2\ \"\ \"\ \$3\}END\{\ print\ \"\"\ \} $file; done | sort -k 2 -n -r | less'
 alias ufw='sudo ufw'
 alias rsync='rsync --progress --verbose --arquive --compress --delete --human-readable'
+alias lsusb="sudo lsusb -v | \grep -E '\<(Bus|iProduct|bDeviceClass|bDeviceProtocol)' 2>/dev/null"
