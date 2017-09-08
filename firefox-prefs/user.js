@@ -25,7 +25,7 @@ user_pref("browser.search.defaultenginename", "DuckDuckGo");
 user_pref("network.proxy.socks_remote_dns",	true);
 
 // Disable the built-in PDF viewer (CVE-2015-2743)
-user_pref("pdfjs.disabled",	true);
+//user_pref("pdfjs.disabled",	true);
 
 // Disable new tab tile ads 
 user_pref("browser.newtabpage.enabled", false);
