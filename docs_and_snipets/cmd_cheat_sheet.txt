@@ -7,5 +7,6 @@ rename   # batch renaming
 timeout  # run a command with a time limit
 glxinfo | grep rendering # check if 3d accel active
 xdpyinfo # Xorg info
+fuser # kill by used port or file
 
 
