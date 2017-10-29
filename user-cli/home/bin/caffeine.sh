@@ -10,7 +10,7 @@ function closedoor {
 }
 
 if [ "$XDG_CURRENT_DESKTOP" = 'KDE' ]; then
-    id=$(qdbus org.freedesktop.PowerManagement /org/freedesktop/PowerManagement/Inhibit Inhibit 'Caffeine' 'User requested.')
+    id=$(qdbus org.freedesktop.PowerManagement /org/freedesktop/PowerManagement/Inhibit Inhibit 'Caffeine' '')
     sleep infinity
 
 elif &>/dev/null pgrep -x xscreensaver ; then
