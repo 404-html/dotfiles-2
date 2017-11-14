@@ -157,6 +157,7 @@ tmux-new() {
 sleeptildate(){
     current_epoch=$(date +%s)
     target_epoch=$(date -d "$1" +%s)
+    date -d "$1"
 
     sleep_seconds=$(( $target_epoch - $current_epoch ))
 
@@ -239,7 +240,7 @@ swap() {
 
 # sshvnc command from the ssvnc package does this for me.
 if ! hash sshvnc &>/dev/null; then
-    sshvnc() {
+    function sshvnc() {
         [ "$#" -ne 1 ] && >&2 echo "Usage: $0 <host>" && return 1
 
         ssh -CL 5900:localhost:5900 "$1" 'x11vnc -nopw -forever -localhost --display :0' &
