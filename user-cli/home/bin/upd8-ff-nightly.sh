@@ -91,7 +91,7 @@ rm $TMPDIR/ff-nightly.tar.bz2
 
 exit 0
 
-begin 644 -
+begin 644 /usr/share/applications/firefox-nightly.desktop
 M6T1E<VMT;W`@16YT<GE="E9E<G-I;VX],2XP"DYA;64]3FEG:'1L>2!796(@
 M0G)O=W-E<@I.86UE6V%S=%T]4F5S=&]L861O<B!W96(@3FEG:'1L>0I.86UE
 M6V-A73U.879E9V%D;W(@=V5B($YI9VAT;'D*3F%M95MC<UT]3FEG:'1L>2!7
