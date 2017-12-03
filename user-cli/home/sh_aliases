@@ -417,6 +417,11 @@ lsnetdrivers() {
     done
 }
 
+
+blueifypdf() {
+    convert -density 300 "$1" +level-colors blue,white "$2"
+}
+
 #
 # Aliases
 #
@@ -613,6 +618,5 @@ alias swap-usage='for file in /proc/*/status ; do awk /VmSwap\|Name/\{printf\ \$
 alias ufw='sudo ufw'
 alias rsync='rsync --progress --verbose --arquive --compress --delete --human-readable'
 alias lsusb="sudo lsusb -v | \grep -E '\<(Bus|iProduct|bDeviceClass|bDeviceProtocol)' 2>/dev/null"
-alias blueifypdf="convert -density 300 input.pdf +level-colors blue,white output.pdf"
 alias tailf="tail -f"
 alias resetusb="sudo rmmod xhci_pci xhci_hcd && sleep 2 && sudo modprobe xhci_pci xhci_hcd"
