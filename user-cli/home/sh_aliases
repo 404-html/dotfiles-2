@@ -613,7 +613,11 @@ alias dmidecode='sudo dmidecode'
 alias fstrim='sudo fstrim'
 alias open='gio open'
 alias xo='gio open'
-alias update-grub='sudo update-grub'
+if ! hash update-grub 2>/dev/null; then
+    alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+else
+    alias update-grub='sudo update-grub'
+fi
 alias swap-usage='for file in /proc/*/status ; do awk /VmSwap\|Name/\{printf\ \$2\ \"\ \"\ \$3\}END\{\ print\ \"\"\ \} $file; done | sort -k 2 -n -r | less'
 alias ufw='sudo ufw'
 alias rsync='rsync --progress --verbose --arquive --compress --delete --human-readable'
