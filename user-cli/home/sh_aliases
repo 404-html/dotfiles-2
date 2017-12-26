@@ -551,6 +551,8 @@ if hash grc &>/dev/null; then
     alias ps='\grc ps'
     alias ifconfig='\grc ifconfig'
     alias dig='\grc dig'
+    alias iptables='\grc iptables'
+    alias iptables6='\grc iptables6'
 fi
 
 # Super usefull...
@@ -624,3 +626,4 @@ alias rsync='rsync --progress --verbose --arquive --compress --delete --human-re
 alias lsusb="sudo lsusb -v | \grep -E '\<(Bus|iProduct|bDeviceClass|bDeviceProtocol)' 2>/dev/null"
 alias tailf="tail -f"
 alias resetusb="sudo rmmod xhci_pci xhci_hcd && sleep 2 && sudo modprobe xhci_pci xhci_hcd"
+alias sshtron="ssh sshtron.zachlatta.com"
