@@ -1,0 +1,2 @@
+/etc/udev/rules.d/90-libvirt-usb.rules
+udevadm monitor --property --udev
