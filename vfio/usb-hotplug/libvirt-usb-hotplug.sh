@@ -2,14 +2,14 @@
 
 CMD=$1
 DOMAIN=$2
-VID=$3
-PID=$4
+VID=${3%:*}
+PID=${3#*:}
 
-if [ $# -ne 4 ] || \
+if [ $# -ne 3 ] || \
    [ "${CMD}" != "attach-device" ] && \
    [ "${CMD}" != "detach-device" ]; then
 
-    >&2 echo -e "\tusage: $0 attach-device|detach-device DOMAIN VID PID"
+    >&2 echo -e "usage: $0 attach-device|detach-device DOMAIN USB_ID"
     exit -1
 fi
 
