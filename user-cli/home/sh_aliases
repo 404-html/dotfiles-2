@@ -551,8 +551,8 @@ if hash grc &>/dev/null; then
     alias ps='\grc ps'
     alias ifconfig='\grc ifconfig'
     alias dig='\grc dig'
-    alias iptables='\grc iptables'
-    alias iptables6='\grc iptables6'
+    alias iptables='\grc sudo iptables'
+    alias iptables6='\grc sudo iptables6'
 fi
 
 # Super usefull...
@@ -606,7 +606,6 @@ alias namei='namei -om'
 # powertop only work when your root, so what's the point of not 
 # sudoing anyway...
 alias powertop='sudo powertop'
-alias iptables='sudo iptables'
 alias ip6tables='sudo ip6tables'
 alias watchcpufreq='watch -n 0,3 "cat /proc/cpuinfo | grep MHz"'
 alias unraw='sudo kbd_mode -s -C /dev/tty7'
@@ -627,3 +626,4 @@ alias lsusb="sudo lsusb -v | \grep -E '\<(Bus|iProduct|bDeviceClass|bDeviceProto
 alias tailf="tail -f"
 alias resetusb="sudo rmmod xhci_pci xhci_hcd && sleep 2 && sudo modprobe xhci_pci xhci_hcd"
 alias sshtron="ssh sshtron.zachlatta.com"
+alias ptyloop="socat -d -d pty,raw,echo=0 pty,raw,echo=0"
