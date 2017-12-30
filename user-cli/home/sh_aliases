@@ -551,8 +551,8 @@ if hash grc &>/dev/null; then
     alias ps='\grc ps'
     alias ifconfig='\grc ifconfig'
     alias dig='\grc dig'
-    alias iptables='\grc sudo iptables'
-    alias iptables6='\grc sudo iptables6'
+    alias iptables='sudo \grc iptables'
+    alias iptables6='sudo \grc iptables6'
 fi
 
 # Super usefull...

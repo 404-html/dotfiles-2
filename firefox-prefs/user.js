@@ -168,4 +168,4 @@ user_pref("extensions.pocket.enabled", false);
 // Disable screenshot
 user_pref("extensions.screenshots.disabled", true);
 
-user_pref("privacy.resistFingerprinting", true);
+//user_pref("privacy.resistFingerprinting", true);
