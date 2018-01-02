@@ -1,15 +1,14 @@
-<domain type='kvm' id='1' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
+<domain type='kvm' id='13' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
   <name>win10-nvidia</name>
   <uuid>e1e8eeee-31e0-4f87-970d-7d64bd6b56a3</uuid>
   <memory unit='KiB'>12582912</memory>
   <currentMemory unit='KiB'>12582912</currentMemory>
-  <vcpu placement='static'>4</vcpu>
+  <vcpu placement='static'>3</vcpu>
   <iothreads>1</iothreads>
   <cputune>
     <vcpupin vcpu='0' cpuset='3'/>
     <vcpupin vcpu='1' cpuset='2'/>
     <vcpupin vcpu='2' cpuset='1'/>
-    <vcpupin vcpu='3' cpuset='0'/>
     <emulatorpin cpuset='0'/>
     <iothreadpin iothread='1' cpuset='0'/>
   </cputune>
@@ -41,7 +40,7 @@
     <vmport state='off'/>
   </features>
   <cpu mode='host-passthrough' check='none'>
-    <topology sockets='1' cores='4' threads='1'/>
+    <topology sockets='1' cores='3' threads='1'/>
   </cpu>
   <clock offset='localtime'>
     <timer name='rtc' tickpolicy='catchup'/>
@@ -75,24 +74,13 @@
       <alias name='scsi0'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x06' function='0x0'/>
     </controller>
-    <controller type='usb' index='0' model='ich9-ehci1'>
+    <controller type='usb' index='0' model='ehci'>
       <alias name='usb'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x7'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x0'/>
     </controller>
-    <controller type='usb' index='0' model='ich9-uhci1'>
-      <alias name='usb'/>
-      <master startport='0'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x0' multifunction='on'/>
-    </controller>
-    <controller type='usb' index='0' model='ich9-uhci2'>
-      <alias name='usb'/>
-      <master startport='2'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x1'/>
-    </controller>
-    <controller type='usb' index='0' model='ich9-uhci3'>
-      <alias name='usb'/>
-      <master startport='4'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x2'/>
+    <controller type='usb' index='1' model='nec-xhci'>
+      <alias name='usb1'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x0'/>
     </controller>
     <interface type='direct'>
       <mac address='02:9c:d0:09:97:47'/>
@@ -111,19 +99,19 @@
       <alias name='net1'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x0d' function='0x0'/>
     </interface>
-    <input type='mouse' bus='ps2'>
+    <input type='keyboard' bus='ps2'>
       <alias name='input0'/>
     </input>
-    <input type='keyboard' bus='ps2'>
+    <input type='keyboard' bus='virtio'>
       <alias name='input1'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x0'/>
+    </input>
+    <input type='mouse' bus='ps2'>
+      <alias name='input2'/>
     </input>
     <input type='mouse' bus='virtio'>
-      <alias name='input2'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x09' function='0x0'/>
-    </input>
-    <input type='keyboard' bus='virtio'>
       <alias name='input3'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x0'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x09' function='0x0'/>
     </input>
     <sound model='ac97'>
       <alias name='sound0'/>
@@ -146,22 +134,13 @@
       <address type='pci' domain='0x0000' bus='0x00' slot='0x0c' function='0x0'/>
     </hostdev>
     <hostdev mode='subsystem' type='usb' managed='yes'>
-      <source>
+      <source startupPolicy='optional'>
         <vendor id='0x1131'/>
         <product id='0x1004'/>
-        <address bus='3' device='3'/>
+        <address bus='3' device='10'/>
       </source>
       <alias name='hostdev2'/>
-      <address type='usb' bus='0' port='1'/>
-    </hostdev>
-    <hostdev mode='subsystem' type='usb' managed='yes'>
-      <source>
-        <vendor id='0x046d'/>
-        <product id='0x0804'/>
-        <address bus='3' device='2'/>
-      </source>
-      <alias name='hostdev3'/>
-      <address type='usb' bus='0' port='2'/>
+      <address type='usb' bus='1' port='1'/>
     </hostdev>
     <memballoon model='virtio'>
       <stats period='5'/>
