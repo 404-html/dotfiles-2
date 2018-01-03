@@ -101,7 +101,7 @@ decrease_volume=Volume Down\tMeta+<,Volume Down,Decrease Volume
 increase_microphone_volume=Microphone Volume Up\tMeta+Ctrl+.,Microphone Volume Up,Increase Microphone Volume
 increase_volume=Volume Up\tMeta+>,Volume Up,Increase Volume
 mic_mute=Alt+M,Microphone Mute,Mute Microphone
-mute=Volume Mute\tMeta+Num+.,Volume Mute,Mute
+mute=Volume Mute\tMeta+End,Volume Mute,Mute
 
 [knotes]
 _k_friendly_name=KNotes
