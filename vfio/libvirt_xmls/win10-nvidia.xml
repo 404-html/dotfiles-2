@@ -1,8 +1,12 @@
-<domain type='kvm' id='13' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
+<domain type='kvm' id='1' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
   <name>win10-nvidia</name>
   <uuid>e1e8eeee-31e0-4f87-970d-7d64bd6b56a3</uuid>
   <memory unit='KiB'>12582912</memory>
   <currentMemory unit='KiB'>12582912</currentMemory>
+  <memoryBacking>
+    <nosharepages/>
+    <locked/>
+  </memoryBacking>
   <vcpu placement='static'>3</vcpu>
   <iothreads>1</iothreads>
   <cputune>
@@ -24,6 +28,8 @@
   <features>
     <acpi/>
     <apic/>
+    <hap state='on'/>
+    <viridian/>
     <hyperv>
       <relaxed state='on'/>
       <vapic state='on'/>
@@ -137,7 +143,7 @@
       <source startupPolicy='optional'>
         <vendor id='0x1131'/>
         <product id='0x1004'/>
-        <address bus='3' device='10'/>
+        <address bus='3' device='4'/>
       </source>
       <alias name='hostdev2'/>
       <address type='usb' bus='1' port='1'/>
