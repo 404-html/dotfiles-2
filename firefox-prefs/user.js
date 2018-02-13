@@ -113,7 +113,7 @@ user_pref("privacy.trackingprotection.enabled", true);
 user_pref("network.cookie.cookieBehavior", 1);
 
 // Open searches in new tab
-user_pref("browser.search.openintab", true);
+//user_pref("browser.search.openintab", true);
 
 // time to disable buttons on security-sensitive dialog boxes.
 user_pref("security.dialog_enable_delay", 0);
