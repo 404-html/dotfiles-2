@@ -606,7 +606,7 @@ alias color-palette='(x=`tput op` y=`printf %76s`;for i in {0..256};do o=00$i;ec
 alias term-caps="infocmp -1 | sed -nu 's/^[ \000\t ]*//;s/[ \000\t ]*$//;/[^ \t\000]\{1,\}/!d;/acsc/d;s/=.*,//p'|column -c80"
 alias tree='tree -Csh'
 alias du='du -hs'
-alias df='df -Th -x tmpfs -x devtmpfs'
+alias df='df -Thx tmpfs -x devtmpfs'
 alias youtube-dl='youtube-dl --no-mtime'
 alias starwars='telnet towel.blinkenlights.nl'
 alias inxi='inxi -F'
@@ -639,3 +639,4 @@ alias sshtron="ssh sshtron.zachlatta.com"
 alias ptyloop="socat -d -d pty,raw,echo=0 pty,raw,echo=0"
 alias systemctl="sudo systemctl"
 alias dig="dig +short"
+
