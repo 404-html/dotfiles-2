@@ -657,4 +657,5 @@ alias sshtron="ssh sshtron.zachlatta.com"
 alias ptyloop="socat -d -d pty,raw,echo=0 pty,raw,echo=0"
 alias systemctl="sudo systemctl"
 alias dig="dig +short"
+alias sshfs="sshfs -o workaround=rename"
 
