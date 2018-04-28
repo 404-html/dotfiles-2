@@ -20,3 +20,5 @@ user-cli/home/anacron/spool/*
 user-gui/autostart.d/*
 
 user-cli/home/profile.d/omnetpp.sh
+
+user-gui/local/share/konsole/bookmarks.xml*
