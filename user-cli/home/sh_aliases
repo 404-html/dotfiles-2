@@ -649,7 +649,7 @@ else
 fi
 alias swap-usage='for file in /proc/*/status ; do awk /VmSwap\|Name/\{printf\ \$2\ \"\ \"\ \$3\}END\{\ print\ \"\"\ \} $file; done | sort -k 2 -n -r | less'
 alias ufw='sudo ufw'
-alias rsync='rsync --progress --verbose --arquive --compress --delete --human-readable'
+alias rsync='rsync --progress --verbose --archive --compress --delete --human-readable'
 alias lsusb="sudo lsusb -v | \grep -E '\<(Bus|iProduct|bDeviceClass|bDeviceProtocol)' 2>/dev/null"
 alias tailf="tail -f"
 alias resetusb="sudo rmmod xhci_pci xhci_hcd && sleep 2 && sudo modprobe xhci_pci xhci_hcd"
