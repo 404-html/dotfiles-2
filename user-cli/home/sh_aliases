@@ -600,20 +600,18 @@ alias mspdebug-eg='mspdebug-eg18'
 alias mspdebug-cc='LD_LIBRARY_PATH=$HOME/.opt/ti/ccsv7/ccs_base/DebugServer/drivers/:$HOME/.opt/msptexas/lib $HOME/.opt/msptexas/bin/mspdebug tilib'
 
 # apt-get
-alias apt=">&2 echo 'STOP IT!'"
-alias apt-get=">&2 echo 'STOP IT!'"
-#alias aptug='tmux-new "sudo apt update -qq; sudo apt upgrade -y && sudo apt autoremove; sudo apt clean; [ -d /opt/firefox-nightly ] && upd8-ff-nightly.sh; read"'
-#alias aptit='sudo apt install'
-#alias aptrm='sudo apt remove'
-#alias aptar='sudo apt autoremove'
-#alias aptls='apt show'
-#alias aptmd='apt-cache madison'
-#alias aptsp='apt search'
-#alias aptsf='apt-file search'
-#alias aptdl='dpkg -l'
-#alias aptdL='dpkg -L'
-#alias aptdS='dpkg -S'
-#alias aptdi='sudo dpkg -i'
+alias aptug='tmux-new "sudo apt update -qq; sudo apt upgrade -y && sudo apt autoremove; sudo apt clean; [ -d /opt/firefox-nightly ] && upd8-ff-nightly.sh; read"'
+alias aptit='sudo apt install'
+alias aptrm='sudo apt remove'
+alias aptar='sudo apt autoremove'
+alias aptls='apt show'
+alias aptmd='apt-cache madison'
+alias aptsp='apt search'
+alias aptsf='apt-file search'
+alias aptdl='dpkg -l'
+alias aptdL='dpkg -L'
+alias aptdS='dpkg -S'
+alias aptdi='sudo dpkg -i'
 
 alias ytdl='youtube-dl -o "%(title)s-%(id)s.%(ext)s" --ignore-errors --merge-output-format mkv --no-mtime -f "bestvideo[height<=1080]+bestaudio" --sub-lang en,pt --write-sub --embed-subs --convert-subs srt'
 alias ytadl='youtube-dl -o "%(title)s-%(id)s.%(ext)s" --ignore-errors --no-mtime -f bestaudio'
@@ -658,4 +656,5 @@ alias ptyloop="socat -d -d pty,raw,echo=0 pty,raw,echo=0"
 alias systemctl="sudo systemctl"
 alias dig="dig +short"
 alias sshfs="sshfs -o workaround=rename"
+alias apt="sudo apt"
 
