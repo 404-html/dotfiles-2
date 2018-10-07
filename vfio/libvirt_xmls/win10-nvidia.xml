@@ -1,4 +1,4 @@
-<domain type='kvm' id='1' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
+<domain type='kvm' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
   <name>win10-nvidia</name>
   <uuid>e1e8eeee-31e0-4f87-970d-7d64bd6b56a3</uuid>
   <memory unit='KiB'>12582912</memory>
@@ -7,12 +7,13 @@
     <nosharepages/>
     <locked/>
   </memoryBacking>
-  <vcpu placement='static'>3</vcpu>
+  <vcpu placement='static'>4</vcpu>
   <iothreads>1</iothreads>
   <cputune>
     <vcpupin vcpu='0' cpuset='3'/>
     <vcpupin vcpu='1' cpuset='2'/>
     <vcpupin vcpu='2' cpuset='1'/>
+    <vcpupin vcpu='3' cpuset='0'/>
     <emulatorpin cpuset='0'/>
     <iothreadpin iothread='1' cpuset='0'/>
   </cputune>
@@ -46,7 +47,7 @@
     <vmport state='off'/>
   </features>
   <cpu mode='host-passthrough' check='none'>
-    <topology sockets='1' cores='3' threads='1'/>
+    <topology sockets='1' cores='4' threads='1'/>
   </cpu>
   <clock offset='localtime'>
     <timer name='rtc' tickpolicy='catchup'/>
@@ -66,61 +67,43 @@
     <disk type='file' device='disk'>
       <driver name='qemu' type='raw' cache='none' io='native' discard='unmap'/>
       <source file='/home/petrucci/VMs/win10-nvidia.img'/>
-      <backingStore/>
       <target dev='sda' bus='scsi'/>
       <boot order='1'/>
-      <alias name='scsi0-0-0-0'/>
       <address type='drive' controller='0' bus='0' target='0' unit='0'/>
     </disk>
-    <controller type='pci' index='0' model='pci-root'>
-      <alias name='pci.0'/>
-    </controller>
+    <controller type='pci' index='0' model='pci-root'/>
     <controller type='scsi' index='0' model='virtio-scsi'>
       <driver queues='3' iothread='1'/>
-      <alias name='scsi0'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x06' function='0x0'/>
     </controller>
     <controller type='usb' index='0' model='ehci'>
-      <alias name='usb'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x04' function='0x0'/>
     </controller>
     <controller type='usb' index='1' model='nec-xhci'>
-      <alias name='usb1'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x0'/>
     </controller>
     <interface type='direct'>
       <mac address='02:9c:d0:09:97:47'/>
       <source dev='eth1' mode='private'/>
-      <target dev='macvtap0'/>
       <model type='virtio'/>
       <link state='up'/>
-      <alias name='net0'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
     </interface>
     <interface type='network'>
       <mac address='52:54:00:b0:17:7b'/>
-      <source network='host-only' bridge='virbr1'/>
-      <target dev='vnet0'/>
+      <source network='host-only'/>
       <model type='virtio'/>
-      <alias name='net1'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x0d' function='0x0'/>
     </interface>
-    <input type='keyboard' bus='ps2'>
-      <alias name='input0'/>
-    </input>
+    <input type='keyboard' bus='ps2'/>
     <input type='keyboard' bus='virtio'>
-      <alias name='input1'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x0'/>
     </input>
-    <input type='mouse' bus='ps2'>
-      <alias name='input2'/>
-    </input>
+    <input type='mouse' bus='ps2'/>
     <input type='mouse' bus='virtio'>
-      <alias name='input3'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x09' function='0x0'/>
     </input>
     <sound model='ac97'>
-      <alias name='sound0'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0'/>
     </sound>
     <hostdev mode='subsystem' type='pci' managed='yes'>
@@ -128,37 +111,28 @@
       <source>
         <address domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
       </source>
-      <alias name='hostdev0'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x0b' function='0x0'/>
+    </hostdev>
+    <hostdev mode='subsystem' type='usb' managed='yes'>
+      <source startupPolicy='optional'>
+        <vendor id='0x1131'/>
+        <product id='0x1004'/>
+      </source>
+      <address type='usb' bus='1' port='1'/>
     </hostdev>
     <hostdev mode='subsystem' type='pci' managed='yes'>
       <driver name='vfio'/>
       <source>
         <address domain='0x0000' bus='0x01' slot='0x00' function='0x1'/>
       </source>
-      <alias name='hostdev1'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x0c' function='0x0'/>
     </hostdev>
-    <hostdev mode='subsystem' type='usb' managed='yes'>
-      <source startupPolicy='optional'>
-        <vendor id='0x1131'/>
-        <product id='0x1004'/>
-        <address bus='3' device='4'/>
-      </source>
-      <alias name='hostdev2'/>
-      <address type='usb' bus='1' port='1'/>
-    </hostdev>
     <memballoon model='virtio'>
-      <stats period='5'/>
-      <alias name='balloon0'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x08' function='0x0'/>
     </memballoon>
   </devices>
   <seclabel type='none' model='none'/>
-  <seclabel type='dynamic' model='dac' relabel='yes'>
-    <label>+1000:+147</label>
-    <imagelabel>+1000:+147</imagelabel>
-  </seclabel>
+  <seclabel type='dynamic' model='dac' relabel='yes'/>
   <qemu:commandline>
     <qemu:arg value='-object'/>
     <qemu:arg value='input-linux,id=kbd1,evdev=/dev/input/event0,grab_all=on,repeat=on'/>
@@ -166,6 +140,8 @@
     <qemu:arg value='input-linux,id=mouse1,evdev=/dev/input/by-id/usb-SOAI_Gaming_Mouse-if01-event-mouse'/>
     <qemu:env name='QEMU_AUDIO_DRV' value='pa'/>
     <qemu:env name='QEMU_PA_SERVER' value='/run/user/1000/pulse/native'/>
+    <qemu:env name='QEMU_PA_SAMPLES' value='512'/>
+    <qemu:env name='QEMU_AUDIO_TIMER_PERIOD' value='250'/>
   </qemu:commandline>
 </domain>
 
