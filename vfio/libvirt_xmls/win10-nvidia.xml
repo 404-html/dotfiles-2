@@ -1,19 +1,18 @@
 <domain type='kvm' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
   <name>win10-nvidia</name>
   <uuid>e1e8eeee-31e0-4f87-970d-7d64bd6b56a3</uuid>
-  <memory unit='KiB'>12582912</memory>
-  <currentMemory unit='KiB'>12582912</currentMemory>
+  <memory unit='KiB'>10485760</memory>
+  <currentMemory unit='KiB'>10485760</currentMemory>
   <memoryBacking>
     <nosharepages/>
     <locked/>
   </memoryBacking>
-  <vcpu placement='static'>4</vcpu>
+  <vcpu placement='static'>3</vcpu>
   <iothreads>1</iothreads>
   <cputune>
     <vcpupin vcpu='0' cpuset='3'/>
     <vcpupin vcpu='1' cpuset='2'/>
     <vcpupin vcpu='2' cpuset='1'/>
-    <vcpupin vcpu='3' cpuset='0'/>
     <emulatorpin cpuset='0'/>
     <iothreadpin iothread='1' cpuset='0'/>
   </cputune>
@@ -24,7 +23,7 @@
     <type arch='x86_64' machine='pc-i440fx-2.7'>hvm</type>
     <loader readonly='yes' type='pflash'>/usr/share/OVMF/OVMF_CODE.fd</loader>
     <nvram>/var/lib/libvirt/qemu/nvram/win10_VARS.fd</nvram>
-    <bootmenu enable='yes'/>
+    <bootmenu enable='no'/>
   </os>
   <features>
     <acpi/>
@@ -47,7 +46,8 @@
     <vmport state='off'/>
   </features>
   <cpu mode='host-passthrough' check='none'>
-    <topology sockets='1' cores='4' threads='1'/>
+    <topology sockets='1' cores='3' threads='1'/>
+    <feature policy='disable' name='hypervisor'/>
   </cpu>
   <clock offset='localtime'>
     <timer name='rtc' tickpolicy='catchup'/>
@@ -115,6 +115,13 @@
     </hostdev>
     <hostdev mode='subsystem' type='usb' managed='yes'>
       <source startupPolicy='optional'>
+        <vendor id='0x046d'/>
+        <product id='0x0804'/>
+      </source>
+      <address type='usb' bus='0' port='1'/>
+    </hostdev>
+    <hostdev mode='subsystem' type='usb' managed='yes'>
+      <source startupPolicy='optional'>
         <vendor id='0x1131'/>
         <product id='0x1004'/>
       </source>
@@ -135,7 +142,7 @@
   <seclabel type='dynamic' model='dac' relabel='yes'/>
   <qemu:commandline>
     <qemu:arg value='-object'/>
-    <qemu:arg value='input-linux,id=kbd1,evdev=/dev/input/event0,grab_all=on,repeat=on'/>
+    <qemu:arg value='input-linux,id=kbd1,evdev=/dev/input/event0,grab_all=on'/>
     <qemu:arg value='-object'/>
     <qemu:arg value='input-linux,id=mouse1,evdev=/dev/input/by-id/usb-SOAI_Gaming_Mouse-if01-event-mouse'/>
     <qemu:env name='QEMU_AUDIO_DRV' value='pa'/>
