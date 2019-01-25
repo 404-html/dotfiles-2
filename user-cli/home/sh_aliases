@@ -197,7 +197,7 @@ ips () {
         colorize=""
     fi
 
-    "$colorize" ip address list | awk '!/::1/ && !/127.0.0.1/ && /inet6?/ {print $3 | "sort"}'
+    "$colorize" ip address list | awk '!/::1/ && !/127.0.0.1/ && /inet6?/ {print $2 | "sort"}'
 }
 
 if [ $ZSH_VERSION ];then
@@ -453,17 +453,18 @@ function sanename() {
     mv "$1" "${1//[^A-Za-z0-9._-]/_}"
 }
 
-function optpdf() {
+function pdfopt() {
+    local TMPFILE=tmp.$$
+
     if [ -e "$1" ]; then
-        local TMPFILE=tmp.$$
         \mv "$1" "$TMPFILE"
-        gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -sOutputFile="$1" "$TMPFILE"
+        #gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -sOutputFile="$1" "$TMPFILE"
+        ps2pdf "$TMPFILE" "$1"
         \rm "$TMPFILE"
     else
         >&2 echo '[error] file not found'
     fi
 }
-
 
 #
 # Aliases
@@ -532,7 +533,6 @@ alias aliases='vim ~/.sh_aliases'
 alias zshrc='vim ~/.zshrc'
 alias profile='vim ~/.profile'
 alias zprofile='vim ~/.zprofile'
-alias syslog="tailf /var/log/syslog"
 alias resolv='cat /etc/resolv.conf'
 alias hosts='getent hosts'
 
@@ -575,8 +575,11 @@ else
     alias sudo='sudo '
 fi
 
+alias syslog="tail -f /var/log/syslog"
+
 # grcat aliases
 if hash grc &>/dev/null; then
+    alias syslog="\grc tail -f /var/log/syslog"
     alias cvs='\grc cvs'
     alias df='\grc df'
     alias esperanto='\grc esperanto'
@@ -638,7 +641,7 @@ alias dirtytop='watch grep -e Dirty: -e Writeback: /proc/meminfo'
 alias su='su --login'
 alias color-palette='(x=`tput op` y=`printf %76s`;for i in {0..256};do o=00$i;echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;done)'
 alias term-caps="infocmp -1 | sed -nu 's/^[ \000\t ]*//;s/[ \000\t ]*$//;/[^ \t\000]\{1,\}/!d;/acsc/d;s/=.*,//p'|column -c80"
-alias tree='tree -Csh'
+alias tree='tree -C'
 alias du='du -hs'
 alias df='df -Thx tmpfs -x devtmpfs'
 alias youtube-dl='youtube-dl --no-mtime'
@@ -667,13 +670,10 @@ alias swap-usage='for file in /proc/*/status ; do awk /VmSwap\|Name/\{printf\ \$
 alias ufw='sudo ufw'
 alias rsync='rsync --progress --verbose --archive --compress --delete --human-readable'
 alias lsusb="sudo lsusb -v | \grep -E '\<(Bus|iProduct|bDeviceClass|bDeviceProtocol)' 2>/dev/null"
-alias tailf="tail -f"
 alias resetusb="sudo rmmod xhci_pci xhci_hcd && sleep 2 && sudo modprobe xhci_pci xhci_hcd"
 alias sshtron="ssh sshtron.zachlatta.com"
 alias ptyloop="socat -d -d pty,raw,echo=0 pty,raw,echo=0"
 alias systemctl="sudo systemctl"
 alias dig="dig +short"
 alias sshfs="sshfs -o workaround=rename"
-alias apt="sudo apt"
-
 

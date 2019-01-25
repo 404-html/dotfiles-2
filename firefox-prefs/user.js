@@ -33,7 +33,7 @@ user_pref("network.proxy.socks_remote_dns",	true);
 // Clear most stuff but keep history when Firefox closes
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
 user_pref("privacy.clearOnShutdown.cache", true);
-user_pref("privacy.clearOnShutdown.cookies", true);
+//user_pref("privacy.clearOnShutdown.cookies", true);
 user_pref("privacy.clearOnShutdown.formdata", true);
 user_pref("privacy.clearOnShutdown.offlineApps", true);
 user_pref("privacy.clearOnShutdown.siteSettings", true);
