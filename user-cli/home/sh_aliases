@@ -448,6 +448,23 @@ function git_sparse_clone() (
 
   git pull origin master
 )
+
+function sanename() {
+    mv "$1" "${1//[^A-Za-z0-9._-]/_}"
+}
+
+function optpdf() {
+    if [ -e "$1" ]; then
+        local TMPFILE=tmp.$$
+        \mv "$1" "$TMPFILE"
+        gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -sOutputFile="$1" "$TMPFILE"
+        \rm "$TMPFILE"
+    else
+        >&2 echo '[error] file not found'
+    fi
+}
+
+
 #
 # Aliases
 #
@@ -616,6 +633,7 @@ alias aptdi='sudo dpkg -i'
 alias ytdl='youtube-dl -o "%(title)s-%(id)s.%(ext)s" --ignore-errors --merge-output-format mkv --no-mtime -f "bestvideo[height<=1080]+bestaudio" --sub-lang en,pt --write-sub --embed-subs --convert-subs srt'
 alias ytadl='youtube-dl -o "%(title)s-%(id)s.%(ext)s" --ignore-errors --no-mtime -f bestaudio'
 alias ffmpeg='ffmpeg -hide_banner'
+alias ffprobe='ffprobe -hide_banner'
 alias dirtytop='watch grep -e Dirty: -e Writeback: /proc/meminfo'
 alias su='su --login'
 alias color-palette='(x=`tput op` y=`printf %76s`;for i in {0..256};do o=00$i;echo -e ${o:${#o}-3:3} `tput setaf $i;tput setab $i`${y// /=}$x;done)'
@@ -657,4 +675,5 @@ alias systemctl="sudo systemctl"
 alias dig="dig +short"
 alias sshfs="sshfs -o workaround=rename"
 alias apt="sudo apt"
+
 

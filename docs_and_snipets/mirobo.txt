@@ -1,0 +1,9 @@
+coordinate point = 1mm
+coordinate origin = 25500, 25500
+px origin = 512, 512
+20px = 1000 coor
+coor = 512+px*50
+y down-top; x left, right
+zoned_clean retangle = [[inf x, inf y, sup x, sup y, int]]
+bargabe kithen coor = mirobo goto 24500 33200
+function gimppx2micoor { echo $((25500+($1-512)*50)),$((25500+(1024-$2-512)*50)) }

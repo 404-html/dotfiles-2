@@ -28,7 +28,7 @@ user_pref("network.proxy.socks_remote_dns",	true);
 //user_pref("pdfjs.disabled",	true);
 
 // Disable new tab tile ads 
-user_pref("browser.newtabpage.enabled", false);
+//user_pref("browser.newtabpage.enabled", true);
 
 // Clear most stuff but keep history when Firefox closes
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);

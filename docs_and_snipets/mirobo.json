@@ -1,0 +1,55 @@
+{
+    "name" : "dustcloud",
+    "host" : "beaglebone",
+    "port" : 22,
+    "user" : "miio",
+    "commands" : [ {
+        "name" : "start",
+        "cmd" : "bash -c 'source ~/.shrc.d/30-mirobo.sh && mirobo start'"
+    }, {
+        "name" : "pause",
+        "cmd" : "bash -c 'source ~/.shrc.d/30-mirobo.sh && mirobo pause'"
+    }, {
+        "name" : "home",
+        "cmd" : "bash -c 'source  ~/.shrc.d/30-mirobo.sh && mirobo home'"
+    }, {
+        "name" : "find",
+        "cmd" : "bash -c 'source ~/.shrc.d/30-mirobo.sh && mirobo find'"
+    }, {
+        "name" : "goto trashcan",
+        "cmd" : "bash -c 'source  ~/.shrc.d/30-mirobo.sh && mirobo_px_goto $MIROBO_G_TRASHCAN'"
+    }, {
+        "name" : "clean c. banho",
+        "cmd" : "bash -c 'source  ~/.shrc.d/30-mirobo.sh && mirobo_px_zclean $MIROBO_C_CBANHO'"
+    }, {
+        "name" : "clean casa",
+        "cmd" : "bash -c 'source  ~/.shrc.d/30-mirobo.sh && mirobo_px_zclean $CASA'"
+    }, {
+        "name" : "clean cozinha",
+        "cmd" : "bash -c 'source ~/.shrc.d/30-mirobo.sh && mirobo_px_zclean $MIROBO_C_COZINHA'"
+    }, {
+        "name" : "clean hall",
+        "cmd" : "bash -c 'source  ~/.shrc.d/30-mirobo.sh && mirobo_px_zclean $MIROBO_C_HALL'"
+    }, {
+        "name" : "clean quarto m",
+        "cmd" : "bash -c 'source  ~/.shrc.d/30-mirobo.sh && mirobo_px_zclean $MIROBO_C_QUARTOM'"
+    }, {
+        "name" : "clean quarto p",
+        "cmd" : "bash -c 'source  ~/.shrc.d/30-mirobo.sh && mirobo_px_zclean $MIROBO_C_QUARTOP'"
+    }, {
+        "name" : "clean sala",
+        "cmd" : "bash -c 'source  ~/.shrc.d/30-mirobo.sh && mirobo_px_zclean $MIROBO_C_SALA'"
+    }, {
+        "name" : "clean study",
+        "cmd" : "bash -c 'source  ~/.shrc.d/30-mirobo.sh && mirobo_px_zclean $MIROBO_C_STUDY'"
+    }, {
+        "name" : "fanspeed 77",
+        "cmd" : "bash -c 'source  ~/.shrc.d/30-mirobo.sh && mirobo fanspeed 77'"
+    }, {
+        "name" : "fanspeed 60",
+        "cmd" : "bash -c 'source  ~/.shrc.d/30-mirobo.sh && mirobo fanspeed 60'"
+    }, {
+        "name" : "fanspeed 38",
+        "cmd" : "bash -c 'source  ~/.shrc.d/30-mirobo.sh && mirobo fanspeed 38'"
+    } ]
+}

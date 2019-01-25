@@ -19,7 +19,7 @@ Type=SIMPLE_ACTION_DATA
 ActionsCount=1
 
 [Data_10Actions0]
-CommandURL=firefox-nightly
+CommandURL=x-www-browser
 Type=COMMAND_URL
 
 [Data_10Conditions]

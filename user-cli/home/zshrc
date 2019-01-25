@@ -50,6 +50,9 @@ setopt HISTIGNORESPACE
 # Deal with non matched * like bash does
 setopt NONOMATCH
 
+# Split white space word like bash
+setopt shwordsplit
+
 # Workaround #
 # Make zsh autocomplete respect dircolors.
 # https://github.com/robbyrussell/oh-my-zsh/issues/1563

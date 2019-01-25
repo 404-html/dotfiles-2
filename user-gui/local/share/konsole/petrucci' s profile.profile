@@ -9,7 +9,7 @@ Name=petrucci' s profile
 Parent=FALLBACK/
 RemoteTabTitleFormat=%w
 TerminalColumns=80
-TerminalRows=22
+TerminalRows=26
 
 [Interaction Options]
 AutoCopySelectedText=true
