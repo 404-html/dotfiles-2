@@ -1,0 +1,12 @@
+
+[Desktop Action firefoxSend]
+Exec=ffsend %F 2
+Icon=firefox
+Name=Firefox Send
+
+[Desktop Entry]
+Actions=firefoxSend
+Encoding=UTF-8
+ExcludeServiceTypes=application/x-iso,kdedevice/*,inode/directory
+ServiceTypes=KonqPopupMenu/Plugin,all/allfiles
+Type=Service

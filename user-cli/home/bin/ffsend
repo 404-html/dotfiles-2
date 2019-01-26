@@ -1,0 +1,18 @@
+#!/bin/bash
+
+function ffsend() {
+
+    local dl_limit=""
+    local dl_pw=""
+    local tmp_file=$(mktemp)
+
+    [ "$2" ] && dl_limit="--download-limit 3"
+    [ "$3" ] && dl_pw="--password-unsafe $3"
+        
+    send-cli "$1" $dl_limit $dl_pw | tee $tmp_file
+
+    grep https $tmp_file | \xclip -selection clipboard
+    rm $tmp_file
+}
+
+ffsend "$@"

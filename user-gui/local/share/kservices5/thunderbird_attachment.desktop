@@ -1,6 +1,6 @@
 [Desktop Action attachToEmail]
 Exec=thunderbird -compose "attachment='$(echo %F | sed 's/\\ \\//,\\/\\//g')'" 
-Icon=icedove
+Icon=thunderbird
 Name=Attach to Thunderbird Mail
 Name[cz]=Odeslat jako přílohu Thunderbirdem
 Name[de]=Als Anhang mit Thunderbird verschicken
