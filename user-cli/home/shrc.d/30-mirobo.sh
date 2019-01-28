@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-source ~/.mitokens.sh
+[ -e ~/.mitokens.sh ] && source ~/.mitokens.sh
 
 export MIROBO_G_TRASHCAN="492 358"
 
