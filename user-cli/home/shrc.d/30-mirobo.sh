@@ -58,4 +58,5 @@ function mirobo_px_zclean() {
 
 alias miiocliv='miiocli vacuum --ip=$MIROBO_IP --token=$MIROBO_TOKEN'
 alias miioclia='miiocli airpurifier --ip=$MIAIR_IP --token=$MIAIR_TOKEN'
+alias miair="miioclia"
 
