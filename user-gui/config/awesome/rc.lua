@@ -58,7 +58,7 @@ end
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-wwwbrowser = "firefox-nightly"
+browser = "firefox"
 terminal = "x-terminal-emulator"
 filemanager = "dolphin"
 editor = os.getenv("EDITOR") or "editor"
