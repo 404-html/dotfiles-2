@@ -2,7 +2,7 @@
 
 conky.config = {
 	-- ### GENERAL ###
-    font = 'Fira Code:size=8',
+    font = 'Fira Code:size=10',
     use_xft = true,
     update_interval = 10.0,
 	no_buffers = true,

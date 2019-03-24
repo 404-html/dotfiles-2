@@ -53,6 +53,11 @@ setopt NONOMATCH
 # Split white space word like bash
 setopt shwordsplit
 
+# Command prediction
+if [ -r ~/.zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source ~/.zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
 # Workaround #
 # Make zsh autocomplete respect dircolors.
 # https://github.com/robbyrussell/oh-my-zsh/issues/1563

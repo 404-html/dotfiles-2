@@ -677,4 +677,5 @@ alias ptyloop="socat -d -d pty,raw,echo=0 pty,raw,echo=0"
 alias systemctl="sudo systemctl"
 alias dig="dig +short"
 alias sshfs="sshfs -o workaround=rename"
+alias xprop="xprop | \grep -P --color=auto '.*(?=[(].*STRING.*=)' | column -t | \grep -P --color=auto '.*(?=[(].*STRING.*=)'"
 
