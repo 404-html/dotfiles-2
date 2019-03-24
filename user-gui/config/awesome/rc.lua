@@ -211,6 +211,36 @@ globalkeys = gears.table.join(
                awful.client.movetotag(client.focus.screen.tags[curidx + 1 % 10])
            end
        end),
+    -- Change tag to [up|down]
+     awful.key({ modkey, }, "Up",
+       function (c)
+           local curidx = awful.tag.getidx()
+           local screen = awful.screen.focused()
+           local tag = screen.tags[curidx - 5 % 10]
+           if tag then
+               tag:view_only()
+           end
+       end),
+     awful.key({ modkey, }, "Down",
+       function (c)
+           local curidx = awful.tag.getidx()
+           local screen = awful.screen.focused()
+           local tag = screen.tags[curidx + 5 % 10]
+           if tag then
+               tag:view_only()
+           end
+       end),
+    -- Send focused window do [up|down] tag.
+     awful.key({ modkey, "Shift"   }, "Up",
+       function (c)
+           local curidx = awful.tag.getidx()
+           awful.client.movetotag(client.focus.screen.tags[curidx - 5 % 10])
+       end),
+     awful.key({ modkey, "Shift"   }, "Down",
+       function (c)
+           local curidx = awful.tag.getidx()
+           awful.client.movetotag(client.focus.screen.tags[curidx + 5 % 10])
+       end),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
