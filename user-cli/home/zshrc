@@ -49,6 +49,8 @@ setopt HISTIGNOREDUPS
 setopt HISTIGNORESPACE
 # Deal with non matched * like bash does
 setopt NONOMATCH
+# AutoCD
+setopt autocd
 
 # Split white space word like bash
 setopt shwordsplit
@@ -57,11 +59,6 @@ setopt shwordsplit
 if [ -r ~/.zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     source ~/.zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
-
-# Workaround #
-# Make zsh autocomplete respect dircolors.
-# https://github.com/robbyrussell/oh-my-zsh/issues/1563
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 if [ -r ~/.sh_aliases ] && ! [ -f ~/.noaliases ]; then
     source ~/.sh_aliases
@@ -76,6 +73,8 @@ if [ -d $HOME/.shrc.d ]; then
     unset f
 fi
 
-true
-
+# Workaround #
+# Make zsh autocomplete respect dircolors.
+# https://github.com/robbyrussell/oh-my-zsh/issues/1563
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
