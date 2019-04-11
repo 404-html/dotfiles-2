@@ -7,7 +7,7 @@ xset -b
 numlockx on
 
 # Keyboard layout
-if [ "$(hostname)" = 't560' ] || [ "$(hostname)" = "a300" ] || [ "$(hostname)" = "i5-4690k" ]; then
+if [ "$(hostname)" = 't560' ] || [ "$(hostname)" = "a300" ] || [ "$(hostname)" = "i5-4690k" ] || [ "$(hostname)" = "FDC-PEDROGAMEIRO-P52" ]; then
     setxkbmap -layout us -variant altgr-intl 
 fi
 
