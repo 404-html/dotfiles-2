@@ -41,6 +41,12 @@ if [[ "$a" =~ ^(yes|y|Y)$ ]]; then
     chmod +x "$HOME/.local/bin/fasd"
 fi
 
+echo 'Clone zsh-autosuggestions? [y/n]'
+read a
+if [[ "$a" =~ ^(yes|y|Y)$ ]]; then
+    git clone --recursive 'https://github.com/zsh-users/zsh-autosuggestions' "${ZDOTDIR:-$HOME}/.zsh-autosuggestions"
+fi
+
 echo 'Clone zprezto? [y/n]'
 read a
 if [[ "$a" =~ ^(yes|y|Y)$ ]]; then
