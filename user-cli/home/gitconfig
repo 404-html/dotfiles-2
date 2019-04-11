@@ -1,6 +1,8 @@
 [include]
     path = ~/.gitusr
+    path = ~/.gitwork
 [core]
+	excludesfile = ~/.gitignore
     editor = nvim
     pager = less -+F
 [web]
@@ -10,11 +12,15 @@
 [color]
 	ui = auto
 [diff]
-    tool = vimdiff
+	tool = meld
+[merge]
+	tool = meld
 [difftool]
     prompt = false
 [pull]
 	rebase = true
+[rebase]
+	autoStash = true
 [alias]
     st = status
     ci = commit
@@ -84,7 +90,7 @@
 	o = checkout
 	ob = checkout -b
 	#############
-	pr = prune -v
+    #pr = prune -v
 	#############
 	ps = push
 	psf = push -f
@@ -177,3 +183,4 @@
 	human = name-rev --name-only --refs=refs/heads/*
 	serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
     snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
+
