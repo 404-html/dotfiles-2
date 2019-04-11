@@ -477,8 +477,7 @@ if [ -x /usr/bin/dircolors ]; then
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
-    # egrep ftw.
-    alias grep='egrep --binary-files=without-match --color=auto'
+    alias grep='grep -P --binary-files=without-match --color=auto'
     alias fgrep='fgrep --binary-files=without-match --color=auto'
     alias egrep='egrep  --binary-files=without-match --color=auto'
 
@@ -570,7 +569,7 @@ alias we='&>/dev/null dolphin $PWD &'
 alias offline='unshare -n'
 
 # Ignore sudo if it is not installed
-if ! hash sudo; then
+if ! hash sudo 2>/dev/null ; then
     alias sudo=''
 else
     alias sudo='sudo '
@@ -670,12 +669,14 @@ fi
 alias swap-usage='for file in /proc/*/status ; do awk /VmSwap\|Name/\{printf\ \$2\ \"\ \"\ \$3\}END\{\ print\ \"\"\ \} $file; done | sort -k 2 -n -r | less'
 alias ufw='sudo ufw'
 alias rsync='rsync --progress --verbose --archive --compress --delete --human-readable'
-alias lsusb="sudo lsusb -v | \grep -E '\<(Bus|iProduct|bDeviceClass|bDeviceProtocol)' 2>/dev/null"
+alias lsusb="sudo lsusb -v | \grep -E --color=auto '\<(Bus|iProduct|bDeviceClass|bDeviceProtocol)' 2>/dev/null"
 alias resetusb="sudo rmmod xhci_pci xhci_hcd && sleep 2 && sudo modprobe xhci_pci xhci_hcd"
 alias sshtron="ssh sshtron.zachlatta.com"
 alias ptyloop="socat -d -d pty,raw,echo=0 pty,raw,echo=0"
 alias systemctl="sudo systemctl"
 alias dig="dig +short"
 alias sshfs="sshfs -o workaround=rename"
-alias xprop="xprop | \grep -P --color=auto '.*(?=[(].*STRING.*=)' | column -t | \grep -P --color=auto '.*(?=[(].*STRING.*=)'"
+alias xprop="xprop | \grep -P '.*(?=[(].*STRING.*=)' | column -t | \grep -P --color=auto '.*(?=[(].*STRING.*=)'"
+alias ack='ack --passthru --color'
+alias reshell='sudo -u $USER $SHELL'
 
