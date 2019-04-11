@@ -22,10 +22,6 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
--- Load Debian menu entries
-local debian = require("debian.menu")
-local has_fdo, freedesktop = pcall(require, "freedesktop")
-
 --- }}}
 
 -- {{{ Error handling
@@ -56,6 +52,7 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+--beautiful.get().wallpaper = "/home/mu/.config/wallpaper-1920.png"
 
 -- This is used later as the default terminal and editor to run.
 browser = "firefox"
@@ -159,7 +156,6 @@ end)
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 ))
@@ -345,7 +341,7 @@ clientkeys = gears.table.join(
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, 9 do
+for i = 1, 10 do
     globalkeys = gears.table.join(globalkeys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
@@ -394,7 +390,7 @@ end
 
 clientbuttons = gears.table.join(
     awful.button({ }, 1, function (c)
-        c:emit_signal("request::activate", "mouse_click", {raise = true})
+        c:emit_signal("request::activate", "mouse_click", {raise = false})
     end),
     awful.button({ modkey }, 1, function (c)
         c:emit_signal("request::activate", "mouse_click", {raise = true})
@@ -418,7 +414,7 @@ awful.rules.rules = {
       properties = { border_width = beautiful.border_width,
                      border_color = beautiful.border_normal,
                      focus = awful.client.focus.filter,
-                     raise = true,
+                     raise = false,
                      keys = clientkeys,
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
@@ -426,7 +422,11 @@ awful.rules.rules = {
                      -- Start windows as slave
                      callback = awful.client.setslave,
                      -- Remove window gaps
-                     size_hints_honor = false
+                     size_hints_honor = false,
+                     -- Stop windows from starting maximized
+                     maximized_horizontal = false,
+                     maximized_vertical = false,
+                     maximized = false
      }
     },
 
@@ -562,6 +562,20 @@ end)
 client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", {raise = false})
 end)
+
+-- Maintain tag order when disconnecting a monitor
+-- https://www.reddit.com/r/awesomewm/comments/5r9mgu/client_layout_not_preserved_when_switching/
+tag.connect_signal("request::screen", function(t)
+    clients = t:clients()
+    for s in screen do
+        if s ~= t.screen and clients and next(clients) then
+            t.screen = s
+            t.name = t.name .. "'"
+            awful.tag.setvolatile(true, t)
+            return
+        end
+    end
+end);
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
