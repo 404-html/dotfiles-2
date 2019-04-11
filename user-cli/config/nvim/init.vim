@@ -19,15 +19,20 @@ call plug#begin('~/.local/share/nvim/plugged')
     Plug 'vim-airline/vim-airline'        " airline is a better status line and a tab-bar for nvim.
     Plug 'vim-airline/vim-airline-themes' " airline themes
     Plug 'tpope/vim-surround'             " faster edits for surrounding whatever
-    Plug 'jiangmiao/auto-pairs'           " Autoclose brackets and what not...  
+    Plug 'jiangmiao/auto-pairs'           " Autoclose brackets and what not...
     Plug 'tpope/vim-repeat'               " Support for repeating plugin executions with '.'
     Plug 'Shougo/deoplete.nvim'           " Autocomplete
     Plug 'kien/ctrlp.vim'                 " ctrl-p is a fuzzy file finder.
     Plug 'junegunn/vim-easy-align'        " Helps aligning txt
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+    Plug 'majutsushi/tagbar'
+    Plug 'Shougo/neosnippet.vim'
+    Plug 'Shougo/neosnippet-snippets'
+    Plug 'tpope/vim-fugitive'
+    Plug 'scrooloose/nerdtree'            " List files
 
     " Maybies...
     "Plug 'benekastah/neomake'             " Asynchronous syntax checking
-    "Plug 'scrooloose/nerdtree'            " List files
     "Plug 'rust-lang/rust.vim'             " Rust Lang
     "Plug 'Valloric/YouCompleteMe'         " Autocomplete
     "Plug 'takac/vim-hardtime'             " Help drop bad vim habits
@@ -67,7 +72,7 @@ set history=700                 " Sets how many lines of history VIM has to reme
 set cursorline  				" highlight current line
 set laststatus=2                " Show status bar
 set number                      " Show line numbers.
-set relativenumber              " show line number relative to current position
+"set relativenumber              " show line number relative to current position
 set completeopt=menuone,longest,preview
 set hls                         " Highlight search matches.
 set incsearch                   " find as you type search
@@ -77,7 +82,7 @@ set noignorecase
 set wildmenu                    " show list instead of just completing
 set wildmode=list:longest,full  " command <Tab> completion, list matches, then longest common part, then all.
 set foldenable                  " auto fold code
-set foldmethod=indent           
+set foldmethod=indent
 set foldlevelstart=99           " folding nesting level
 set foldnestmax=10              " 10 nested fold max
 set mouse=a
@@ -96,7 +101,7 @@ set showcmd            " display incomplete commands
 set undolevels=1000 "maximum number of changes that can be undone
 set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 "set lazyredraw
-
+set autowrite
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Autocmd
@@ -344,6 +349,13 @@ let g:airline_right_sep = ' '
 let g:airline_right_alt_sep = '|'
 let g:airline_theme= 'base16'
 
+" vim-go
+"map <C-n> :cnext<CR>
+"map <C-m> :cprevious<CR>
+"nnoremap <leader>a :cclose<CR>
+"autocmd FileType go nmap <leader>b  <Plug>(go-build)
+"autocmd FileType go nmap <leader>r  <Plug>(go-run)
+
 " Deoplete.
 let g:deoplete#enable_at_startup = 1
 " tab and ctrl-space keys ...
@@ -363,7 +375,7 @@ imap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
 "let g:ycm_key_invoke_completion = '<C-Space>'
 
 " NerdTree
-"map <leader>n :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
 
 " Ack
 "if executable('ag')
@@ -378,7 +390,7 @@ imap <expr><s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
 
 " Hardtime
 "let g:hardtime_showmsg = 1
-"let g:hardtime_default_on = 1 
+"let g:hardtime_default_on = 1
 "let g:hardtime_allow_different_key = 1
 "let g:hardtime_maxcount = 4
 "let g:hardtime_timeout = 1000
@@ -389,3 +401,26 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+nmap <F8> :TagbarToggle<CR>
+
+" Git Fugitive
+nmap <space>gb :Gblame<cr>
+nmap <space>gs :Gstatus<cr>
+nmap <space>gc :Gcommit -v<cr>
+nmap <space>ga :Git add -p<cr>
+nmap <space>gm :Gcommit --amend<cr>
+nmap <space>gp :Gpush<cr>
+nmap <space>gd :Gdiff<cr>
+nmap <space>gw :Gwrite<cr>
+
+" Don't copy when pasting over something
+xnoremap p "_dP
+
+"NeoSunippet
+"-----------------------------------------------------
+"Plugin key-mappings
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#snippets_directory='~/.vim/snippet/'
