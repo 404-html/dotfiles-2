@@ -350,6 +350,7 @@ let g:airline_right_alt_sep = '|'
 let g:airline_theme= 'base16'
 
 " vim-go
+let g:go_fmt_command = "goimports"
 "map <C-n> :cnext<CR>
 "map <C-m> :cprevious<CR>
 "nnoremap <leader>a :cclose<CR>
