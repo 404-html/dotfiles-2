@@ -414,7 +414,6 @@ awful.rules.rules = {
       properties = { border_width = beautiful.border_width,
                      border_color = beautiful.border_normal,
                      focus = awful.client.focus.filter,
-                     raise = false,
                      keys = clientkeys,
                      buttons = clientbuttons,
                      screen = awful.screen.preferred,
@@ -488,6 +487,8 @@ awful.rules.rules = {
     },
     properties = {
         floating = true,
+        focusable = false,
+        raise = false,
         placement = awful.placement.top_right,
         }
     },
