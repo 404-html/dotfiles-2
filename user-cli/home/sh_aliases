@@ -682,6 +682,7 @@ alias xprop="xprop | \grep -P '.*(?=[(].*STRING.*=)' | column -t | \grep -P --co
 alias ack='ack --passthru --color'
 alias reshell='sudo -u $USER $SHELL'
 alias pacman='pacman --color=always'
+alias pacman-autoremove='pacman -Rs $(pacman -Qtdq)'
 alias lsdelof="lsof +c 0 | grep 'DEL.*lib' | awk '{ print \$1 \": \" \$NF }' | sort -u"
 alias rebootrequired='[ -f /var/run/reboot-required ] && echo yes || echo no'
 
