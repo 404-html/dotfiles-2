@@ -599,6 +599,7 @@ if hash grc &>/dev/null; then
     alias dig='\grc dig'
     alias iptables='sudo \grc iptables'
     alias iptables6='sudo \grc iptables6'
+    alias lsof='sudo \grc lsof'
 fi
 
 # Super usefull...
@@ -666,6 +667,7 @@ if ! hash update-grub 2>/dev/null; then
 else
     alias update-grub='sudo update-grub'
 fi
+alias update-initcpio='mkinitcpio -p linux'
 alias swap-usage='for file in /proc/*/status ; do awk /VmSwap\|Name/\{printf\ \$2\ \"\ \"\ \$3\}END\{\ print\ \"\"\ \} $file; done | sort -k 2 -n -r | less'
 alias ufw='sudo ufw'
 alias rsync='rsync --progress --verbose --archive --compress --delete --human-readable'
@@ -680,4 +682,6 @@ alias xprop="xprop | \grep -P '.*(?=[(].*STRING.*=)' | column -t | \grep -P --co
 alias ack='ack --passthru --color'
 alias reshell='sudo -u $USER $SHELL'
 alias pacman='pacman --color=always'
+alias lsdelof="lsof +c 0 | grep 'DEL.*lib' | awk '{ print \$1 \": \" \$NF }' | sort -u"
+alias rebootrequired='[ -f /var/run/reboot-required ] && echo yes || echo no'
 
