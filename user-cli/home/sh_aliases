@@ -679,4 +679,5 @@ alias sshfs="sshfs -o workaround=rename"
 alias xprop="xprop | \grep -P '.*(?=[(].*STRING.*=)' | column -t | \grep -P --color=auto '.*(?=[(].*STRING.*=)'"
 alias ack='ack --passthru --color'
 alias reshell='sudo -u $USER $SHELL'
+alias pacman='pacman --color=always'
 
