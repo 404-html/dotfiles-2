@@ -55,9 +55,9 @@ beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 --beautiful.get().wallpaper = "/home/mu/.config/wallpaper-1920.png"
 
 -- This is used later as the default terminal and editor to run.
-browser = "firefox"
+browser = "x-www-browser"
 terminal = "x-terminal-emulator"
-filemanager = "dolphin"
+filemanager = "x-file-explorer"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
