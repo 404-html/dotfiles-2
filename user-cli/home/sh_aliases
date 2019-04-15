@@ -64,6 +64,11 @@ classpath(){
     echo $CLASS_PATH | tr -s ':' '\n'
 }
 
+gopath(){
+    echo $GOPATH | tr -s ':' '\n'
+}
+
+
 #Backup File
 bak(){
     cp "$1"{,".bak"}
