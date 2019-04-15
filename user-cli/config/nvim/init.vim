@@ -296,7 +296,7 @@ function! InitializeDirectories()
 endfunction
 call InitializeDirectories()
 
-function Tydiup()
+function TidyUp()
     " Preparation: save last search, and cursor position.
     let _s=@/
     let l = line(".")
