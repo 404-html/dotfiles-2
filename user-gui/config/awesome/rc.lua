@@ -576,6 +576,7 @@ tag.connect_signal("request::screen", function(t)
             return
         end
     end
+    awesome.restart()
 end);
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
